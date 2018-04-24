@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharMovement : MonoBehaviour {
 
-    public float moveSpeed = 10f;
+    public float moveSpeed = 15f;
     public Rigidbody character;
     public float dashForce;
     public bool dashCooldown = true;
@@ -32,8 +32,6 @@ public class CharMovement : MonoBehaviour {
         //Dash
         if ((Input.GetButtonDown("Fire3")) && (dashCooldown == true))
         {
-            Debug.Log("X");
-            // moveSpeed = 30f;
             character.AddForce(movement.normalized * dashForce);
             dashCooldown = false;
             StartCoroutine(Dash());
@@ -49,7 +47,6 @@ public class CharMovement : MonoBehaviour {
     IEnumerator Dash()
     {
         yield return new WaitForSeconds(dashDuration);
-        //moveSpeed = 10f;
         dashCooldown = true;
     }
 }
