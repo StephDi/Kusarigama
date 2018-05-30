@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponAtChar : MonoBehaviour {
+public class WeaponatChar : MonoBehaviour {
 
-    public Transform Char;
-    public Transform Weapon;
+    public GameObject character;
+    public GameObject weaponAnchor;
 	
 	// Update is called once per frame
-	void Update () {
-        Weapon.position = Char.position;
+	void FixedUpdate () {
+
+        weaponAnchor.transform.position = character.transform.position;
+
+
 	}
 }

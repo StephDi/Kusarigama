@@ -5,7 +5,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public float moveSpeed = 100f;
-    public Rigidbody character;
+    public Rigidbody weaponAnchor;
 
     void FixedUpdate()
     {
@@ -16,7 +16,7 @@ public class Weapon : MonoBehaviour
 
         if (movement != Vector3.zero)
         {
-            character.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15F));
+            weaponAnchor.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15F));
         }
 
     }
