@@ -1,24 +1,54 @@
 fileFormatVersion: 2
-guid: 6a05d0a90d78158449b7e7c631734d80
-timeCreated: 1521136979
-licenseType: Free
+guid: 193609acd732eb245a46ed36d29808b5
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Cube
-    100004: Mball.021
-    400000: //RootNode
-    400002: Cube
-    400004: Mball.021
-    2100000: "Blattwerk_gro\xDF"
-    2100002: "Baum_Rinde_gro\xDF"
+    100000: Cube
+    100002: Cube.001
+    100004: Cube.002
+    100006: Cube.004
+    100008: Cube.013
+    100010: Cube.016
+    100012: Cube.017
+    100014: Cube.023
+    100016: //RootNode
+    400000: Cube
+    400002: Cube.001
+    400004: Cube.002
+    400006: Cube.004
+    400008: Cube.013
+    400010: Cube.016
+    400012: Cube.017
+    400014: Cube.023
+    400016: //RootNode
+    2100000: "T\xFCr"
+    2100002: Fabric
+    2100004: Haus_unten
     2300000: Cube
-    2300002: Mball.021
+    2300002: Cube.001
+    2300004: Cube.002
+    2300006: Cube.004
+    2300008: Cube.013
+    2300010: Cube.016
+    2300012: Cube.017
+    2300014: Cube.023
     3300000: Cube
-    3300002: Mball.021
-    4300000: Mball.021
-    4300002: Cube
+    3300002: Cube.001
+    3300004: Cube.002
+    3300006: Cube.004
+    3300008: Cube.013
+    3300010: Cube.016
+    3300012: Cube.017
+    3300014: Cube.023
+    4300000: Cube.002
+    4300002: Cube.023
+    4300004: Cube.017
+    4300006: Cube.016
+    4300008: Cube.013
+    4300010: Cube.004
+    4300012: Cube.001
+    4300014: Cube
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -38,6 +68,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
