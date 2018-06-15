@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 584b7ae5683861b47abd19143ea93eba
+guid: c9fbb5d5821fe3042a9e5dc1f8cfdd48
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -8,7 +8,7 @@ ModelImporter:
     2100000: Zaun
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Cube.063
+    4300000: Cube.024
   externalObjects: {}
   materials:
     importMaterials: 1
