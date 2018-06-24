@@ -2,23 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
-{
-    public float moveSpeed = 100f;
-    public Rigidbody weaponAnchor;
+public class Weapon : MonoBehaviour {
 
-    void FixedUpdate()
-    {
-        float horizontal = Input.GetAxis("WeaponHorizontal");
-        float vertical = Input.GetAxis("WeaponVertical");
+    public static int damage;
+    public int weaponDamage;
+    public BoxCollider weaponCollider;
+    public float attackCooldown;
 
-        Vector3 movement = new Vector3(horizontal * moveSpeed * Time.deltaTime, 0, vertical * moveSpeed * Time.deltaTime);
+	// Use this for initialization
+	void Start () {
+		
+	}
 
-        if (movement != Vector3.zero)
+    void Update() {
+        damage = weaponDamage;
+    }
+	
+	// Update is called once per frame
+	void FixedUpdate () {
+
+        //Simple Attack
+        if (Input.GetButtonDown("Fire1"))
         {
-            weaponAnchor.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15F));
-        }
+            //Play Animation
 
+            //Set Weapontrigger = true
+            weaponCollider.enabled = true;
+            StartCoroutine(Attack());
+        }
+		
+	}
+
+    IEnumerator Attack()
+    {
+        yield return new WaitForSeconds(attackCooldown);
+        weaponCollider.enabled = false;
     }
 }
-

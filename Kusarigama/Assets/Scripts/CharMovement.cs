@@ -32,7 +32,7 @@ public class CharMovement : MonoBehaviour {
         }
 
         //Dash
-        if ((Input.GetButtonDown("Fire3")) && (dashCooldown == true))
+        if ((Input.GetButtonDown("Dash")) && (dashCooldown == true))
         {
             character.AddForce(movement.normalized * dashForce);
             dashCooldown = false;
@@ -40,7 +40,7 @@ public class CharMovement : MonoBehaviour {
         }
 
         //jump
-        if (Input.GetButtonDown("Fire1") )
+        if (Input.GetButtonDown("Jump") )
         {
             character.AddForce(0,jumpForce,0);
         }
