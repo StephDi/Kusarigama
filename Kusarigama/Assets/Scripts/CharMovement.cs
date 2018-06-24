@@ -17,6 +17,7 @@ public class CharMovement : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
+    //Move
 	void FixedUpdate () {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
@@ -24,6 +25,7 @@ public class CharMovement : MonoBehaviour {
         Vector3 movement = new Vector3(horizontal * moveSpeed * Time.deltaTime, 0, vertical * moveSpeed * Time.deltaTime);
 
         character.MovePosition(transform.position + movement);
+  
         if (movement != Vector3.zero)
         {
             character.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.35F));
