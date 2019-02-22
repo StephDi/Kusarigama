@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: 4ba47360b29f7ad4b84c0b85735b13a9
+guid: c831ffc078b4cf54fa2f16dfe2ac8a29
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: Baumkrone
-    2100002: Baumrinde
+    2100000: Fabric
+    2100002: Material
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Cube
+    4300000: Cube.019
   externalObjects: {}
   materials:
     importMaterials: 1

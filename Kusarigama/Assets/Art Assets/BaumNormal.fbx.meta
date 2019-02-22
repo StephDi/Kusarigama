@@ -1,70 +1,15 @@
 fileFormatVersion: 2
-guid: 53efd0ee861568140a116e60e53ba1f5
+guid: 316e0080ce6132b4cae55ef84bbaa8c1
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Armature
-    100002: //RootNode
-    100004: Bone
-    100006: Bone.001
-    100008: Bone.002
-    100010: Bone.003
-    100012: Bone.004
-    100014: Bone.005
-    100016: Bone.006
-    100018: Bone.006_end
-    100020: Bone.007
-    100022: Bone.008
-    100024: Bone.009
-    100026: Bone.009_end
-    100028: Bone.010
-    100030: Bone.011
-    100032: Bone.011_end
-    100034: Bone.012
-    100036: Bone.012_end
-    100038: Bone.013
-    100040: Bone.013_end
-    100042: Bone.014
-    100044: Bone.014_end
-    100046: Bone.015
-    100048: Bone.015_end
-    100050: Bone.016
-    100052: Bone.016_end
-    100054: Mball.021
-    400000: Armature
-    400002: //RootNode
-    400004: Bone
-    400006: Bone.001
-    400008: Bone.002
-    400010: Bone.003
-    400012: Bone.004
-    400014: Bone.005
-    400016: Bone.006
-    400018: Bone.006_end
-    400020: Bone.007
-    400022: Bone.008
-    400024: Bone.009
-    400026: Bone.009_end
-    400028: Bone.010
-    400030: Bone.011
-    400032: Bone.011_end
-    400034: Bone.012
-    400036: Bone.012_end
-    400038: Bone.013
-    400040: Bone.013_end
-    400042: Bone.014
-    400044: Bone.014_end
-    400046: Bone.015
-    400048: Bone.015_end
-    400050: Bone.016
-    400052: Bone.016_end
-    400054: Mball.021
-    2100000: "Blattwerk_gro\xDF"
-    2100002: "Baum_Rinde_gro\xDF"
-    4300000: Mball.021
-    7400000: Armature|ImWindWiegen
-    9500000: //RootNode
-    13700000: Mball.021
+    100000: //RootNode
+    400000: //RootNode
+    2100000: Blatt
+    2100002: Baumstamm
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Leaves_Plane.000
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -140,7 +85,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
