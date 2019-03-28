@@ -1,14 +1,14 @@
 fileFormatVersion: 2
-guid: 21556c0cb46537642a6230c3f2620846
+guid: 534c4e66c6751744ca364837327f4cf8
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: Pflanzen_TS
+    2100000: Steinruine.214
     2300000: //RootNode
     3300000: //RootNode
-    4300000: "Bambusbl\xE4tter.017"
+    4300000: Steinblock.034
   externalObjects: {}
   materials:
     importMaterials: 1
