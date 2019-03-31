@@ -25,4 +25,6 @@ public class EnemyFox : MonoBehaviour {
         }
     }
 
+    //EnemyMovement
+
 }

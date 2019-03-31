@@ -8,17 +8,22 @@ public class SmoothCam : MonoBehaviour {
 
     public float smoothSpeed;
     public Vector3 offset;
-   
+
+    public float Rotationspeed = 3.0f;
 
     void Start()
     {
-
+        offset = transform.position - target.position;
     }
 
     void FixedUpdate()
     {
+        Quaternion camTurnAngle = Quaternion.AngleAxis(Input.GetAxis("HorizontalTurn") * Rotationspeed, Vector3.up);
+
+        offset = camTurnAngle * offset;
+
         Vector3 desiredPosition = target.position + offset;
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
-        transform.position = smoothedPosition;
+        transform.position = Vector3.Slerp(transform.position, desiredPosition, smoothSpeed);
+        transform.LookAt(target);
     }
 }

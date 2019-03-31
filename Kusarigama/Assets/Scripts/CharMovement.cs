@@ -10,9 +10,10 @@ public class CharMovement : MonoBehaviour {
     public bool dashCooldown = true;
     public float dashDuration;
     public float jumpForce;
+    public Transform cam;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         character = GetComponent<Rigidbody>();
 	}
 	
@@ -22,13 +23,21 @@ public class CharMovement : MonoBehaviour {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(horizontal * moveSpeed * Time.deltaTime, 0, vertical * moveSpeed * Time.deltaTime);
+        Vector3 movement = new Vector3(horizontal * moveSpeed * Time.deltaTime,0, vertical * moveSpeed * Time.deltaTime);
 
-        character.MovePosition(transform.position + movement);
+        Vector3 camF = cam.forward;
+        Vector3 camR = cam.right;
+
+        camF.y = 0;
+        camR.y = 0;
+        camF = camF.normalized;
+        camR = camR.normalized;
+
+        character.MovePosition(transform.position + (camF * movement.z + camR * movement.x));
   
         if (movement != Vector3.zero)
         {
-            character.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.35F));
+            character.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement.x * camR + movement.z * camF), 0.35F));
         }
 
         //Dash
@@ -44,6 +53,8 @@ public class CharMovement : MonoBehaviour {
         {
             character.AddForce(0,jumpForce,0);
         }
+
+
     }
 
     IEnumerator Dash()
