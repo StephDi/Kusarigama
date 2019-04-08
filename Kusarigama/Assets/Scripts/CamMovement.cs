@@ -15,8 +15,8 @@ public class CamMovement : MonoBehaviour {
     private float currentY = 0.0f;
     
 
-    private const float Y_ANGLE_MIN = 5.0f;
-    private const float Y_ANGLE_MAX = 70.0f;
+    private const float X_ANGLE_MIN = 5.0f;
+    private const float X_ANGLE_MAX = 40.0f;
 
     // Use this for initialization
     void Start ()
@@ -24,21 +24,22 @@ public class CamMovement : MonoBehaviour {
         camTransform = transform;
         cam = Camera.main;
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         currentX -= Input.GetAxis("VerticalTurn");
         currentY += Input.GetAxis("HorizontalTurn");
 
-        currentX = Mathf.Clamp(currentX,Y_ANGLE_MIN,Y_ANGLE_MAX);
+        currentX = Mathf.Clamp(currentX, X_ANGLE_MIN, X_ANGLE_MAX);
+
     }
 
     void FixedUpdate()
     {
         Vector3 dir = new Vector3(0, 0, -distance);
         Quaternion rotation = Quaternion.Euler(currentX * rotationSpeed, currentY * rotationSpeed, 0);
-        camTransform.position = LookAt.position + rotation * dir;
+        camTransform.position = Vector3.Lerp(camTransform.position, LookAt.position + rotation * dir,5f);
         camTransform.LookAt(LookAt.position);
     }
 }

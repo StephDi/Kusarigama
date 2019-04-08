@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class CharMovement : MonoBehaviour {
 
@@ -11,6 +12,7 @@ public class CharMovement : MonoBehaviour {
     public float dashDuration;
     public float jumpForce;
     public Transform cam;
+    public Animator anim;
 
     // Use this for initialization
     void Start () {
@@ -24,7 +26,18 @@ public class CharMovement : MonoBehaviour {
         float vertical = Input.GetAxis("Vertical");
 
         Vector3 movement = new Vector3(horizontal * moveSpeed * Time.deltaTime,0, vertical * moveSpeed * Time.deltaTime);
-         
+        
+        //Animation
+        if (Mathf.Abs(horizontal) + Mathf.Abs(vertical) != 0)
+        {
+            anim.SetBool("Moving", true);
+            anim.SetFloat("Movespeed", Mathf.Abs(movement.magnitude * 5));
+        }
+        else
+        {
+            anim.SetBool("Moving", false);
+        }
+
         //Cameramovement
         Vector3 camF = cam.forward;
         Vector3 camR = cam.right;
@@ -45,15 +58,20 @@ public class CharMovement : MonoBehaviour {
         //Dash
         if ((Input.GetButtonDown("Dash")) && (dashCooldown == true))
         {
-            character.AddForce(movement.normalized * dashForce);
+            character.AddRelativeForce(movement.normalized * dashForce);
             dashCooldown = false;
             StartCoroutine(Dash());
         }
 
         //jump
-        if (Input.GetButtonDown("Jump") )
+        if (Input.GetButtonDown("Jump"))
         {
-            character.AddForce(0,jumpForce,0);
+            character.AddForce(0, jumpForce, 0);
+            anim.SetBool("Jump", true);
+        }
+        else
+        {
+            anim.SetBool("Jump", false);
         }
 
 
