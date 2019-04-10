@@ -13,6 +13,7 @@ public class CharMovement : MonoBehaviour {
     public float jumpForce;
     public Transform cam;
     public Animator anim;
+    public bool isGrounded = false;
 
     // Use this for initialization
     void Start () {
@@ -20,13 +21,13 @@ public class CharMovement : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-    //Move
 	void FixedUpdate () {
+        //Move
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(horizontal * moveSpeed * Time.deltaTime,0, vertical * moveSpeed * Time.deltaTime);
-        
+        Vector3 movement = new Vector3(horizontal * moveSpeed * Time.deltaTime,0, vertical * moveSpeed * Time.deltaTime);       
+
         //Animation
         if (Mathf.Abs(horizontal) + Mathf.Abs(vertical) != 0)
         {
@@ -58,15 +59,16 @@ public class CharMovement : MonoBehaviour {
         //Dash
         if ((Input.GetButtonDown("Dash")) && (dashCooldown == true))
         {
-            character.AddRelativeForce(movement.normalized * dashForce);
+            character.AddRelativeForce(Vector3.forward * dashForce);
             dashCooldown = false;
+            anim.SetBool("Dash",true);
             StartCoroutine(Dash());
         }
 
         //jump
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && isGrounded == true)
         {
-            character.AddForce(0, jumpForce, 0);
+            character.velocity = new Vector3(0, jumpForce, 0);
             anim.SetBool("Jump", true);
         }
         else
@@ -77,9 +79,24 @@ public class CharMovement : MonoBehaviour {
 
     }
 
+    void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Ground")
+        {
+            isGrounded = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        isGrounded = false;
+    }
+
     IEnumerator Dash()
     {
         yield return new WaitForSeconds(dashDuration);
         dashCooldown = true;
+        anim.SetBool("Dash",false);
+        character.velocity = new Vector3(0,0,0);
     }
 }
