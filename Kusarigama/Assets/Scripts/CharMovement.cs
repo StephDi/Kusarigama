@@ -57,7 +57,7 @@ public class CharMovement : MonoBehaviour {
         }
 
         //Dash
-        if ((Input.GetButtonDown("Dash")) && (dashCooldown == true))
+        if ((Input.GetButtonDown("Dash")) && (dashCooldown == true) && (Mathf.Abs(horizontal) + Mathf.Abs(vertical) != 0))
         {
             character.AddRelativeForce(Vector3.forward * dashForce);
             dashCooldown = false;
@@ -71,12 +71,6 @@ public class CharMovement : MonoBehaviour {
             character.velocity = new Vector3(0, jumpForce, 0);
             anim.SetBool("Jump", true);
         }
-        else
-        {
-            anim.SetBool("Jump", false);
-        }
-
-
     }
 
     void OnTriggerStay(Collider other)
@@ -84,19 +78,23 @@ public class CharMovement : MonoBehaviour {
         if (other.tag == "Ground")
         {
             isGrounded = true;
+            anim.SetBool("Grounded",true);
+            anim.SetBool("Jump", false);
         }
     }
 
     void OnTriggerExit(Collider other)
     {
         isGrounded = false;
+        anim.SetBool("Grounded", false);
+        anim.SetBool("Jump", true);
     }
 
     IEnumerator Dash()
     {
         yield return new WaitForSeconds(dashDuration);
         dashCooldown = true;
-        anim.SetBool("Dash",false);
-        character.velocity = new Vector3(0,0,0);
+        anim.SetBool("Dash",false);        
+        character.velocity = new Vector3(0, 0, 0);
     }
 }

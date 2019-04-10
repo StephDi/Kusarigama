@@ -7,7 +7,8 @@ public class Weapon : MonoBehaviour {
     public static int damage;
     public int weaponDamage;
     public BoxCollider weaponCollider;
-    public float attackCooldown;
+    public float attackCooldown; 
+    public Animator anim;
 
 	// Use this for initialization
 	void Start () {
@@ -25,7 +26,7 @@ public class Weapon : MonoBehaviour {
         if (Input.GetButtonDown("Fire1"))
         {
             //Play Animation
-
+            anim.SetBool("Attack",true);
             //Set Weapontrigger = true
             weaponCollider.enabled = true;
             StartCoroutine(Attack());
@@ -37,5 +38,6 @@ public class Weapon : MonoBehaviour {
     {
         yield return new WaitForSeconds(attackCooldown);
         weaponCollider.enabled = false;
+        anim.SetBool("Attack",false);
     }
 }
