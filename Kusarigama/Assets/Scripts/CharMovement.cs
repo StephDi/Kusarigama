@@ -21,7 +21,7 @@ public class CharMovement : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void LateUpdate () {
         //Move
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
@@ -68,7 +68,6 @@ public class CharMovement : MonoBehaviour {
         //jump
         if (Input.GetButtonDown("Jump") && isGrounded == true)
         {
-            character.velocity = new Vector3(0, jumpForce, 0);
             anim.SetBool("Jump", true);
         }
     }
@@ -78,16 +77,26 @@ public class CharMovement : MonoBehaviour {
         if (other.tag == "Ground")
         {
             isGrounded = true;
-            anim.SetBool("Grounded",true);
-            anim.SetBool("Jump", false);
+            anim.SetBool("Grounded",true);           
         }
+    }
+
+    void Jump()
+    {
+        character.velocity = new Vector3(0, jumpForce, 0);
+        anim.SetBool("Jump", false);
     }
 
     void OnTriggerExit(Collider other)
     {
         isGrounded = false;
         anim.SetBool("Grounded", false);
-        anim.SetBool("Jump", true);
+        anim.SetBool("Jump", false);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        anim.SetBool("Jump", false);
     }
 
     IEnumerator Dash()
