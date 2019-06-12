@@ -1,0 +1,158 @@
+fileFormatVersion: 2
+guid: b47baf3aeb2f20041964b8e7976f0e0a
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Brust
+    100004: Cube
+    100006: Foot_H_L
+    100008: Foot_H_R
+    100010: Foot_V_L
+    100012: Foot_V_R
+    100014: //RootNode
+    100016: Head
+    100018: Jaw_Oben
+    100020: Jaw_Unten
+    100022: Leg_H_L__Einleitung
+    100024: Leg_H_R__Einleitung
+    100026: Leg_Oberschenkel_H_L
+    100028: Leg_Oberschenkel_H_R
+    100030: Leg_Oberschenkel_V_L
+    100032: Leg_Oberschenkel_V_R
+    100034: Leg_Unterschenkel_H_L
+    100036: Leg_Unterschenkel_H_R
+    100038: Leg_Unterschenkel_V_L
+    100040: Leg_Unterschenkel_V_R
+    100042: Leg_V_L__Einleitung
+    100044: Leg_V_R__Einleitung
+    100046: Neck
+    100048: Schwanz1
+    100050: Schwanz2
+    100052: To_The_SChwanz
+    100054: Vorne
+    400000: Armature
+    400002: Brust
+    400004: Cube
+    400006: Foot_H_L
+    400008: Foot_H_R
+    400010: Foot_V_L
+    400012: Foot_V_R
+    400014: //RootNode
+    400016: Head
+    400018: Jaw_Oben
+    400020: Jaw_Unten
+    400022: Leg_H_L__Einleitung
+    400024: Leg_H_R__Einleitung
+    400026: Leg_Oberschenkel_H_L
+    400028: Leg_Oberschenkel_H_R
+    400030: Leg_Oberschenkel_V_L
+    400032: Leg_Oberschenkel_V_R
+    400034: Leg_Unterschenkel_H_L
+    400036: Leg_Unterschenkel_H_R
+    400038: Leg_Unterschenkel_V_L
+    400040: Leg_Unterschenkel_V_R
+    400042: Leg_V_L__Einleitung
+    400044: Leg_V_R__Einleitung
+    400046: Neck
+    400048: Schwanz1
+    400050: Schwanz2
+    400052: To_The_SChwanz
+    400054: Vorne
+    2100000: Material
+    4300000: Cube
+    7400000: Default Take
+    7400002: Attack01
+    7400004: Damage_Taken
+    7400006: Idle__right
+    7400008: Run
+    7400010: Tod
+    7400012: Tod_State
+    9500000: //RootNode
+    13700000: Cube
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
