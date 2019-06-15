@@ -14,7 +14,7 @@ public class CharMovement : MonoBehaviour {
     public Transform cam;
     public Animator anim;
     public bool isGrounded = false;
-
+    
     // Use this for initialization
     void Start () {
         character = GetComponent<Rigidbody>();
@@ -39,6 +39,7 @@ public class CharMovement : MonoBehaviour {
             anim.SetBool("Moving", false);
         }
 
+       
         //Cameramovement
         Vector3 camF = cam.forward;
         Vector3 camR = cam.right;
