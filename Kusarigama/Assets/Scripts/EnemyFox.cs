@@ -7,8 +7,9 @@ public class EnemyFox : MonoBehaviour {
     public int health;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+    {
+        health = 30;
 	}
 	
 	// Update is called once per frame

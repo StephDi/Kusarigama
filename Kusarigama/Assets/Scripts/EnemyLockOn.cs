@@ -8,10 +8,12 @@ public class EnemyLockOn : MonoBehaviour
     public Transform player;
     public GameObject playerCamera;
     public GameObject lockOnCamera;
+    public GameObject mainCamera;
     public GameObject[] enemies;
     public GameObject closestEnemy;
     public Cinemachine.CinemachineTargetGroup group;
     public Cinemachine.CinemachineTargetGroup.Target[] targets;
+    public bool enemyObstructed;
 
     private void Start()
     {
@@ -21,7 +23,7 @@ public class EnemyLockOn : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetButtonDown("LockOn") && playerCamera.activeSelf == true)
+        if (Input.GetButtonDown("LockOn") && playerCamera.activeSelf == true && enemyObstructed == false)
         {
             ActivateLockOncam();
             FindClosestEnemy();
@@ -31,18 +33,29 @@ public class EnemyLockOn : MonoBehaviour
             ActivatePlayerCam();
         }
 
-    }
+        //Test if you can see the Enemy
+        RaycastHit hit;
+        int layerMask = 1 << 8;
+        layerMask = ~layerMask;
 
-    void ActivateLockOncam()
-    {
-        lockOnCamera.SetActive(true);
-        playerCamera.SetActive(false);
-    }
+        if (closestEnemy != null)
+        { 
+            if (Physics.Raycast(mainCamera.transform.position, -(mainCamera.transform.position - closestEnemy.transform.position), out hit, Mathf.Infinity, layerMask))
+            {
+                //RayGizmo
+                //Debug.DrawRay(mainCamera.transform.position, -(mainCamera.transform.position - closestEnemy.transform.position), Color.red);
+                //print(hit.collider);
 
-    void ActivatePlayerCam()
-    {
-        playerCamera.SetActive(true);
-        lockOnCamera.SetActive(false);
+                if (hit.collider.tag == "Enemy")
+                {
+                    enemyObstructed = false;
+                }
+                else
+                {
+                    enemyObstructed = true;
+                }
+            }
+        }
     }
 
     void FindClosestEnemy()
@@ -59,8 +72,9 @@ public class EnemyLockOn : MonoBehaviour
             {
                 closestEnemy = e;
                 distance = curDistance;
+               
                 if (curDistance < 1000f)
-                {                  
+                {  
                     targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = 1.0f };
                     targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = closestEnemy.transform, radius = 4.0f, weight = 1.0f };                 
                 }
@@ -73,5 +87,17 @@ public class EnemyLockOn : MonoBehaviour
 
             }
         }
+    }
+
+    void ActivateLockOncam()
+    {
+        lockOnCamera.SetActive(true);
+        playerCamera.SetActive(false);
+    }
+
+    void ActivatePlayerCam()
+    {
+        playerCamera.SetActive(true);
+        lockOnCamera.SetActive(false);
     }
 }
