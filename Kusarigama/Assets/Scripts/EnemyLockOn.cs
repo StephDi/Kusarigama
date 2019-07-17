@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Cinemachine.Editor;
 
 public class EnemyLockOn : MonoBehaviour
@@ -9,7 +10,7 @@ public class EnemyLockOn : MonoBehaviour
     //Cameras
     public GameObject playerCamera;
     public GameObject lockOnCamera;
-    public GameObject mainCamera;
+    public Camera mainCamera;
     //Enemies
     public GameObject[] enemies;
     public GameObject closestEnemy;  
@@ -27,15 +28,16 @@ public class EnemyLockOn : MonoBehaviour
     {
         targets = group.m_Targets;
         waitForUnLock = 0.3f;
+        
     }
 
     void Update()
     {
         //Press the Button to Lock on 
-        if (Input.GetButtonDown("LockOn") && playerCamera.activeSelf == true && enemyObstructed == false)
+        if (Input.GetButtonDown("LockOn") && playerCamera.activeSelf == true)
         {
-            ActivateLockOncam();
             FindClosestEnemy();
+            ActivateLockOncam();
             targetIndicator.gameObject.SetActive(true);
         }
         else if (Input.GetButtonDown("LockOn") && lockOnCamera.activeSelf == true || closestEnemy == null || enemyObstructed == true)
@@ -43,14 +45,14 @@ public class EnemyLockOn : MonoBehaviour
             ActivatePlayerCam();
             targetIndicator.gameObject.SetActive(false);
         }
-       
+
         //Test if you can see the Enemy
         RaycastHit hit;
         int layerMask = 1 << 8;
         layerMask = ~layerMask;
 
         if (closestEnemy != null)
-        { 
+        {
             if (Physics.Raycast(mainCamera.transform.position, -(mainCamera.transform.position - closestEnemy.transform.position), out hit, Mathf.Infinity, layerMask))
             {
                 //RayGizmo
@@ -64,14 +66,19 @@ public class EnemyLockOn : MonoBehaviour
                 else
                 {
                     StartCoroutine(WaitForUnLock());
+                    ActivatePlayerCam();
+                    targetIndicator.gameObject.SetActive(false);
                 }
             }
         }
+    }
 
+    void LateUpdate()
+    {
         //TargetIndicator
         if (closestEnemy != null)
         {
-            targetIndicator.transform.position = new Vector3(closestEnemy.transform.position.x,closestEnemy.transform.position.y+1,closestEnemy.transform.position.z);
+            targetIndicator.transform.position = mainCamera.WorldToScreenPoint(closestEnemy.transform.position);
         }
     }
 
