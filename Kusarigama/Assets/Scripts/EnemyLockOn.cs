@@ -20,15 +20,17 @@ public class EnemyLockOn : MonoBehaviour
     public Cinemachine.CinemachineTargetGroup group;
     public Cinemachine.CinemachineTargetGroup.Target[] targets;
     public Transform targetIndicator;
+    public Vector3 enemyPos;
     //Timer
     public float waitForUnLock;
     public bool waited;
 
+
     private void Start()
     {
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
         targets = group.m_Targets;
-        waitForUnLock = 0.3f;
-        
+        waitForUnLock = 0.3f;        
     }
 
     void Update()
@@ -39,11 +41,14 @@ public class EnemyLockOn : MonoBehaviour
             FindClosestEnemy();
             ActivateLockOncam();
             targetIndicator.gameObject.SetActive(true);
+            //set the Targetindicator every 0.002s 
+            InvokeRepeating("TargetIndicator",0,0.002f);
         }
         else if (Input.GetButtonDown("LockOn") && lockOnCamera.activeSelf == true || closestEnemy == null || enemyObstructed == true)
         {
             ActivatePlayerCam();
             targetIndicator.gameObject.SetActive(false);
+            closestEnemy = null;
         }
 
         //Test if you can see the Enemy
@@ -56,8 +61,8 @@ public class EnemyLockOn : MonoBehaviour
             if (Physics.Raycast(mainCamera.transform.position, -(mainCamera.transform.position - closestEnemy.transform.position), out hit, Mathf.Infinity, layerMask))
             {
                 //RayGizmo
-                //Debug.DrawRay(mainCamera.transform.position, -(mainCamera.transform.position - closestEnemy.transform.position), Color.red);
-                //print(hit.collider);
+                Debug.DrawRay(mainCamera.transform.position, -(mainCamera.transform.position - closestEnemy.transform.position), Color.red);
+                print(hit.collider);
 
                 if (hit.collider.tag == "Enemy")
                 {
@@ -73,7 +78,7 @@ public class EnemyLockOn : MonoBehaviour
         }
     }
 
-    void LateUpdate()
+    void TargetIndicator()
     {
         //TargetIndicator
         if (closestEnemy != null)
@@ -83,32 +88,53 @@ public class EnemyLockOn : MonoBehaviour
     }
 
     void FindClosestEnemy()
-    {
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        var distance = Mathf.Infinity;
+    {      
         var position = player.transform.position;
+        var dot = Mathf.Infinity;
+
         foreach (GameObject e in enemies)
         {
+            //distance between Player and Enemy;
             var diff = (e.transform.position - position);
             var curDistance = diff.sqrMagnitude;
 
-            if (curDistance < distance)
+            // check if an Enemy is close enough
+            if (curDistance < 1000f)
             {
-                closestEnemy = e;
-                distance = curDistance;
-               
-                if (curDistance < 1000f)
-                {  
-                    targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = 1.0f };
-                    targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = closestEnemy.transform, radius = 4.0f, weight = 1.0f };                 
+                //if an Enemy is close enough, check if its in sight of the cam
+                enemyPos = mainCamera.WorldToViewportPoint(e.transform.position);
+
+                if (enemyPos.x >= 0 && enemyPos.y >= 0 && enemyPos.z >= 0 && enemyPos.x <= 1 && enemyPos.y <= 1)
+                {
+                    //check how far the Enemy is away from the center of the screen    
+                    enemyPos -= new Vector3(0.5f,0.5f,0);
+                    enemyPos.z = 0;
+                    var curEnemyPos = enemyPos.magnitude;
+
+                    if (curEnemyPos < dot)
+                    {
+                        dot = curEnemyPos;
+                        closestEnemy = e;
+                        targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = 1.0f };
+                        targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = closestEnemy.transform, radius = 4.0f, weight = 1.0f };
+                    }
+                    else if (curEnemyPos > dot)
+                    {
+                        targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = 1.0f };
+                        targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = null, radius = 4.0f, weight = 1.0f };
+                        closestEnemy = null;
+                        ActivatePlayerCam();
+                    }                                                                         
                 }
-                else if (curDistance > 1000f)
+
+                //Enemy is not in CamSight  ---- turn Cam behind PLayer ----- 
+                else
                 {
                     targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = 1.0f };
                     targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = null, radius = 4.0f, weight = 1.0f };
+                    closestEnemy = null;
                     ActivatePlayerCam();
                 }
-
             }
         }
     }
