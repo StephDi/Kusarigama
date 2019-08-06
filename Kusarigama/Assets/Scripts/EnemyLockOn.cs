@@ -13,6 +13,7 @@ public class EnemyLockOn : MonoBehaviour
     public Camera mainCamera;
     //Enemies
     public GameObject[] enemies;
+    List<GameObject> closeEnemies = new List<GameObject>();
     public GameObject closestEnemy;  
     //Raycast
     public bool enemyObstructed;
@@ -39,7 +40,7 @@ public class EnemyLockOn : MonoBehaviour
         if (Input.GetButtonDown("LockOn") && playerCamera.activeSelf == true)
         {
             FindClosestEnemy();
-            ActivateLockOncam();
+            //ActivateLockOncam();
             targetIndicator.gameObject.SetActive(true);
             //set the Targetindicator every 0.002s 
             InvokeRepeating("TargetIndicator",0,0.002f);
@@ -76,6 +77,10 @@ public class EnemyLockOn : MonoBehaviour
                 }
             }
         }
+
+        //hold Cams together
+        //lockOnCamera.transform.position = mainCamera.transform.position;
+        //playerCamera.transform.position = mainCamera.transform.position;
     }
 
     void TargetIndicator()
@@ -97,7 +102,7 @@ public class EnemyLockOn : MonoBehaviour
             //distance between Player and Enemy;
             var diff = (e.transform.position - position);
             var curDistance = diff.sqrMagnitude;
-
+            
             // check if an Enemy is close enough
             if (curDistance < 1000f)
             {
@@ -106,10 +111,11 @@ public class EnemyLockOn : MonoBehaviour
 
                 if (enemyPos.x >= 0 && enemyPos.y >= 0 && enemyPos.z >= 0 && enemyPos.x <= 1 && enemyPos.y <= 1)
                 {
+                    //closeEnemies.Add(e);
                     //check how far the Enemy is away from the center of the screen    
-                    enemyPos -= new Vector3(0.5f,0.5f,0);
+                    enemyPos -= new Vector3(0.5f, 0.5f, 0);
                     enemyPos.z = 0;
-                    var curEnemyPos = enemyPos.magnitude;
+                    var curEnemyPos = enemyPos.sqrMagnitude;
 
                     if (curEnemyPos < dot)
                     {
@@ -117,14 +123,9 @@ public class EnemyLockOn : MonoBehaviour
                         closestEnemy = e;
                         targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = 1.0f };
                         targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = closestEnemy.transform, radius = 4.0f, weight = 1.0f };
-                    }
-                    else if (curEnemyPos > dot)
-                    {
-                        targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = 1.0f };
-                        targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = null, radius = 4.0f, weight = 1.0f };
-                        closestEnemy = null;
-                        ActivatePlayerCam();
-                    }                                                                         
+                        ActivateLockOncam();                       
+                    }                 
+                    enemyPos = new Vector3(0, 0, 0);
                 }
 
                 //Enemy is not in CamSight  ---- turn Cam behind PLayer ----- 
