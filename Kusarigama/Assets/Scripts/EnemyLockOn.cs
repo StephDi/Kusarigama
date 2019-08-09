@@ -31,7 +31,6 @@ public class EnemyLockOn : MonoBehaviour
 
     private void Start()
     {
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
         targets = group.m_Targets;
         waitForUnLock = 0.3f;
         changedTarget = false;
@@ -68,6 +67,11 @@ public class EnemyLockOn : MonoBehaviour
             changedTarget = false;
         }
 
+        if (closestEnemy == null)
+        {
+            targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = 1.0f };
+            targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = null, radius = 4.0f, weight = 1.0f };
+        }
 
         //Test if you can see the Enemy
         RaycastHit hit;
@@ -106,7 +110,8 @@ public class EnemyLockOn : MonoBehaviour
     }
 
     void FindClosestEnemy()
-    {      
+    {
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
         var position = player.transform.position;
         var dot = Mathf.Infinity;
 

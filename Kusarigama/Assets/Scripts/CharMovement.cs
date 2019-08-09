@@ -14,19 +14,32 @@ public class CharMovement : MonoBehaviour {
     public Transform cam;
     public Animator anim;
     public bool isGrounded = false;
-    
+    float horizontal;
+    float vertical;
+    public Vector3 movement;
+    public float fallMultiplier = 2.5f;
     // Use this for initialization
     void Start () {
         character = GetComponent<Rigidbody>();
 	}
-	
-	// Update is called once per frame
-	void LateUpdate () {
-        //Move
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(horizontal * moveSpeed * Time.deltaTime,0, vertical * moveSpeed * Time.deltaTime);       
+    void Update()
+    {
+        horizontal = Input.GetAxis("Horizontal");
+        vertical = Input.GetAxis("Vertical");
+        if (character.velocity.y < 0)
+        {
+            character.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime; 
+        }
+    }
+
+    // Update is called once per frame
+    void LateUpdate () {
+        //Move
+        //float horizontal = Input.GetAxis("Horizontal");
+        //float vertical = Input.GetAxis("Vertical");
+
+        movement = new Vector3(horizontal * moveSpeed * Time.deltaTime,0, vertical * moveSpeed* Time.deltaTime);       
 
         //Animation
         if (Mathf.Abs(horizontal) + Mathf.Abs(vertical) != 0)
