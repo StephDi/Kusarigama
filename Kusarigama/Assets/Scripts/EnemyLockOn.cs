@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using Cinemachine.Editor;
 
 public class EnemyLockOn : MonoBehaviour
 {
@@ -13,7 +11,6 @@ public class EnemyLockOn : MonoBehaviour
     public Camera mainCamera;
     //Enemies
     public GameObject[] enemies;
-    List<GameObject> closeEnemies = new List<GameObject>();
     public GameObject closestEnemy;  
     //Raycast
     public bool enemyObstructed;
@@ -42,7 +39,7 @@ public class EnemyLockOn : MonoBehaviour
 
 
         //Press the Button to Lock on 
-        if (Input.GetButtonDown("LockOn") && playerCamera.activeSelf == true)
+        if (Input.GetButtonDown("LockOn") && lockOnCamera.activeSelf == false)
         {
             FindClosestEnemy();
             targetIndicator.gameObject.SetActive(true);
@@ -114,6 +111,8 @@ public class EnemyLockOn : MonoBehaviour
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         var position = player.transform.position;
         var dot = Mathf.Infinity;
+        lockOnCamera.transform.position = mainCamera.transform.position;
+        playerCamera.transform.rotation = mainCamera.transform.rotation;
 
         foreach (GameObject e in enemies)
         {
@@ -126,22 +125,25 @@ public class EnemyLockOn : MonoBehaviour
             {
                 //if an Enemy is close enough, check if its in sight of the cam
                 enemyPos = mainCamera.WorldToViewportPoint(e.transform.position);
-
+                Debug.Log(enemyPos);
                 if (enemyPos.x >= 0 && enemyPos.y >= 0 && enemyPos.z >= 0 && enemyPos.x <= 1 && enemyPos.y <= 1)
                 {
-                    //check how far the Enemy is away from the center of the screen    
+                    Debug.Log(e);
+                    //check how far the Enemy is away from the center of the screen   
                     enemyPos -= new Vector3(0.5f, 0.5f, 0);
                     enemyPos.z = 0;
-                    var curEnemyPos = enemyPos.sqrMagnitude;
-
+                    var curEnemyPos = enemyPos.magnitude;
+                    Debug.Log(curEnemyPos);
+                    Debug.Log(dot);
                     if (curEnemyPos < dot)
                     {
                         dot = curEnemyPos;
                         closestEnemy = e;
                         targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = 1.0f };
                         targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = closestEnemy.transform, radius = 4.0f, weight = 1.0f };
-                        ActivateLockOncam();                       
-                    }                 
+                        ActivateLockOncam();
+                        return;
+                    }
                     enemyPos = new Vector3(0, 0, 0);
                 }
 
@@ -184,7 +186,7 @@ public class EnemyLockOn : MonoBehaviour
                         if (enemyPos.x < closestEnemyPos.x)
                         {
                             //take the closest to the current trageted enemy
-                            var enemyDiff = (closestEnemyPos -enemyPos);
+                            var enemyDiff = (closestEnemyPos - enemyPos);
                             var curEnemyPos = enemyDiff.sqrMagnitude;
 
                             if (curEnemyPos < dot)
@@ -194,6 +196,7 @@ public class EnemyLockOn : MonoBehaviour
                                 closestEnemy = e;
                                 targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = 1.0f };
                                 targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = closestEnemy.transform, radius = 4.0f, weight = 1.0f };
+                                return;
                             }
                             closestEnemyPos = new Vector3(0, 0, 0);
                         }
@@ -214,6 +217,7 @@ public class EnemyLockOn : MonoBehaviour
                                 closestEnemy = e;
                                 targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = 1.0f };
                                 targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = closestEnemy.transform, radius = 4.0f, weight = 1.0f };
+                                return;
                             }
                             closestEnemyPos = new Vector3(0, 0, 0);
                         }
