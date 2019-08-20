@@ -1,94 +1,308 @@
 fileFormatVersion: 2
 guid: cc5b4dc57659a4c42a38ccd869f64616
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: Armature
-    100002: Bone
-    100004: Bone_001
-    100006: Bone_002
-    100008: Bone_003
-    100010: Bone_004
-    100012: Bone_005
-    100014: Bone_006
-    100016: Bone_007
-    100018: Bone_008
-    100020: Bone_009
-    100022: Bone_010
-    100024: Bone_011
-    100026: Bone_012
-    100028: Bone_013
-    100030: Bone_014
-    100032: Bone_015
-    100034: Bone_016
-    100036: Bone_017
-    100038: Bone_018
-    100040: Bone_019
-    100042: Bone_020
-    100044: Bone_021
-    100046: Bone_022
-    100048: Bone_023
-    100050: Bone_024
-    100052: Cube_001
-    100054: Cube_004
-    100056: //RootNode
-    400000: Armature
-    400002: Bone
-    400004: Bone_001
-    400006: Bone_002
-    400008: Bone_003
-    400010: Bone_004
-    400012: Bone_005
-    400014: Bone_006
-    400016: Bone_007
-    400018: Bone_008
-    400020: Bone_009
-    400022: Bone_010
-    400024: Bone_011
-    400026: Bone_012
-    400028: Bone_013
-    400030: Bone_014
-    400032: Bone_015
-    400034: Bone_016
-    400036: Bone_017
-    400038: Bone_018
-    400040: Bone_019
-    400042: Bone_020
-    400044: Bone_021
-    400046: Bone_022
-    400048: Bone_023
-    400050: Bone_024
-    400052: Cube_001
-    400054: Cube_004
-    400056: //RootNode
-    2100000: Armtuch
-    2100002: Maske
-    2100004: Weste__Textur_Belt_png
-    2100006: Haut__Textur_Haut_png
-    2100008: Kettenvorrat
-    2100010: Tuch
-    2100012: Tuch__Textur_Zopfhalter_001
-    4300000: Cube_004
-    4300002: Cube_001
-    7400000: Default Take
-    7400002: Auswerfen
-    7400004: Auswerfen_Geisterklinge
-    7400006: Damage_Taken
-    7400008: Dash
-    7400010: Einholen_Geisterklinge
-    7400012: Einholen_langsam
-    7400014: Einholen_schnell
-    7400016: Idle
-    7400018: Jump
-    7400020: Nahkampfschlag
-    7400022: Run
-    7400024: Rundumschlag
-    7400026: Tod
-    7400028: Tod_State
-    9500000: //RootNode
-    13700000: Cube_001
-    13700002: Cube_004
-    2186277476908879412: ImportLogs
+  serializedVersion: 26
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Armature
+  - first:
+      1: 100002
+    second: Bone
+  - first:
+      1: 100004
+    second: Bone_001
+  - first:
+      1: 100006
+    second: Bone_002
+  - first:
+      1: 100008
+    second: Bone_003
+  - first:
+      1: 100010
+    second: Bone_004
+  - first:
+      1: 100012
+    second: Bone_005
+  - first:
+      1: 100014
+    second: Bone_006
+  - first:
+      1: 100016
+    second: Bone_007
+  - first:
+      1: 100018
+    second: Bone_008
+  - first:
+      1: 100020
+    second: Bone_009
+  - first:
+      1: 100022
+    second: Bone_010
+  - first:
+      1: 100024
+    second: Bone_011
+  - first:
+      1: 100026
+    second: Bone_012
+  - first:
+      1: 100028
+    second: Bone_013
+  - first:
+      1: 100030
+    second: Bone_014
+  - first:
+      1: 100032
+    second: Bone_015
+  - first:
+      1: 100034
+    second: Bone_016
+  - first:
+      1: 100036
+    second: Bone_017
+  - first:
+      1: 100038
+    second: Bone_018
+  - first:
+      1: 100040
+    second: Bone_019
+  - first:
+      1: 100042
+    second: Bone_020
+  - first:
+      1: 100044
+    second: Bone_021
+  - first:
+      1: 100046
+    second: Bone_022
+  - first:
+      1: 100048
+    second: Bone_023
+  - first:
+      1: 100050
+    second: Bone_024
+  - first:
+      1: 100052
+    second: Cube_001
+  - first:
+      1: 100054
+    second: Cube_004
+  - first:
+      1: 100056
+    second: //RootNode
+  - first:
+      4: 400000
+    second: Armature
+  - first:
+      4: 400002
+    second: Bone
+  - first:
+      4: 400004
+    second: Bone_001
+  - first:
+      4: 400006
+    second: Bone_002
+  - first:
+      4: 400008
+    second: Bone_003
+  - first:
+      4: 400010
+    second: Bone_004
+  - first:
+      4: 400012
+    second: Bone_005
+  - first:
+      4: 400014
+    second: Bone_006
+  - first:
+      4: 400016
+    second: Bone_007
+  - first:
+      4: 400018
+    second: Bone_008
+  - first:
+      4: 400020
+    second: Bone_009
+  - first:
+      4: 400022
+    second: Bone_010
+  - first:
+      4: 400024
+    second: Bone_011
+  - first:
+      4: 400026
+    second: Bone_012
+  - first:
+      4: 400028
+    second: Bone_013
+  - first:
+      4: 400030
+    second: Bone_014
+  - first:
+      4: 400032
+    second: Bone_015
+  - first:
+      4: 400034
+    second: Bone_016
+  - first:
+      4: 400036
+    second: Bone_017
+  - first:
+      4: 400038
+    second: Bone_018
+  - first:
+      4: 400040
+    second: Bone_019
+  - first:
+      4: 400042
+    second: Bone_020
+  - first:
+      4: 400044
+    second: Bone_021
+  - first:
+      4: 400046
+    second: Bone_022
+  - first:
+      4: 400048
+    second: Bone_023
+  - first:
+      4: 400050
+    second: Bone_024
+  - first:
+      4: 400052
+    second: Cube_001
+  - first:
+      4: 400054
+    second: Cube_004
+  - first:
+      4: 400056
+    second: //RootNode
+  - first:
+      21: 2100000
+    second: Armtuch
+  - first:
+      21: 2100002
+    second: Maske
+  - first:
+      21: 2100004
+    second: Weste__Textur_Belt_png
+  - first:
+      21: 2100006
+    second: Haut__Textur_Haut_png
+  - first:
+      21: 2100008
+    second: Kettenvorrat
+  - first:
+      21: 2100010
+    second: Tuch
+  - first:
+      21: 2100012
+    second: Tuch__Textur_Zopfhalter_001
+  - first:
+      43: 4300000
+    second: Cube_004
+  - first:
+      43: 4300002
+    second: Cube_001
+  - first:
+      74: 7400000
+    second: Default Take
+  - first:
+      74: 7400002
+    second: Auswerfen
+  - first:
+      74: 7400004
+    second: Auswerfen_Geisterklinge
+  - first:
+      74: 7400006
+    second: Damage_Taken
+  - first:
+      74: 7400008
+    second: Dash
+  - first:
+      74: 7400010
+    second: Einholen_Geisterklinge
+  - first:
+      74: 7400012
+    second: Einholen_langsam
+  - first:
+      74: 7400014
+    second: Einholen_schnell
+  - first:
+      74: 7400016
+    second: Idle
+  - first:
+      74: 7400018
+    second: Jump
+  - first:
+      74: 7400020
+    second: Nahkampfschlag
+  - first:
+      74: 7400022
+    second: Run
+  - first:
+      74: 7400024
+    second: Rundumschlag
+  - first:
+      74: 7400026
+    second: Tod
+  - first:
+      74: 7400028
+    second: Tod_State
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Cube_001
+  - first:
+      137: 13700002
+    second: Cube_004
+  - first:
+      41386430: 2186277476908879412
+    second: ImportLogs
+  - first:
+      74: 6222304123726234452
+    second: Armature|Auswerfen
+  - first:
+      74: 6990056404958587351
+    second: Armature|Auswerfen_Geisterklinge
+  - first:
+      74: -8486533594290707287
+    second: Armature|Damage Taken
+  - first:
+      74: -2246502780319343731
+    second: Armature|Dash
+  - first:
+      74: -7598262754081568794
+    second: Armature|Einholen_Geisterklinge
+  - first:
+      74: 1744820426516830047
+    second: Armature|Einholen_langsam
+  - first:
+      74: 5650327267903480622
+    second: Armature|Einholen_schnell
+  - first:
+      74: -8945691123924629249
+    second: Armature|Idle
+  - first:
+      74: 1079665108409675491
+    second: Armature|Jump
+  - first:
+      74: 1521241755115578417
+    second: Armature|Nahkampfschlag
+  - first:
+      74: -7551964380084998518
+    second: Armature|Run
+  - first:
+      74: -7203013242469972023
+    second: Armature|Rundumschlag
+  - first:
+      74: 3867698765507187939
+    second: Armature|Tod
+  - first:
+      74: 4652017469769435900
+    second: Armature|Tod_State
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -124,6 +338,7 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -131,18 +346,19 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -151,10 +367,11 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -164,6 +381,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

@@ -142,7 +142,10 @@ public class EnemyLockOn : MonoBehaviour
                         targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = 1.0f };
                         targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = closestEnemy.transform, radius = 4.0f, weight = 1.0f };
                         ActivateLockOncam();
-                        return;
+                    }
+                    else if (curEnemyPos > dot)
+                    {
+                        continue;
                     }
                     enemyPos = new Vector3(0, 0, 0);
                 }
@@ -150,10 +153,11 @@ public class EnemyLockOn : MonoBehaviour
                 //Enemy is not in CamSight  ---- turn Cam behind PLayer ----- 
                 else
                 {
-                    targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = 1.0f };
-                    targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = null, radius = 4.0f, weight = 1.0f };
-                    closestEnemy = null;
-                    ActivatePlayerCam();
+                    //targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = 1.0f };
+                    //targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = null, radius = 4.0f, weight = 1.0f };
+                    //closestEnemy = null;
+                    //ActivatePlayerCam();
+                    continue;
                 }
             }
         }
