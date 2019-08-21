@@ -555,24 +555,8 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Bone.006
-      humanName: LeftUpperLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
     - boneName: Bone.021
       humanName: RightUpperLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone.007
-      humanName: LeftLowerLeg
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -587,16 +571,16 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Bone.018
-      humanName: LeftFoot
+    - boneName: Bone.023
+      humanName: RightFoot
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Bone.023
-      humanName: RightFoot
+    - boneName: Bone.024
+      humanName: RightToes
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -619,24 +603,8 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Bone.003
-      humanName: Neck
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone.004
-      humanName: Head
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone.008
-      humanName: LeftShoulder
+    - boneName: Bone.002
+      humanName: UpperChest
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -651,24 +619,8 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Bone.009
-      humanName: LeftUpperArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
     - boneName: Bone.014
       humanName: RightUpperArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone.010
-      humanName: LeftLowerArm
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -683,6 +635,38 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
+    - boneName: Bone.016
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone.008
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone.009
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone.010
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
     - boneName: Bone.012
       humanName: LeftHand
       limit:
@@ -691,8 +675,24 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Bone.016
-      humanName: RightHand
+    - boneName: Bone.006
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone.007
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bone.018
+      humanName: LeftFoot
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -707,16 +707,8 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Bone.024
-      humanName: RightToes
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Bone.002
-      humanName: UpperChest
+    - boneName: Bone.003
+      humanName: Head
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -731,9 +723,29 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Armature
       parentName: Hauptfigur_12-06-19(Clone)
-      position: {x: 0.026067764, y: 0.81823236, z: 0.11194704}
+      position: {x: -0.0031779688, y: 0.81823236, z: 0.11194704}
       rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
       scale: {x: 16.834003, y: 16.834003, z: 16.834003}
+    - name: Arm_IK_L
+      parentName: Armature
+      position: {x: -0.011258206, y: 0.01755471, z: -0.002915306}
+      rotation: {x: -0, y: 8.881784e-16, z: -0.000000018599286, w: 1}
+      scale: {x: 1.0000001, y: 0.9999986, z: 0.9999991}
+    - name: Arm_IK_L_end
+      parentName: Arm_IK_L
+      position: {x: -0, y: 0.007493286, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm_IK_L.001
+      parentName: Armature
+      position: {x: 0.009597265, y: 0.019836333, z: -0.0039214133}
+      rotation: {x: -0, y: 0.0000000036711871, z: 2.220446e-16, w: 1}
+      scale: {x: 0.9999998, y: 0.9999984, z: 0.9999983}
+    - name: Arm_IK_L.001_end
+      parentName: Arm_IK_L.001
+      position: {x: -0, y: 0.007493286, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: Bone
       parentName: Armature
       position: {x: 0.00043233144, y: 0.012081344, z: -0.0024210585}
@@ -772,12 +784,12 @@ ModelImporter:
     - name: Bone.009
       parentName: Bone.008
       position: {x: -0.0000000014156103, y: 0.0074735424, z: -0.0000000025331974}
-      rotation: {x: -0.06881099, y: 0.0022500914, z: -0.109379746, w: 0.9916129}
+      rotation: {x: -0.053617623, y: 0.00078342075, z: -0.10640569, w: 0.9928759}
       scale: {x: 0.9999994, y: 1.0000006, z: 1.0000015}
     - name: Bone.010
       parentName: Bone.009
       position: {x: 0.0000000017881393, y: 0.013814992, z: -7.45058e-10}
-      rotation: {x: -0.012048922, y: 0.0009995585, z: -0.048693694, w: 0.99874055}
+      rotation: {x: 0.017704632, y: -0.00054625917, z: -0.011162384, w: 0.9997808}
       scale: {x: 1.0000012, y: 1.0000012, z: 0.99999994}
     - name: Bone.011
       parentName: Bone.010
@@ -802,12 +814,12 @@ ModelImporter:
     - name: Bone.014
       parentName: Bone.013
       position: {x: 5.9604643e-10, y: 0.0074735414, z: 0}
-      rotation: {x: 0.038285706, y: 0.004300451, z: 0.06824373, w: 0.9969245}
+      rotation: {x: 0.023902623, y: 0.00286124, z: 0.08003509, w: 0.9965014}
       scale: {x: 0.99999946, y: 0.9999997, z: 1.0000005}
     - name: Bone.015
       parentName: Bone.014
       position: {x: -5.9604643e-10, y: 0.013814994, z: 3.7718564e-10}
-      rotation: {x: 0.018098252, y: 0.0013672004, z: 0.03593985, w: 0.99918914}
+      rotation: {x: 0.008693432, y: 0.0010643099, z: 0.034000218, w: 0.9993835}
       scale: {x: 1.0000012, y: 1.000002, z: 1.0000002}
     - name: Bone.016
       parentName: Bone.015
@@ -847,51 +859,11 @@ ModelImporter:
     - name: Bone.019
       parentName: Bone.018
       position: {x: -5.2154064e-10, y: 0.004991386, z: 5.0291415e-10}
-      rotation: {x: -0.20745459, y: 0.02425335, z: 0.0001458081, w: 0.9779439}
+      rotation: {x: -0.2074546, y: 0.024253352, z: 0.00014580811, w: 0.97794396}
       scale: {x: 0.99999976, y: 1.0000006, z: 0.99999845}
     - name: Bone.019_end
       parentName: Bone.019
       position: {x: -0, y: 0.0034917702, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Leg_IK_L
-      parentName: Armature
-      position: {x: -0.0041770777, y: 0.010958954, z: -0.04314849}
-      rotation: {x: -0.006472171, y: -3.21756e-11, z: 0.000000009299629, w: 0.9999791}
-      scale: {x: 0.99999994, y: 1.0000002, z: 0.99999976}
-    - name: Leg_IK_L_end
-      parentName: Leg_IK_L
-      position: {x: -0, y: 0.0119559, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Pole_target_leg
-      parentName: Armature
-      position: {x: -0.004099688, y: 0.07931603, z: -0.023560638}
-      rotation: {x: 0.000024080276, y: -0, z: 1, w: -0.0000000011577868}
-      scale: {x: 0.9999998, y: 0.99999815, z: 0.99999815}
-    - name: Pole_target_leg_end
-      parentName: Pole_target_leg
-      position: {x: -0, y: 0.027855396, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Arm_IK_L
-      parentName: Armature
-      position: {x: -0.011258206, y: 0.01755471, z: -0.002915306}
-      rotation: {x: -0, y: 8.881784e-16, z: -0.000000018599286, w: 1}
-      scale: {x: 1.0000001, y: 0.9999986, z: 0.9999991}
-    - name: Arm_IK_L_end
-      parentName: Arm_IK_L
-      position: {x: -0, y: 0.007493286, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Pole_Target_Arm
-      parentName: Armature
-      position: {x: -0.06108669, y: 0.14314817, z: 0.014523801}
-      rotation: {x: 0.38134855, y: 0.00000017881393, z: 0.9241731, w: 0.02184774}
-      scale: {x: 0.9999796, y: 1.0000001, z: 0.9999966}
-    - name: Pole_Target_Arm_end
-      parentName: Pole_Target_Arm
-      position: {x: -0, y: 0.00881051, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Bone.020
@@ -912,16 +884,26 @@ ModelImporter:
     - name: Bone.023
       parentName: Bone.022
       position: {x: 4.2840836e-10, y: 0.01983166, z: 0.0000000013783574}
-      rotation: {x: -0.4916012, y: 0.02727828, z: -0.04640604, w: 0.8691551}
+      rotation: {x: -0.49160123, y: 0.027278282, z: -0.046406046, w: 0.86915517}
       scale: {x: 0.99999917, y: 1.0000018, z: 1.0000017}
     - name: Bone.024
       parentName: Bone.023
       position: {x: -5.9604643e-10, y: 0.004991386, z: 0.0000000020675361}
-      rotation: {x: -0.20745412, y: -0.024253272, z: -0.00014581089, w: 0.977944}
+      rotation: {x: -0.20745413, y: -0.024253272, z: -0.0001458109, w: 0.977944}
       scale: {x: 1.0000001, y: 1.0000006, z: 1.0000011}
     - name: Bone.024_end
       parentName: Bone.024
       position: {x: -0, y: 0.0034917702, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Leg_IK_L
+      parentName: Armature
+      position: {x: -0.0041770777, y: 0.010958954, z: -0.04314849}
+      rotation: {x: -0.006472171, y: -3.21756e-11, z: 0.000000009299629, w: 0.9999791}
+      scale: {x: 0.99999994, y: 1.0000002, z: 0.99999976}
+    - name: Leg_IK_L_end
+      parentName: Leg_IK_L
+      position: {x: -0, y: 0.0119559, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Leg_IK_L.001
@@ -934,24 +916,14 @@ ModelImporter:
       position: {x: -0, y: 0.0119559, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Pole_target_leg.001
+    - name: Pole_Target_Arm
       parentName: Armature
-      position: {x: 0.0046253568, y: 0.08026828, z: -0.023560638}
-      rotation: {x: -6.123234e-17, y: -0, z: 1, w: 3.3087225e-24}
-      scale: {x: 0.9999998, y: 0.99999815, z: 0.99999815}
-    - name: Pole_target_leg.001_end
-      parentName: Pole_target_leg.001
-      position: {x: -0, y: 0.027855396, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Arm_IK_L.001
-      parentName: Armature
-      position: {x: 0.009597265, y: 0.019836333, z: -0.0039214133}
-      rotation: {x: -0, y: 0.0000000036711871, z: 2.220446e-16, w: 1}
-      scale: {x: 0.9999998, y: 0.9999984, z: 0.9999983}
-    - name: Arm_IK_L.001_end
-      parentName: Arm_IK_L.001
-      position: {x: -0, y: 0.007493286, z: 0}
+      position: {x: -0.06108669, y: 0.14314817, z: 0.014523801}
+      rotation: {x: 0.38134855, y: 0.00000017881393, z: 0.9241731, w: 0.02184774}
+      scale: {x: 0.9999796, y: 1.0000001, z: 0.9999966}
+    - name: Pole_Target_Arm_end
+      parentName: Pole_Target_Arm
+      position: {x: -0, y: 0.00881051, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Pole_Target_Arm.001
@@ -964,16 +936,36 @@ ModelImporter:
       position: {x: -0, y: 0.008951028, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Cube.004
-      parentName: Hauptfigur_12-06-19(Clone)
-      position: {x: -0.13024732, y: 0.75110686, z: -0.1176024}
-      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-      scale: {x: 14.499466, y: 14.499466, z: 14.499466}
+    - name: Pole_target_leg
+      parentName: Armature
+      position: {x: -0.004099688, y: 0.07931603, z: -0.023560638}
+      rotation: {x: 0.000024080276, y: -0, z: 1, w: -0.0000000011577868}
+      scale: {x: 0.9999998, y: 0.99999815, z: 0.99999815}
+    - name: Pole_target_leg_end
+      parentName: Pole_target_leg
+      position: {x: -0, y: 0.027855396, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Pole_target_leg.001
+      parentName: Armature
+      position: {x: 0.0046253568, y: 0.08026828, z: -0.023560638}
+      rotation: {x: -6.123234e-17, y: -0, z: 1, w: 3.3087225e-24}
+      scale: {x: 0.9999998, y: 0.99999815, z: 0.99999815}
+    - name: Pole_target_leg.001_end
+      parentName: Pole_target_leg.001
+      position: {x: -0, y: 0.027855396, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: Cube.001
       parentName: Hauptfigur_12-06-19(Clone)
       position: {x: -0.1296822, y: 1.4084688, z: -0.16841562}
       rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
       scale: {x: 7.4120684, y: 5.2683105, z: 1.6681731}
+    - name: Cube.004
+      parentName: Hauptfigur_12-06-19(Clone)
+      position: {x: -0.13024732, y: 0.75110686, z: -0.1176024}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 14.499466, y: 14.499466, z: 14.499466}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
