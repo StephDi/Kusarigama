@@ -34,25 +34,8 @@ public class CharMovement : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void LateUpdate () {
-        //Move
-        //float horizontal = Input.GetAxis("Horizontal");
-        //float vertical = Input.GetAxis("Vertical");
-
-        movement = new Vector3(horizontal * moveSpeed * Time.deltaTime,0, vertical * moveSpeed* Time.deltaTime);       
-
-        //Animation
-        if (Mathf.Abs(horizontal) + Mathf.Abs(vertical) != 0)
-        {
-            anim.SetBool("Moving", true);
-            anim.SetFloat("Movespeed", Mathf.Abs(movement.magnitude * 5));
-        }
-        else
-        {
-            anim.SetBool("Moving", false);
-        }
-
-       
+    void FixedUpdate () {
+              
         //Cameramovement
         Vector3 camF = cam.forward;
         Vector3 camR = cam.right;
@@ -62,7 +45,9 @@ public class CharMovement : MonoBehaviour {
         camF = camF.normalized;
         camR = camR.normalized;
 
-        character.MovePosition(transform.position + (camF * movement.z + camR * movement.x));
+        //Move
+        movement = new Vector3(horizontal, 0, vertical);
+        character.MovePosition(transform.position + (camF * movement.z + camR * movement.x) * moveSpeed * Time.fixedDeltaTime);
         
         //Turn Character
         if (movement != Vector3.zero)
@@ -70,12 +55,23 @@ public class CharMovement : MonoBehaviour {
             character.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement.x * camR + movement.z * camF), 0.35F));
         }
 
+        //Animation
+        if (movement.sqrMagnitude != 0)
+        {
+            anim.SetBool("moving", true);
+            anim.SetFloat("moveSpeed", Mathf.Abs(movement.magnitude));
+        }
+        else
+        {
+            anim.SetBool("moving", false);
+        }
+
         //Dash
         if ((Input.GetButtonDown("Dash")) && (dashCooldown == true) && (Mathf.Abs(horizontal) + Mathf.Abs(vertical) != 0))
         {
             character.AddRelativeForce(Vector3.forward * dashForce);
             dashCooldown = false;
-            anim.SetBool("Dash",true);
+            anim.SetBool("dash",true);
             StartCoroutine(Dash());
         }
 
@@ -117,7 +113,7 @@ public class CharMovement : MonoBehaviour {
     {
         yield return new WaitForSeconds(dashDuration);
         dashCooldown = true;
-        anim.SetBool("Dash",false);        
+        anim.SetBool("dash",false);        
         character.velocity = new Vector3(0, 0, 0);
     }
 }
