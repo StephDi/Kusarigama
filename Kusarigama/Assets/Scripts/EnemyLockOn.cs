@@ -125,16 +125,12 @@ public class EnemyLockOn : MonoBehaviour
             {
                 //if an Enemy is close enough, check if its in sight of the cam
                 enemyPos = mainCamera.WorldToViewportPoint(e.transform.position);
-                Debug.Log(enemyPos);
                 if (enemyPos.x >= 0 && enemyPos.y >= 0 && enemyPos.z >= 0 && enemyPos.x <= 1 && enemyPos.y <= 1)
                 {
-                    Debug.Log(e);
                     //check how far the Enemy is away from the center of the screen   
                     enemyPos -= new Vector3(0.5f, 0.5f, 0);
                     enemyPos.z = 0;
                     var curEnemyPos = enemyPos.magnitude;
-                    Debug.Log(curEnemyPos);
-                    Debug.Log(dot);
                     if (curEnemyPos < dot)
                     {
                         dot = curEnemyPos;
@@ -195,7 +191,6 @@ public class EnemyLockOn : MonoBehaviour
 
                             if (curEnemyPos < dot)
                             {
-                                Debug.Log(closestEnemy);
                                 dot = curEnemyPos;
                                 closestEnemy = e;
                                 targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = 1.0f };
@@ -216,7 +211,6 @@ public class EnemyLockOn : MonoBehaviour
 
                             if (curEnemyPos < dot)
                             {
-                                Debug.Log(closestEnemy);
                                 dot = curEnemyPos;
                                 closestEnemy = e;
                                 targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = 1.0f };
