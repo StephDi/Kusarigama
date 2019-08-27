@@ -5,37 +5,38 @@ using UnityEngine.Animations;
 
 public class CharMovement : MonoBehaviour {
 
-    public float moveSpeed = 15f;
-    public Rigidbody character;
+   
+    //Forces
     public float dashForce;
-    public bool dashCooldown = true;
-    public float dashDuration;
     public float jumpForce;
+    //Animation
     public Transform cam;
     public Animator anim;
-    public bool isGrounded = false;
+    //Movement
+    public float moveSpeed = 15f;
     float horizontal;
     float vertical;
     public Vector3 movement;
+    //falling
     public float fallMultiplier = 2.5f;
-    // Use this for initialization
-    void Start () {
+    //other
+    public Rigidbody character;
+    public bool isGrounded = false;
+
+    void Start ()
+    {
         character = GetComponent<Rigidbody>();
 	}
 
-    void Update()
+    void FixedUpdate ()
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         if (character.velocity.y < 0)
         {
-            character.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime; 
+            character.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
-    }
 
-    // Update is called once per frame
-    void FixedUpdate () {
-              
         //Cameramovement
         Vector3 camF = cam.forward;
         Vector3 camR = cam.right;
@@ -55,6 +56,21 @@ public class CharMovement : MonoBehaviour {
             character.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement.x * camR + movement.z * camF), 0.35F));
         }
 
+        //Dash
+        if (Input.GetButtonDown("Dash")  && movement.sqrMagnitude != 0)
+        {
+            character.AddRelativeForce(Vector3.forward * dashForce);
+            anim.SetTrigger("dash");
+        }
+
+        //jump
+        if (Input.GetButtonDown("Jump") && isGrounded == true)
+        {
+            isGrounded = false;
+            anim.SetBool("grounded",false);
+            anim.SetTrigger("jump");
+        }
+
         //Animation
         if (movement.sqrMagnitude != 0)
         {
@@ -65,21 +81,11 @@ public class CharMovement : MonoBehaviour {
         {
             anim.SetBool("moving", false);
         }
+    }
 
-        //Dash
-        if ((Input.GetButtonDown("Dash")) && (dashCooldown == true) && (Mathf.Abs(horizontal) + Mathf.Abs(vertical) != 0))
-        {
-            character.AddRelativeForce(Vector3.forward * dashForce);
-            dashCooldown = false;
-            anim.SetBool("dash",true);
-            StartCoroutine(Dash());
-        }
-
-        //jump
-        if (Input.GetButtonDown("Jump") && isGrounded == true)
-        {
-            anim.SetBool("Jump", true);
-        }
+    void Jump()
+    {
+        character.velocity = new Vector3(0, jumpForce, 0);
     }
 
     void OnTriggerStay(Collider other)
@@ -87,33 +93,13 @@ public class CharMovement : MonoBehaviour {
         if (other.tag == "Ground")
         {
             isGrounded = true;
-            anim.SetBool("Grounded",true);           
+            anim.SetBool("grounded",true);           
         }
-    }
-
-    void Jump()
-    {
-        character.velocity = new Vector3(0, jumpForce, 0);
-        anim.SetBool("Jump", false);
-    }
+    }  
 
     void OnTriggerExit(Collider other)
     {
         isGrounded = false;
-        anim.SetBool("Grounded", false);
-        anim.SetBool("Jump", false);
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        anim.SetBool("Jump", false);
-    }
-
-    IEnumerator Dash()
-    {
-        yield return new WaitForSeconds(dashDuration);
-        dashCooldown = true;
-        anim.SetBool("dash",false);        
-        character.velocity = new Vector3(0, 0, 0);
+        anim.SetBool("grounded", false);
     }
 }

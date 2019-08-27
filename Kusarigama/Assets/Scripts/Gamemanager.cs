@@ -5,8 +5,6 @@ using UnityEngine;
 public class Gamemanager : MonoBehaviour {
 
     public static Gamemanager instance = null;
-    public static int currentDamage;
-    public int currentDamage1;
 
     void Awake()
     {
@@ -21,11 +19,6 @@ public class Gamemanager : MonoBehaviour {
 
         DontDestroyOnLoad(gameObject);
 
-    }
-
-    void Update() {
-        currentDamage = Weapon.damage;
-        currentDamage1 = currentDamage;
     }
 
 }

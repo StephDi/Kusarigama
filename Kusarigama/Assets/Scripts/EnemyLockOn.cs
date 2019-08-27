@@ -121,7 +121,7 @@ public class EnemyLockOn : MonoBehaviour
             var curDistance = diff.sqrMagnitude;
             
             // check if an Enemy is close enough
-            if (curDistance < 1000f)
+            if (curDistance < 1500f)
             {
                 //if an Enemy is close enough, check if its in sight of the cam
                 enemyPos = mainCamera.WorldToViewportPoint(e.transform.position);
@@ -175,7 +175,7 @@ public class EnemyLockOn : MonoBehaviour
             var curDistance = diff.sqrMagnitude;
 
             // check if an Enemy is close enough
-            if (curDistance < 1000f)
+            if (curDistance < 1500f)
             {
                 //if an Enemy is close enough, check if its in sight of the cam
                 enemyPos = mainCamera.WorldToViewportPoint(e.transform.position);
