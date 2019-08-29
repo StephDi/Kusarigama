@@ -6,58 +6,34 @@ using UnityEngine.AI;
 
 public class NavMeshAgentManager : MonoBehaviour {
 
-    public Transform fuchs;
-    public Transform character;
-    public NavMeshAgent nmafuchs;
-    public Rigidbody rbFuchs;
-    public Animator anim;
-    public float chaseDuration;
+    public static NavMeshAgentManager instance = null;
 
-	// Use this for initialization
-	void Start ()
-    {    
-        rbFuchs = fuchs.GetComponent<Rigidbody>();
-        StartCoroutine(ChaseCooldown());      
-        nmafuchs.updatePosition = false;
-        
-        
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    public float chaseDuration;
+    public bool chasing;
+
+    void Awake()
     {
-        if (nmafuchs.updatePosition == true)
-        {
-            nmafuchs.SetDestination(character.position);
-        }
-        
-        if (rbFuchs.velocity.sqrMagnitude != 0)
-        {
-            anim.SetBool("moving",true);
-        }
-        else
-        {
-            anim.SetBool("moving",false);
-        }
-	}
+        if (instance == null)
+
+            instance = this;
+
+        else if (instance != this)
+
+            Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
+    }
+
+    void Start()
+    {
+        chasing = false;
+        StartCoroutine(ChaseCooldown());
+    }
 
     IEnumerator ChaseCooldown()
     {
         yield return new WaitForSeconds(chaseDuration);
-        Debug.Log("5sec");
-        if (nmafuchs.updatePosition == false)
-        {
-            Debug.Log("destset");
-            nmafuchs.updatePosition = true;
-        }
-
-        else if (nmafuchs.updatePosition == true)
-        {
-            Debug.Log("null");
-            nmafuchs.updatePosition = false;
-            nmafuchs.ResetPath();
-        }
-
+        chasing = !chasing;
         StartCoroutine(ChaseCooldown());
     }
 }
