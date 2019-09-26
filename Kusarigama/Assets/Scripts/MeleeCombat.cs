@@ -5,49 +5,64 @@ using UnityEngine;
 public class MeleeCombat : MonoBehaviour {
 
     public BoxCollider weaponCollider;
-    public float attackCooldown; 
+    public float attackCooldown;
     public Animator anim;
     public CharMovement charMovement;
+    public int combatAnimLayer = 1;
 
     void Start()
     {
-        charMovement = GetComponent<CharMovement>();   
+        charMovement = GetComponent<CharMovement>();
     }
 
     // Update is called once per frame
-    void FixedUpdate () {
+    void Update() {
 
         //Simple Attack
         if (Input.GetButtonDown("Fire1"))
         {
-            //Play Animation
+            //set mecanim State
             anim.SetTrigger("attack");
-            if(charMovement.movement.sqrMagnitude != 0)
+
+            if (charMovement.movement.sqrMagnitude != 0)
             {
                 anim.SetLayerWeight(1, 1f);
             }
-            
-            //Set Weapontrigger = true
-            weaponCollider.enabled = true;
-            StartCoroutine(Attack());
-        }
-		
-	}
+            else if (charMovement.movement.sqrMagnitude == 0)
+            {
+                anim.SetLayerWeight(1, 0f);
+            }
 
+        }
+
+    }
+
+    //Check for EnemyHit
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Enemy")
+        {
+            //Damage the Enemy
+            Destroy(other);
+        }
+    }
+
+    //Event
+    public void ResetTrigger()
+    {
+        anim.ResetTrigger("attack");
+    }
+
+    //Event
     public void ActivateWeaponCollider()
     {
         weaponCollider.enabled = true;
     }
 
+    //Event
     public void DeActivateWeaponCollider()
     {
         weaponCollider.enabled = false;
     }
 
-    IEnumerator Attack()
-    {
-        yield return new WaitForSeconds(attackCooldown);
-        weaponCollider.enabled = false;
-        anim.SetLayerWeight(1,0f);
-    }
 }
