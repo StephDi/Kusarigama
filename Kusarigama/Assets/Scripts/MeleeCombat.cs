@@ -5,10 +5,8 @@ using UnityEngine;
 public class MeleeCombat : MonoBehaviour {
 
     public BoxCollider weaponCollider;
-    public float attackCooldown;
     public Animator anim;
     public CharMovement charMovement;
-    public int combatAnimLayer = 1;
 
     void Start()
     {
@@ -18,7 +16,7 @@ public class MeleeCombat : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-        //Simple Attack
+        //Simple Attack Melee right
         if (Input.GetButtonDown("Fire1"))
         {
             //set mecanim State
@@ -32,19 +30,48 @@ public class MeleeCombat : MonoBehaviour {
             {
                 anim.SetLayerWeight(1, 0f);
             }
-
         }
 
+        ////Simple Attack Melee left
+        //if (Input.GetButtonDown("Fire2"))
+        //{
+        //    anim.SetTrigger("attackLeft");
+
+        //    if (charMovement.movement.sqrMagnitude != 0)
+        //    {
+        //        anim.SetLayerWeight(1, 1f);
+        //    }
+        //    else if (charMovement.movement.sqrMagnitude == 0)
+        //    {
+        //        anim.SetLayerWeight(1, 0f);
+        //    }
+        //}
+
+        if (charMovement.movement.sqrMagnitude == 0 || AnimationIsPlaying(anim,"Idle"))
+            {
+                anim.SetLayerWeight(1, 0f);
+            }
     }
 
     //Check for EnemyHit
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy")
+        if (other.tag == "Enemy" && weaponCollider.enabled == true)
         {
-            //Damage the Enemy
-            Destroy(other);
+            //Damage the Enemy -> EnemyFox
+            other.GetComponent<EnemyFox>().TakeDamage();
+            weaponCollider.enabled = false;
         }
+    }
+
+    //Check if the Animation "stateMame" is PLaying
+    bool AnimationIsPlaying(Animator anim, string stateName)
+    {
+        if (anim.GetCurrentAnimatorStateInfo(1).IsName(stateName) &&
+                anim.GetCurrentAnimatorStateInfo(1).normalizedTime < 1.0f)
+            return true;
+        else
+            return false;
     }
 
     //Event

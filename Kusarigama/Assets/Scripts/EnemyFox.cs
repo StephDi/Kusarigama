@@ -11,9 +11,12 @@ public class EnemyFox : MonoBehaviour
     public Rigidbody rbFuchs;
     public Animator anim;
 
+    public float Health;
+
     void Start()
     {
         rbFuchs = fuchs.GetComponent<Rigidbody>();
+        Health = 100;
     }
 
     // Update is called once per frame
@@ -39,5 +42,21 @@ public class EnemyFox : MonoBehaviour
         {
             anim.SetBool("moving", false);
         }
+    }
+
+    //Take damage if a hit is detected -> MeleeCombat
+    public void TakeDamage()
+    {
+        Health = Health - Gamemanager.instance.Damage;
+
+        if (Health <= 0)
+        {
+            EnemyDie();
+        }
+    }
+
+    void EnemyDie()
+    {
+        Destroy(this.gameObject);
     }
 }

@@ -6,6 +6,8 @@ public class Gamemanager : MonoBehaviour {
 
     public static Gamemanager instance = null;
 
+    public float Damage;
+
     void Awake()
     {
        
@@ -21,4 +23,8 @@ public class Gamemanager : MonoBehaviour {
 
     }
 
+    private void Start()
+    {
+        Damage = 10;
+    }
 }
