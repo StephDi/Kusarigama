@@ -32,21 +32,6 @@ public class MeleeCombat : MonoBehaviour {
             }
         }
 
-        ////Simple Attack Melee left
-        //if (Input.GetButtonDown("Fire2"))
-        //{
-        //    anim.SetTrigger("attackLeft");
-
-        //    if (charMovement.movement.sqrMagnitude != 0)
-        //    {
-        //        anim.SetLayerWeight(1, 1f);
-        //    }
-        //    else if (charMovement.movement.sqrMagnitude == 0)
-        //    {
-        //        anim.SetLayerWeight(1, 0f);
-        //    }
-        //}
-
         if (charMovement.movement.sqrMagnitude == 0 || AnimationIsPlaying(anim,"Idle"))
             {
                 anim.SetLayerWeight(1, 0f);

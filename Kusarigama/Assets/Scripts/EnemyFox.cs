@@ -16,7 +16,7 @@ public class EnemyFox : MonoBehaviour
     void Start()
     {
         rbFuchs = fuchs.GetComponent<Rigidbody>();
-        Health = 100;
+        Health = 30;
     }
 
     // Update is called once per frame
@@ -48,6 +48,7 @@ public class EnemyFox : MonoBehaviour
     public void TakeDamage()
     {
         Health = Health - Gamemanager.instance.Damage;
+        anim.SetTrigger("damageTaken");
 
         if (Health <= 0)
         {
@@ -57,6 +58,11 @@ public class EnemyFox : MonoBehaviour
 
     void EnemyDie()
     {
-        Destroy(this.gameObject);
+        if (!anim.GetBool("isDead"))
+        {
+            anim.SetBool("isDead", true);
+        }
+        nmafuchs.speed = 0f;
+        Destroy(this.gameObject,3f);
     }
 }
