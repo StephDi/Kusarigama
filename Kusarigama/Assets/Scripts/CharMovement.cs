@@ -22,10 +22,12 @@ public class CharMovement : MonoBehaviour {
     //other
     public Rigidbody character;
     public bool isGrounded = false;
+    public ThrowWeapon throwWeapon;
 
     void Start ()
     {
         character = GetComponent<Rigidbody>();
+        throwWeapon = GetComponent<ThrowWeapon>();
 	}
 
     void FixedUpdate ()
@@ -49,11 +51,14 @@ public class CharMovement : MonoBehaviour {
         //Move
         movement = new Vector3(horizontal, 0, vertical);
         character.MovePosition(transform.position + (camF * movement.z + camR * movement.x) * moveSpeed * Time.fixedDeltaTime);
-        
+
         //Turn Character
-        if (movement != Vector3.zero)
+        if (throwWeapon.aiming == false)
         {
-            character.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement.x * camR + movement.z * camF), 0.35F));
+            if (movement != Vector3.zero)
+            {
+                character.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement.x * camR + movement.z * camF), 0.35F));
+            }
         }
 
         //Dash
