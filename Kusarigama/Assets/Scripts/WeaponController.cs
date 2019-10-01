@@ -8,6 +8,11 @@ public class WeaponController : MonoBehaviour
 
     private void Start()
     {
+        ResetWeapon();
+    }
+
+    public void ResetWeapon()
+    {
         transform.gameObject.SetActive(true);
         transform.SetParent(WeaponPoint);
 

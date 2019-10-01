@@ -13,7 +13,7 @@ public class CharMovement : MonoBehaviour {
     public Transform cam;
     public Animator anim;
     //Movement
-    public float moveSpeed = 15f;
+    public float moveSpeed = 10f;
     float horizontal;
     float vertical;
     public Vector3 movement;
