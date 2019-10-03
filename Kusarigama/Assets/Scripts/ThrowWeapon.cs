@@ -10,8 +10,8 @@ public class ThrowWeapon : MonoBehaviour
     public Transform aimingTargetRotation;
     public Transform aimingTarget;
     public Rigidbody character;
-    public Transform Weapon;
-    public Transform WeaponPoint;
+    public Transform weapon;
+    public Transform weaponPoint;
 
     public CharMovement charMovement;
 
@@ -73,20 +73,35 @@ public class ThrowWeapon : MonoBehaviour
             charMovement.moveSpeed = 10f;
             anim.speed = 1;
             anim.SetBool("aiming",false);
+            ResetAimingPoint();
+            if (weaponIsFlying == false)
+            {
+                ResetWeapon();
+            }
         }
 
         ThrowWeaponForward();
         PullWeaponBack();
     }
 
+    void ResetAimingPoint()
+    {
+        aimingTargetRotation.localRotation = Quaternion.identity;
+        upDown = 0f;
+        leftRight = 0f;
+    }
+
     public void ResetWeapon()
     {
-        Weapon.gameObject.SetActive(true);
-        Weapon.SetParent(WeaponPoint);
+        weapon.gameObject.SetActive(true);
+        weapon.SetParent(weaponPoint);
 
-        Weapon.localPosition = Vector3.zero;
-        //transform.localRotation = Quaternion.identity;
-        //transform.localScale = Vector3.one;
+        weapon.localPosition = Vector3.zero;
+        weapon.localRotation = Quaternion.identity;
+        //transform.localScale = Vector3.one;      
+
+        weaponIsFlying = false;
+        anim.SetBool("weaponIsFlying", false);
     }
 
     void PullWeaponBack()
@@ -94,8 +109,8 @@ public class ThrowWeapon : MonoBehaviour
         if (throwing == false && weaponIsFlying == true)
         {
             //Weapon.SetParent(WeaponPoint);
-            Weapon.rotation = WeaponPoint.rotation;
-            Weapon.position = Vector3.Lerp(Weapon.position,WeaponPoint.position,0.1f);
+            weapon.rotation = weaponPoint.rotation;
+            weapon.position = Vector3.Lerp(weapon.position,weaponPoint.position,0.1f);           
         }
     }
 
@@ -104,8 +119,9 @@ public class ThrowWeapon : MonoBehaviour
         if (throwing == true)
         {
             weaponIsFlying = true;
-            Weapon.SetParent(null);
-            Weapon.position = Vector3.Lerp(Weapon.position, aimingTarget.position, 0.1f);
+            anim.SetBool("weaponIsFlying",true);
+            weapon.SetParent(null);
+            weapon.position = Vector3.Lerp(weapon.position, aimingTarget.position, 0.1f);
         }
     }
 
