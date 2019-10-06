@@ -22,12 +22,12 @@ public class CharMovement : MonoBehaviour {
     //other
     public Rigidbody character;
     public bool isGrounded = false;
-    public ThrowWeapon throwWeapon;
+    public AimWeapon aimWeapon;
 
     void Start ()
     {
         character = GetComponent<Rigidbody>();
-        throwWeapon = GetComponent<ThrowWeapon>();
+        aimWeapon = GetComponent<AimWeapon>();
 	}
 
     void FixedUpdate ()
@@ -53,7 +53,7 @@ public class CharMovement : MonoBehaviour {
         character.MovePosition(transform.position + (camF * movement.z + camR * movement.x) * moveSpeed * Time.fixedDeltaTime);
 
         //Turn Character
-        if (throwWeapon.aiming == false)
+        if (aimWeapon.aiming == false)
         {
             if (movement != Vector3.zero)
             {

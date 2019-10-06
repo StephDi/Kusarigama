@@ -9,6 +9,8 @@ public class EnemyLockOn : MonoBehaviour
     public GameObject playerCamera;
     public GameObject lockOnCamera;
     public Camera mainCamera;
+    public Cinemachine.CinemachineFreeLook playerCam;
+    public Cinemachine.CinemachineVirtualCamera lockOnCam;
     //Enemies
     public GameObject[] enemies;
     public GameObject closestEnemy;  
@@ -39,14 +41,14 @@ public class EnemyLockOn : MonoBehaviour
 
 
         //Press the Button to Lock on 
-        if (Input.GetButtonDown("LockOn") && lockOnCamera.activeSelf == false)
+        if (Input.GetButtonDown("LockOn") && lockOnCam.Priority == 0)
         {
             FindClosestEnemy();
             targetIndicator.gameObject.SetActive(true);
             //set the Targetindicator every 0.002s 
             InvokeRepeating("TargetIndicator",0,0.002f);
         }
-        else if (Input.GetButtonDown("LockOn") && lockOnCamera.activeSelf == true || closestEnemy == null || enemyObstructed == true)
+        else if (Input.GetButtonDown("LockOn") && lockOnCam.Priority == 1 || closestEnemy == null || enemyObstructed == true)
         {
             ActivatePlayerCam();
             targetIndicator.gameObject.SetActive(false);
@@ -54,7 +56,7 @@ public class EnemyLockOn : MonoBehaviour
         }
 
         //changeTarget
-        if (changeTarget != 0 && lockOnCamera.activeSelf == true && changedTarget == false)
+        if (changeTarget != 0 && lockOnCam.Priority == 1 && changedTarget == false)
         {
             changedTarget = true;
             ChangeTarget();
@@ -222,15 +224,15 @@ public class EnemyLockOn : MonoBehaviour
     }
 
     void ActivateLockOncam()
-    {
-        lockOnCamera.SetActive(true);
-        playerCamera.SetActive(false);
+    {      
+        lockOnCam.Priority = 1;
+        playerCam.Priority = 0;
     }
 
     void ActivatePlayerCam()
     {
-        playerCamera.SetActive(true);
-        lockOnCamera.SetActive(false);
+        playerCam.Priority = 1;
+        lockOnCam.Priority = 0;
     }
 
     IEnumerator WaitForUnLock()

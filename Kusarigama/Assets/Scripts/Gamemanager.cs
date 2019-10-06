@@ -23,7 +23,7 @@ public class Gamemanager : MonoBehaviour {
 
     }
 
-    private void Start()
+    void Start()
     {
         Damage = 10;
     }
