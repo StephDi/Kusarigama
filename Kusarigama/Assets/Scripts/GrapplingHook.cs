@@ -1,60 +1,63 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 public class GrapplingHook : MonoBehaviour
 {
-    private AimWeapon aimWeapon;
+    public Transform Weapon;
+    public Transform character;
+    public GameObject HookedObject;
 
-    public Transform aimingTarget;
-
-    public GameObject[] grapplingHookObjectsEnemy;
-    public GameObject[] grapplingHookObjectsAnchor;
-    public GameObject[] grapplingHookObjectsAll;
-
-    void Start()
-    {
-        aimWeapon = GetComponent<AimWeapon>();    
-    }
+    bool hookEnemy = false;
+    bool hookAnchor = false;
 
     void Update()
     {
-        if (aimWeapon.aiming == true)
+        if (hookEnemy)
         {
-            FindClosestGrapplingHookObject();
-        }    
+            PullEnemy();
+        }
+
+        if (hookAnchor)
+        {
+            PullToAnchor();
+        }
     }
 
-    void FindClosestGrapplingHookObject()
+    void OnTriggerEnter(Collider other)
     {
-        //Get an Array of all grappable Objects
-        grapplingHookObjectsEnemy = GameObject.FindGameObjectsWithTag("Enemy");
-        grapplingHookObjectsAnchor = GameObject.FindGameObjectsWithTag("Anchor");
+        if (other.tag == "Enemy")
+        {
+            //PullEnemy   
+            HookedObject = other.gameObject;
+            hookEnemy = true;
+        }
 
-        if (grapplingHookObjectsEnemy != null && grapplingHookObjectsAnchor != null)
+        if (other.tag == "Anchor")
         {
-            grapplingHookObjectsAll = grapplingHookObjectsEnemy.Concat(grapplingHookObjectsAnchor).ToArray();
+            //PullToAnchor    
+            HookedObject = other.gameObject;
+            hookAnchor = true;
         }
-        else if (grapplingHookObjectsEnemy != null && grapplingHookObjectsAnchor == null)
-        {
-            grapplingHookObjectsAll.Equals(grapplingHookObjectsEnemy);
-        }
-        else if (grapplingHookObjectsEnemy == null && grapplingHookObjectsAnchor != null)
-        {
-            grapplingHookObjectsAll = grapplingHookObjectsAnchor;
-        }
-        //else if (grapplingHookObjectsEnemy == null && grapplingHookObjectsAnchor == null)
-        //{
-        //    grapplingHookObjectsAll = null;
-        //}
+    }
 
-        if (grapplingHookObjectsAll != null)
+    void PullEnemy()
+    {
+        Debug.Log("enemy");
+        HookedObject.transform.position = Vector3.Lerp(HookedObject.transform.position,character.position,0.1f);
+        if (HookedObject.transform.position == character.position)
         {
-            foreach (GameObject grappO in grapplingHookObjectsAll)
-            {
-                //FindClosestObject
-            }
+            hookEnemy = false;
+        }
+    }
+
+    void PullToAnchor()
+    {
+        Debug.Log("Anchor");
+        character.position = Vector3.Lerp(character.position,HookedObject.transform.position,0.1f);
+        if (character.position == HookedObject.transform.position)
+        {
+            hookAnchor = false;
         }
     }
 }
