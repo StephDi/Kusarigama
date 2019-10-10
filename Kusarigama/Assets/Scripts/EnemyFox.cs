@@ -25,6 +25,7 @@ public class EnemyFox : MonoBehaviour
         if (NavMeshAgentManager.instance.chasing == true)
         {
             nmafuchs.SetDestination(character.position);
+            nmafuchs.nextPosition = rbFuchs.transform.position;
             nmafuchs.updatePosition = true;
 
         }

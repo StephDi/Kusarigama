@@ -11,16 +11,24 @@ public class GrapplingHook : MonoBehaviour
     bool hookEnemy = false;
     bool hookAnchor = false;
 
+    public Animator anim;
+
     void Update()
     {
         if (hookEnemy)
         {
-            PullEnemy();
+            if (anim.GetBool("pullBack") == true)
+            {
+                PullEnemy();
+            }
         }
 
         if (hookAnchor)
         {
-            PullToAnchor();
+            if (anim.GetBool("pullBack") == true)
+            {
+                PullToAnchor();
+            }
         }
     }
 
@@ -43,9 +51,9 @@ public class GrapplingHook : MonoBehaviour
 
     void PullEnemy()
     {
-        Debug.Log("enemy");
         HookedObject.transform.position = Vector3.Lerp(HookedObject.transform.position,character.position,0.1f);
-        if (HookedObject.transform.position == character.position)
+        float dist = Vector3.Distance(HookedObject.transform.position,character.position);
+        if (dist < 3f)
         {
             hookEnemy = false;
         }
@@ -53,9 +61,9 @@ public class GrapplingHook : MonoBehaviour
 
     void PullToAnchor()
     {
-        Debug.Log("Anchor");
         character.position = Vector3.Lerp(character.position,HookedObject.transform.position,0.1f);
-        if (character.position == HookedObject.transform.position)
+        float dist = Vector3.Distance(character.position,HookedObject.transform.position);
+        if (dist < 3f)
         {
             hookAnchor = false;
         }
