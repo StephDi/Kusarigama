@@ -86,6 +86,22 @@ public class CharMovement : MonoBehaviour {
         {
             anim.SetBool("moving", false);
         }
+
+        StopSliding();        
+    }
+
+    //StopSlidingOnSlpoes
+    void StopSliding()
+    {
+        if (movement == new Vector3(0,0,0))
+        {
+            character.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+        }
+        else
+        {
+            character.constraints = RigidbodyConstraints.None;
+            character.constraints = RigidbodyConstraints.FreezeRotation;
+        }
     }
 
     void Jump()
