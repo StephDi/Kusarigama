@@ -17,23 +17,31 @@ public class CharMovement : MonoBehaviour {
     float horizontal;
     float vertical;
     public Vector3 movement;
+    bool dashPossible;
     //falling
     public float fallMultiplier = 2.5f;
     //other
     public Rigidbody character;
     public bool isGrounded = false;
     public AimWeapon aimWeapon;
+    public float dashCoolDown;
 
     void Start ()
     {
         character = GetComponent<Rigidbody>();
         aimWeapon = GetComponent<AimWeapon>();
+
+        dashPossible = true;
 	}
 
-    void FixedUpdate ()
+    void Update()
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
+    }
+
+    void FixedUpdate ()
+    {     
         if (character.velocity.y < 0)
         {
             character.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
@@ -61,21 +69,6 @@ public class CharMovement : MonoBehaviour {
             }
         }
 
-        //Dash
-        if (Input.GetButtonDown("Dash")  && movement.sqrMagnitude != 0)
-        {
-            character.AddRelativeForce(Vector3.forward * dashForce);
-            anim.SetTrigger("dash");
-        }
-
-        //jump
-        if (Input.GetButtonDown("Jump") && isGrounded == true)
-        {
-            isGrounded = false;
-            anim.SetBool("grounded",false);
-            anim.SetTrigger("jump");
-        }
-
         //Animation
         if (movement.sqrMagnitude != 0)
         {
@@ -87,13 +80,33 @@ public class CharMovement : MonoBehaviour {
             anim.SetBool("moving", false);
         }
 
+        //jump
+        if (Input.GetButtonDown("Jump") && isGrounded == true)
+        {
+            isGrounded = false;
+            anim.SetBool("grounded", false);
+            anim.SetTrigger("jump");
+        }
+
+        Dash();
         StopSliding();        
+    }
+
+    void Dash()
+    {
+        if (Input.GetButtonDown("Dash") && movement.sqrMagnitude != 0 && dashPossible == true)
+        {
+            StartCoroutine(DashCoolDown());
+            dashPossible = false;
+            character.AddRelativeForce(Vector3.forward * dashForce);
+            anim.SetTrigger("dash");
+        }
     }
 
     //StopSlidingOnSlpoes
     void StopSliding()
     {
-        if (movement == new Vector3(0,0,0))
+        if (movement == new Vector3(0,0,0) && dashPossible == true)
         {
             character.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
         }
@@ -122,5 +135,11 @@ public class CharMovement : MonoBehaviour {
     {
         isGrounded = false;
         anim.SetBool("grounded", false);
+    }
+
+    IEnumerator DashCoolDown()
+    {
+        yield return new WaitForSeconds(dashCoolDown);
+        dashPossible = true;
     }
 }
