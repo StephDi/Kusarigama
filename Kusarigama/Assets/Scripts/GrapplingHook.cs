@@ -6,7 +6,7 @@ public class GrapplingHook : MonoBehaviour
 {
     public Transform Weapon;
     public Transform character;
-    public GameObject HookedObject;
+    private GameObject HookedObject;
 
     bool hookEnemy = false;
     bool hookAnchor = false;
