@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class GrapplingHook : MonoBehaviour
 {
-    public Transform Weapon;
+    public Transform weapon;
     public Transform character;
+    public BoxCollider weaponCollider;
     private GameObject HookedObject;
 
     bool hookEnemy = false;
     bool hookAnchor = false;
 
     public Animator anim;
+
+    void Start()
+    {
+        weapon = GetComponent<Transform>();
+        weaponCollider = GetComponent<BoxCollider>();
+    }
 
     void Update()
     {
@@ -37,6 +44,7 @@ public class GrapplingHook : MonoBehaviour
         if (other.tag == "Enemy")
         {
             //PullEnemy   
+            weaponCollider.enabled = false;
             HookedObject = other.gameObject;
             hookEnemy = true;
         }
@@ -44,6 +52,7 @@ public class GrapplingHook : MonoBehaviour
         if (other.tag == "Anchor")
         {
             //PullToAnchor    
+            weaponCollider.enabled = false;
             HookedObject = other.gameObject;
             hookAnchor = true;
         }

@@ -6,7 +6,7 @@ public class WeaponController : MonoBehaviour
 {
     public Transform WeaponPoint;
 
-    private void Start()
+    private void Awake()
     {
         ResetWeapon();
     }

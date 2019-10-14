@@ -10,7 +10,7 @@ public class MeleeCombat : MonoBehaviour {
 
     void Start()
     {
-        charMovement = GetComponent<CharMovement>();
+       charMovement = GetComponent<CharMovement>();
     }
 
     // Update is called once per frame
@@ -36,17 +36,6 @@ public class MeleeCombat : MonoBehaviour {
             {
                 anim.SetLayerWeight(1, 0f);
             }
-    }
-
-    //Check for EnemyHit
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Enemy" && weaponCollider.enabled == true)
-        {
-            //Damage the Enemy -> EnemyFox
-            other.GetComponent<EnemyFox>().TakeDamage();
-            weaponCollider.enabled = false;
-        }
     }
 
     //Check if the Animation "stateMame" is PLaying

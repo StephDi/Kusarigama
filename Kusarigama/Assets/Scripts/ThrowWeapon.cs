@@ -47,7 +47,6 @@ public class ThrowWeapon : MonoBehaviour
         weapon.gameObject.SetActive(true);
         weapon.SetParent(weaponPoint);
 
-        weapon.localPosition = Vector3.zero;
         weapon.localRotation = Quaternion.identity;
 
         weaponCollider.enabled = false;
@@ -69,7 +68,6 @@ public class ThrowWeapon : MonoBehaviour
         weaponIsFlying = true;
         anim.SetBool("throwing",true);
         weapon.SetParent(null);
-        weaponCollider.enabled = true;
         weapon.position = Vector3.Lerp(weapon.position, aimingTarget.position, 0.1f);
     } 
 }
