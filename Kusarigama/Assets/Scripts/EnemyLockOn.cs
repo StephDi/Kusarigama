@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyLockOn : MonoBehaviour
@@ -25,7 +24,6 @@ public class EnemyLockOn : MonoBehaviour
     public bool changedTarget;
     //Timer
     public float waitForUnLock;
-    public bool waited;
 
 
     private void Start()
@@ -48,7 +46,7 @@ public class EnemyLockOn : MonoBehaviour
             //set the Targetindicator every 0.002s 
             InvokeRepeating("TargetIndicator",0,0.002f);
         }
-        else if (Input.GetButtonDown("LockOn") && lockOnCam.Priority == 1 || closestEnemy == null || enemyObstructed == true)
+        else if (Input.GetButtonDown("LockOn") && enemyObstructed == true && lockOnCam.Priority == 1 || closestEnemy == null)
         {
             ActivatePlayerCam();
             targetIndicator.gameObject.SetActive(false);
@@ -91,10 +89,24 @@ public class EnemyLockOn : MonoBehaviour
                 }
                 else
                 {
-                    StartCoroutine(WaitForUnLock());
-                    ActivatePlayerCam();
-                    targetIndicator.gameObject.SetActive(false);
+                    enemyObstructed = true;
+                    StartCoroutine(WaitForUnLock());                 
                 }
+            }
+        }
+
+        //Test if the lookAtTarget is Obstructed
+        if(lockOnCam.Priority == 1)
+        {          
+            if (enemyObstructed == true)
+            {
+                targets[0].weight = 1;
+                targets[1].weight = 0;
+            }
+            else if(enemyObstructed == false)
+            {
+                targets[0].weight = 1;
+                targets[1].weight = 1;
             }
         }
     }
@@ -238,6 +250,10 @@ public class EnemyLockOn : MonoBehaviour
     IEnumerator WaitForUnLock()
     {
         yield return new WaitForSeconds(waitForUnLock);
-        enemyObstructed = true;
+        if(enemyObstructed == true)
+        {
+            ActivatePlayerCam();
+            targetIndicator.gameObject.SetActive(false);
+        }
     }
 }
