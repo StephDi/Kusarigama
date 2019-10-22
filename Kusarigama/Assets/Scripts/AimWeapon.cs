@@ -21,11 +21,14 @@ public class AimWeapon : MonoBehaviour
     //other
     public bool aiming;
     public CharMovement charMovement;
+    private float camSwitchTime;
 
     // Start is called before the first frame update
     void Start()
     {
         charMovement = GetComponent<CharMovement>();
+
+        camSwitchTime = 0.35f;
     }
 
     // Update is called once per frame
@@ -61,7 +64,7 @@ public class AimWeapon : MonoBehaviour
     void RevertAimActions()
     {
         AimingIndicator.gameObject.SetActive(false);
-        aiming = false;
+        StartCoroutine(WaitForCamswitch());
         charMovement.moveSpeed = 10f;
         anim.SetBool("aiming", false);
     }
@@ -89,6 +92,12 @@ public class AimWeapon : MonoBehaviour
     {
         playerCam.Priority = 1;
         aimCam.Priority = 0;
+    }
+
+    IEnumerator WaitForCamswitch()
+    {
+        yield return new WaitForSeconds(camSwitchTime);
+        aiming = false;
     }
 
 }
