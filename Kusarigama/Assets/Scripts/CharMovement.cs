@@ -10,7 +10,6 @@ public class CharMovement : MonoBehaviour {
     public float dashForce;
     public float jumpForce;
     //Animation
-    public Transform cam;
     public Animator anim;
     //Movement
     public float moveSpeed = 10f;
@@ -24,6 +23,8 @@ public class CharMovement : MonoBehaviour {
     //falling
     public float fallMultiplier = 2.5f;
     //other
+    public Transform cam;
+    public Cinemachine.CinemachineVirtualCamera LockOnCam;
     public Rigidbody character;
     public bool isGrounded = false;
     public AimWeapon aimWeapon;
@@ -35,7 +36,7 @@ public class CharMovement : MonoBehaviour {
         aimWeapon = GetComponent<AimWeapon>();
 
         dashPossible = true;
-	}
+    }
 
     void Update()
     {
@@ -67,9 +68,12 @@ public class CharMovement : MonoBehaviour {
         //Turn Character
         if (aimWeapon.aiming == false)
         {
-            if (movement != Vector3.zero)
+            if (LockOnCam.Priority == 0)
             {
-                character.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement.x * camR + movement.z * camF), 0.35F));
+                if (movement != Vector3.zero)
+                {
+                    character.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement.x * camR + movement.z * camF), 0.35F));
+                }
             }
         }
 
@@ -111,20 +115,24 @@ public class CharMovement : MonoBehaviour {
             anim.SetTrigger("jump");
         }
 
-        Dash();
-        StopSliding();        
-    }
-
-    void Dash()
-    {
+        //dash
         if (Input.GetButtonDown("Dash") && movement.sqrMagnitude != 0 && dashPossible == true)
         {
             StartCoroutine(DashCoolDown());
             dashPossible = false;
-            character.AddRelativeForce(Vector3.forward * dashForce);
             anim.SetTrigger("dash");
+        }       
+        if(dashPossible == false)
+        {
+            character.MovePosition(character.position + (movement.z * camF + movement.x * camR) * dashForce * Time.fixedDeltaTime);
         }
+        
+        StopSliding();        
     }
+
+   
+       
+
 
     //StopSlidingOnSlpoes
     void StopSliding()

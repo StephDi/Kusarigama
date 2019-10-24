@@ -46,7 +46,7 @@ public class EnemyLockOn : MonoBehaviour
             //set the Targetindicator every 0.002s 
             InvokeRepeating("TargetIndicator",0,0.002f);
         }
-        else if (Input.GetButtonDown("LockOn") && enemyObstructed == true && lockOnCam.Priority == 1 || closestEnemy == null)
+        else if (Input.GetButtonDown("LockOn") && enemyObstructed == true && lockOnCam.Priority == 1|| Input.GetButtonDown("LockOn") && lockOnCam.Priority == 1 || closestEnemy == null)
         {
             ActivatePlayerCam();
             targetIndicator.gameObject.SetActive(false);
@@ -108,6 +108,11 @@ public class EnemyLockOn : MonoBehaviour
                 targets[0].weight = 1;
                 targets[1].weight = 1;
             }
+        }
+
+        if (lockOnCam.Priority == 1)
+        {
+            LookAtEnemy();
         }
     }
 
@@ -245,6 +250,14 @@ public class EnemyLockOn : MonoBehaviour
     {
         playerCam.Priority = 1;
         lockOnCam.Priority = 0;
+    }
+
+    void LookAtEnemy()
+    {
+        if (closestEnemy != null)
+        {
+            player.LookAt ( new Vector3(closestEnemy.transform.position.x, player.position.y, closestEnemy.transform.position.z ));
+        }
     }
 
     IEnumerator WaitForUnLock()
