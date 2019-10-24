@@ -47,6 +47,7 @@ public class ThrowWeapon : MonoBehaviour
         weapon.gameObject.SetActive(true);
         weapon.SetParent(weaponPoint);
 
+        weapon.localPosition = weaponPoint.localPosition;
         weapon.localRotation = Quaternion.identity;
 
         weaponCollider.enabled = false;
