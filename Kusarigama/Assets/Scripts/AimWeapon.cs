@@ -14,7 +14,7 @@ public class AimWeapon : MonoBehaviour
     public Animator anim;  
     //Inputs
     float upDown;
-    float leftRight;
+    public float leftRight;
     //Clamprestrictions
     float minClamp = -15f;
     float maxClamp = 15f;

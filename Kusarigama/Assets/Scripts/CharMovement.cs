@@ -14,9 +14,12 @@ public class CharMovement : MonoBehaviour {
     public Animator anim;
     //Movement
     public float moveSpeed = 10f;
+    public float rotateSpeed = 3f;
     float horizontal;
     float vertical;
+    float leftRigh_RightJoyStick;
     public Vector3 movement;
+    public Vector3 turnVector;
     bool dashPossible;
     //falling
     public float fallMultiplier = 2.5f;
@@ -38,6 +41,7 @@ public class CharMovement : MonoBehaviour {
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
+        leftRigh_RightJoyStick = Input.GetAxis("Mouse X");
     }
 
     void FixedUpdate ()
@@ -66,6 +70,25 @@ public class CharMovement : MonoBehaviour {
             if (movement != Vector3.zero)
             {
                 character.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement.x * camR + movement.z * camF), 0.35F));
+            }
+        }
+
+        //Turn while Aiming
+        if (aimWeapon.aiming == true)
+        {
+            turnVector = new Vector3(0,leftRigh_RightJoyStick,0);
+            turnVector = turnVector.normalized * rotateSpeed;
+            if (aimWeapon.leftRight > 14f)
+            {
+                //Turn left
+                Quaternion deltaRotation = Quaternion.Euler(turnVector);
+                character.MoveRotation(Quaternion.Slerp(character.rotation, character.rotation * deltaRotation, 0.35f));
+            }
+            if (aimWeapon.leftRight < -14f)
+            {
+                //Turn right
+                Quaternion deltaRotation = Quaternion.Euler(turnVector);
+                character.MoveRotation(Quaternion.Slerp(character.rotation, character.rotation * deltaRotation, 0.35f));
             }
         }
 
