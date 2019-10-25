@@ -28,12 +28,14 @@ public class CharMovement : MonoBehaviour {
     public Rigidbody character;
     public bool isGrounded = false;
     public AimWeapon aimWeapon;
+    public RangedCombat rangedCombat;
     public float dashCoolDown;
 
     void Start ()
     {
         character = GetComponent<Rigidbody>();
         aimWeapon = GetComponent<AimWeapon>();
+        rangedCombat = GetComponent<RangedCombat>();
 
         dashPossible = true;
     }
@@ -62,9 +64,15 @@ public class CharMovement : MonoBehaviour {
         camR = camR.normalized;
 
         //Move
-        movement = new Vector3(horizontal, 0, vertical);
-        character.MovePosition(transform.position + (camF * movement.z + camR * movement.x) * moveSpeed * Time.fixedDeltaTime);
-
+        if (rangedCombat.rangedAttackTrigger == 0)
+        {
+            if (!AnimationIsPlaying(anim, "Armature_Rundumschlag"))
+            {
+                movement = new Vector3(horizontal, 0, vertical);
+                character.MovePosition(transform.position + (camF * movement.z + camR * movement.x) * moveSpeed * Time.fixedDeltaTime);
+            }
+        }
+       
         //Turn Character
         if (aimWeapon.aiming == false)
         {
@@ -130,9 +138,16 @@ public class CharMovement : MonoBehaviour {
         StopSliding();        
     }
 
-   
-       
 
+    //Check if the Animation "stateMame" is PLaying
+    bool AnimationIsPlaying(Animator anim, string stateName)
+    {
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName(stateName) &&
+                anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+            return true;
+        else
+            return false;
+    }
 
     //StopSlidingOnSlpoes
     void StopSliding()

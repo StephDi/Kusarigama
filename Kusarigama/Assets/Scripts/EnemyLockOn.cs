@@ -43,8 +43,8 @@ public class EnemyLockOn : MonoBehaviour
         {
             FindClosestEnemy();
             targetIndicator.gameObject.SetActive(true);
-            //set the Targetindicator every 0.002s 
-            InvokeRepeating("TargetIndicator",0,0.002f);
+            //set the Targetindicator every 0.005s 
+            InvokeRepeating("TargetIndicator",0,0.005f);
         }
         else if (Input.GetButtonDown("LockOn") && enemyObstructed == true && lockOnCam.Priority == 1|| Input.GetButtonDown("LockOn") && lockOnCam.Priority == 1 || closestEnemy == null)
         {

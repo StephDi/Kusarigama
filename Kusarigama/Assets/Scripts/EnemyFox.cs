@@ -7,15 +7,13 @@ public class EnemyFox : MonoBehaviour
 {
     public Transform fuchs;
     public Transform character;
-    public NavMeshAgent nmafuchs;
-    //public Rigidbody rbFuchs;
+    public NavMeshAgent nmafuchs;    
     public Animator anim;
 
     public float Health;
 
     void Start()
-    {
-        //rbFuchs = fuchs.GetComponent<Rigidbody>();
+    {       
         Health = 30;
     }
 
@@ -25,7 +23,7 @@ public class EnemyFox : MonoBehaviour
         if (NavMeshAgentManager.instance.chasing == true)
         {
             nmafuchs.SetDestination(character.position);
-           // nmafuchs.nextPosition = rbFuchs.transform.position;
+            nmafuchs.nextPosition = fuchs.transform.position;
             nmafuchs.updatePosition = true;
             anim.SetBool("moving", true);
 

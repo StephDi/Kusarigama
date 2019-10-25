@@ -7,17 +7,19 @@ public class MeleeCombat : MonoBehaviour {
     public BoxCollider weaponCollider;
     public Animator anim;
     public CharMovement charMovement;
+    public RangedCombat rangedCombat;
 
     void Start()
     {
-       charMovement = GetComponent<CharMovement>();
+        charMovement = GetComponent<CharMovement>();
+        rangedCombat = GetComponent<RangedCombat>();
     }
 
     // Update is called once per frame
     void Update() {
 
         //Simple Attack Melee right
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && !Input.GetButton("Fire2"))
         {
             //set mecanim State
             anim.SetTrigger("attack");
@@ -32,7 +34,7 @@ public class MeleeCombat : MonoBehaviour {
             }
         }
 
-        if (charMovement.movement.sqrMagnitude == 0 || AnimationIsPlaying(anim,"Idle"))
+        if (charMovement.movement.sqrMagnitude == 0 || AnimationIsPlaying(anim,"Idle") || rangedCombat.rangedAttackTrigger < 0)
             {
                 anim.SetLayerWeight(1, 0f);
             }
