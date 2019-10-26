@@ -40,7 +40,7 @@ public class AimWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //Inputs
         upDown = Mathf.Clamp(upDown - Input.GetAxis("Mouse Y"), minClampUpDown, maxClampUpDown);
         leftRight = Mathf.Clamp(leftRight - Input.GetAxis("Mouse X"), minClampLeftRight, maxClampLeftRight);
 
@@ -129,6 +129,7 @@ public class AimWeapon : MonoBehaviour
         TargetIndicator.gameObject.SetActive(true);
     }
 
+    //Stop Turning during Camswitch -> CharMovement
     IEnumerator WaitForCamswitch()
     {
         yield return new WaitForSeconds(camSwitchTime);
