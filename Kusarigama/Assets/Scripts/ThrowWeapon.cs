@@ -9,6 +9,7 @@ public class ThrowWeapon : MonoBehaviour
     public Transform weapon;
     public Collider weaponCollider;
     public Transform weaponPoint;
+    public Transform character;
 
     public Animator anim;
 
@@ -70,5 +71,6 @@ public class ThrowWeapon : MonoBehaviour
         anim.SetBool("throwing",true);
         weapon.SetParent(null);
         weapon.position = Vector3.Lerp(weapon.position, aimingTarget.position, 0.1f);
+        weapon.rotation = character.rotation;
     } 
 }

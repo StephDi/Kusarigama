@@ -10,7 +10,10 @@ public class EnemyFox : MonoBehaviour
     public NavMeshAgent nmafuchs;    
     public Animator anim;
 
+    public float stunDuration = 0.2f;
     public float Health;
+
+    public bool isDead = false;
 
     void Start()
     {       
@@ -39,12 +42,17 @@ public class EnemyFox : MonoBehaviour
     //Take damage if a hit is detected -> MeleeCombat
     public void TakeDamage()
     {
-        Health = Health - Gamemanager.instance.Damage;
-        anim.SetTrigger("damageTaken");
-
+        if (!isDead)
+        {
+            Health = Health - Gamemanager.instance.Damage;
+            anim.SetTrigger("damageTaken");
+            nmafuchs.speed = 0;
+            StartCoroutine(DamageTakenSlow());
+        }
         if (Health <= 0)
         {
             EnemyDie();
+            isDead = true;
         }
     }
 
@@ -56,5 +64,11 @@ public class EnemyFox : MonoBehaviour
         }
         nmafuchs.speed = 0f;
         Destroy(this.gameObject,3f);
+    }
+
+    IEnumerator DamageTakenSlow()
+    {
+        yield return new WaitForSeconds(stunDuration);
+        nmafuchs.speed = 4f;
     }
 }

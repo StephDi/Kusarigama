@@ -182,57 +182,60 @@ public class EnemyLockOn : MonoBehaviour
         foreach (GameObject e in enemies)
         {
             //distance between Player and Enemy;
-            var diff = (e.transform.position - position);
-            var curDistance = diff.sqrMagnitude;
-
-            // check if an Enemy is close enough
-            if (curDistance < 1500f)
+            if (e != null)
             {
-                //if an Enemy is close enough, check if its in sight of the cam
-                enemyPos = mainCamera.WorldToViewportPoint(e.transform.position);
-                var closestEnemyPos = mainCamera.WorldToViewportPoint(closestEnemy.transform.position);
+                var diff = (e.transform.position - position);
+                var curDistance = diff.sqrMagnitude;
 
-                if (enemyPos.x >= 0 && enemyPos.y >= 0 && enemyPos.z >= 0 && enemyPos.x <= 1 && enemyPos.y <= 1)
+                // check if an Enemy is close enough
+                if (curDistance < 1500f)
                 {
+                    //if an Enemy is close enough, check if its in sight of the cam
+                    enemyPos = mainCamera.WorldToViewportPoint(e.transform.position);
+                    var closestEnemyPos = mainCamera.WorldToViewportPoint(closestEnemy.transform.position);
 
-                    if (changeTarget < 0)
+                    if (enemyPos.x >= 0 && enemyPos.y >= 0 && enemyPos.z >= 0 && enemyPos.x <= 1 && enemyPos.y <= 1)
                     {
-                        //change to left Target
-                        if (enemyPos.x < closestEnemyPos.x)
-                        {
-                            //take the closest to the current trageted enemy
-                            var enemyDiff = (closestEnemyPos - enemyPos);
-                            var curEnemyPos = enemyDiff.sqrMagnitude;
 
-                            if (curEnemyPos < dot)
+                        if (changeTarget < 0)
+                        {
+                            //change to left Target
+                            if (enemyPos.x < closestEnemyPos.x)
                             {
-                                dot = curEnemyPos;
-                                closestEnemy = e;
-                                targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = 1.0f };
-                                targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = closestEnemy.transform, radius = 4.0f, weight = 1.0f };
-                                return;
+                                //take the closest to the current trageted enemy
+                                var enemyDiff = (closestEnemyPos - enemyPos);
+                                var curEnemyPos = enemyDiff.sqrMagnitude;
+
+                                if (curEnemyPos < dot)
+                                {
+                                    dot = curEnemyPos;
+                                    closestEnemy = e;
+                                    targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = 1.0f };
+                                    targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = closestEnemy.transform, radius = 4.0f, weight = 1.0f };
+                                    return;
+                                }
+                                closestEnemyPos = new Vector3(0, 0, 0);
                             }
-                            closestEnemyPos = new Vector3(0, 0, 0);
                         }
-                    }
-                    else if (changeTarget > 0)
-                    {
-                        //change to right Target
-                        if (enemyPos.x > closestEnemyPos.x)
+                        else if (changeTarget > 0)
                         {
-                            //take the closest to the current trageted enemy
-                            var enemyDiff = (closestEnemyPos - enemyPos);
-                            var curEnemyPos = enemyDiff.sqrMagnitude;
-
-                            if (curEnemyPos < dot)
+                            //change to right Target
+                            if (enemyPos.x > closestEnemyPos.x)
                             {
-                                dot = curEnemyPos;
-                                closestEnemy = e;
-                                targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = 1.0f };
-                                targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = closestEnemy.transform, radius = 4.0f, weight = 1.0f };
-                                return;
+                                //take the closest to the current trageted enemy
+                                var enemyDiff = (closestEnemyPos - enemyPos);
+                                var curEnemyPos = enemyDiff.sqrMagnitude;
+
+                                if (curEnemyPos < dot)
+                                {
+                                    dot = curEnemyPos;
+                                    closestEnemy = e;
+                                    targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = 1.0f };
+                                    targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = closestEnemy.transform, radius = 4.0f, weight = 1.0f };
+                                    return;
+                                }
+                                closestEnemyPos = new Vector3(0, 0, 0);
                             }
-                            closestEnemyPos = new Vector3(0, 0, 0);
                         }
                     }
                 }

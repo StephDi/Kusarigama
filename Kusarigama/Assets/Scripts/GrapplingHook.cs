@@ -58,19 +58,22 @@ public class GrapplingHook : MonoBehaviour
 
     void PullEnemy()
     {
-        HookedObject.transform.position = Vector3.Lerp(HookedObject.transform.position,character.position,0.1f);
-        float dist = Vector3.Distance(HookedObject.transform.position,character.position);
-        if (dist < 3f)
+        if (HookedObject != null)
         {
-            hookEnemy = false;
+            HookedObject.transform.position = Vector3.Lerp(HookedObject.transform.position, character.position + new Vector3(0,1,0), 0.1f);
+            float dist = Vector3.Distance(HookedObject.transform.position, character.position);
+            if (dist < 4f)
+            {
+                hookEnemy = false;
+            }
         }
     }
 
     void PullToAnchor()
     {
-        character.position = Vector3.Lerp(character.position,HookedObject.transform.position,0.1f);
-        float dist = Vector3.Distance(character.position,HookedObject.transform.position);
-        if (dist < 3f)
+        character.position = Vector3.Lerp(character.position, HookedObject.transform.position + new Vector3(0,5,3), 0.1f);
+        float dist = Vector3.Distance(character.position, HookedObject.transform.position + new Vector3 (0,5,3));
+        if (dist < 2f)
         {
             hookAnchor = false;
         }
