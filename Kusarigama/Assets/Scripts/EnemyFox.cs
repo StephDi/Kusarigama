@@ -53,6 +53,7 @@ public class EnemyFox : MonoBehaviour
         {
             EnemyDie();
             isDead = true;
+            nmafuchs.speed = 0f;
         }
     }
 
@@ -69,6 +70,9 @@ public class EnemyFox : MonoBehaviour
     IEnumerator DamageTakenSlow()
     {
         yield return new WaitForSeconds(stunDuration);
-        nmafuchs.speed = 4f;
+        if (!isDead)
+        {
+            nmafuchs.speed = 4f;
+        }
     }
 }

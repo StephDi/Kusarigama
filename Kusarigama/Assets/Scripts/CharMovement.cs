@@ -28,14 +28,14 @@ public class CharMovement : MonoBehaviour {
     public Rigidbody character;
     public bool isGrounded = false;
     public AimWeapon aimWeapon;
-    public RangedCombat rangedCombat;
+    public RangedCombatGhost rangedCombatGhost;
     public float dashCoolDown;
 
     void Start ()
     {
         character = GetComponent<Rigidbody>();
         aimWeapon = GetComponent<AimWeapon>();
-        rangedCombat = GetComponent<RangedCombat>();
+        rangedCombatGhost = GetComponent<RangedCombatGhost>();
 
         dashPossible = true;
     }
@@ -64,9 +64,9 @@ public class CharMovement : MonoBehaviour {
         camR = camR.normalized;
 
         //Move
-        if (rangedCombat.rangedAttackTrigger == 0)
+        if (rangedCombatGhost.rangedAttackTriggerGhost == 0)
         {
-            if (!AnimationIsPlaying(anim, "Armature_Rundumschlag"))
+            if (!AnimationIsPlaying(anim, "Armature_Rundumschlag_Ghost"))
             {
                 movement = new Vector3(horizontal, 0, vertical);
                 character.MovePosition(transform.position + (camF * movement.z + camR * movement.x) * moveSpeed * Time.fixedDeltaTime);
@@ -120,7 +120,7 @@ public class CharMovement : MonoBehaviour {
         {
             isGrounded = false;
             anim.SetBool("grounded", false);
-            anim.SetTrigger("jump");
+            anim.SetBool("jump", true);
         }
 
         //dash
@@ -181,6 +181,7 @@ public class CharMovement : MonoBehaviour {
     {
         isGrounded = false;
         anim.SetBool("grounded", false);
+        anim.SetBool("jump",false);
     }
 
     IEnumerator DashCoolDown()

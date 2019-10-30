@@ -7,12 +7,12 @@ public class MeleeCombat : MonoBehaviour {
     public BoxCollider weaponCollider;
     public Animator anim;
     public CharMovement charMovement;
-    public RangedCombat rangedCombat;
+    public RangedCombatGhost rangedCombat;
 
     void Start()
     {
         charMovement = GetComponent<CharMovement>();
-        rangedCombat = GetComponent<RangedCombat>();
+        rangedCombat = GetComponent<RangedCombatGhost>();
     }
 
     // Update is called once per frame
@@ -34,7 +34,7 @@ public class MeleeCombat : MonoBehaviour {
             }
         }
 
-        if (charMovement.movement.sqrMagnitude == 0 || AnimationIsPlaying(anim,"Idle") || rangedCombat.rangedAttackTrigger < 0)
+        if (charMovement.movement.sqrMagnitude == 0 || AnimationIsPlaying(anim,"Idle") || rangedCombat.rangedAttackTriggerGhost < 0)
             {
                 anim.SetLayerWeight(1, 0f);
             }

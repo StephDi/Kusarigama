@@ -8,41 +8,23 @@ public class RangedCombat : MonoBehaviour
     public float rangedAttackTrigger;
     //Animation
     public Animator anim;
-    //Timer
-    public float cooldown;
-    bool canAttackAOE = true;
     //Weapon
-    public Transform GhostWeapon;
+    public Transform Weapon;
     public Collider weaponCollider;
+    public Transform WeaponPoint;
 
     void Update()
     {
-
-        rangedAttackTrigger = Input.GetAxis("AoeAttack");
+        rangedAttackTrigger = Input.GetAxis("Throw");
 
         if (rangedAttackTrigger > 0 && !Input.GetButton("Fire2"))
         {
-            if (canAttackAOE == true)
-            {
-                anim.SetTrigger("rangedAttack");
-                canAttackAOE = false;
-                StartCoroutine(AOECooldown());
-            }
+            anim.SetTrigger("rangedAttack");
         }
     }
 
-    public void BeginArc()
-    {
-        GhostWeapon.transform.localPosition = new Vector3(0,-0.05f,0.048f);
-    }
-
-    public void EndArc()
-    {
-        GhostWeapon.transform.localPosition = new Vector3(0,0,0.0028f);
-    }
-
     //Event
-    public void ActivateWeaponColliderGhost()
+    public void ActivateWeaponColliderRanged()
     {
         weaponCollider.enabled = true;
     }
@@ -51,11 +33,5 @@ public class RangedCombat : MonoBehaviour
     public void DeActivateWeaponColliderGhost()
     {
         weaponCollider.enabled = false;
-    }
-
-    IEnumerator AOECooldown()
-    {
-        yield return new WaitForSeconds(cooldown);
-        canAttackAOE = true;
     }
 }
