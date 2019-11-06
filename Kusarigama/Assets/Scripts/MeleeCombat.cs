@@ -54,6 +54,7 @@ public class MeleeCombat : MonoBehaviour {
     public void ResetTrigger()
     {
         anim.ResetTrigger("attack");
+        anim.ResetTrigger("rangedAttack");
     }
 
     //Event

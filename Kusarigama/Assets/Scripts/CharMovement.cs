@@ -29,6 +29,7 @@ public class CharMovement : MonoBehaviour {
     public bool isGrounded = false;
     public AimWeapon aimWeapon;
     public RangedCombatGhost rangedCombatGhost;
+    public RangedCombat rangedCombat;
     public float dashCoolDown;
 
     void Start ()
@@ -36,6 +37,7 @@ public class CharMovement : MonoBehaviour {
         character = GetComponent<Rigidbody>();
         aimWeapon = GetComponent<AimWeapon>();
         rangedCombatGhost = GetComponent<RangedCombatGhost>();
+        rangedCombat = GetComponent<RangedCombat>();
 
         dashPossible = true;
     }
@@ -64,12 +66,24 @@ public class CharMovement : MonoBehaviour {
         camR = camR.normalized;
 
         //Move
-        if (rangedCombatGhost.rangedAttackTriggerGhost == 0)
+        if (rangedCombat.rangedAttackTrigger == 0)
         {
-            if (!AnimationIsPlaying(anim, "Armature_Rundumschlag_Ghost"))
+            if (rangedCombatGhost.rangedAttackTriggerGhost == 0)
             {
-                movement = new Vector3(horizontal, 0, vertical);
-                character.MovePosition(transform.position + (camF * movement.z + camR * movement.x) * moveSpeed * Time.fixedDeltaTime);
+                if (!AnimationIsPlaying(anim, "Armature_Rundumschlag_Ghost"))
+                {
+                    if (!AnimationIsPlaying(anim, "Armature_Nahkampfschlag_Ranged"))
+                    {
+                        if (!AnimationIsPlaying(anim, "Armature_Nahkampfschlag_von_links_Ranged"))
+                        {
+                            if (!AnimationIsPlaying(anim, "Armature_Rundumschlag_mit_rechts_ranged"))
+                            {
+                                movement = new Vector3(horizontal, 0, vertical);
+                                character.MovePosition(transform.position + (camF * movement.z + camR * movement.x) * moveSpeed * Time.fixedDeltaTime);
+                            }                          
+                        }
+                    }
+                }
             }
         }
        
@@ -139,7 +153,7 @@ public class CharMovement : MonoBehaviour {
     }
 
 
-    //Check if the Animation "stateMame" is PLaying
+    //Check if the Animation "stateMame" is Playing
     bool AnimationIsPlaying(Animator anim, string stateName)
     {
         if (anim.GetCurrentAnimatorStateInfo(0).IsName(stateName) &&
