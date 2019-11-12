@@ -4,11 +4,16 @@ public class GrapplingHook : MonoBehaviour
 {
     public Transform weapon;
     public Transform character;
+    public Rigidbody rbCharacter;
     public BoxCollider weaponCollider;
     private GameObject HookedObject;
 
     bool hookEnemy = false;
     bool hookAnchor = false;
+
+    float grappleSpeed = 25f;
+    float forwardspeed = 5f;
+    float upForce = 5f;
 
     public Animator anim;
 
@@ -53,6 +58,9 @@ public class GrapplingHook : MonoBehaviour
             weaponCollider.enabled = false;
             HookedObject = other.gameObject;
             hookAnchor = true;
+
+           // transform.position = other.transform.position;
+
         }
     }
 
@@ -71,8 +79,15 @@ public class GrapplingHook : MonoBehaviour
 
     void PullToAnchor()
     {
-        character.position = Vector3.Lerp(character.position, HookedObject.transform.position + new Vector3(0,5,3), 0.1f);
-        float dist = Vector3.Distance(character.position, HookedObject.transform.position + new Vector3 (0,5,3));
+        character.position = Vector3.Lerp(character.position, HookedObject.transform.localPosition + new Vector3(0,5,3), 0.05f);
+        
+        float dist = Vector3.Distance(character.position, HookedObject.transform.localPosition + new Vector3 (0,5,3));
+        float distance = (HookedObject.transform.position - character.transform.position).magnitude;
+        Vector3 direction = HookedObject.transform.position - character.transform.position;
+        if (distance > 2f)
+        {
+            //rbCharacter.AddForce((direction * grappleSpeed) + (Vector3.forward * forwardspeed) + (Vector3.up * upForce));
+        }
         if (dist < 2f)
         {
             hookAnchor = false;

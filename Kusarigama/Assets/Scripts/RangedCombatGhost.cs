@@ -47,7 +47,7 @@ public class RangedCombatGhost : MonoBehaviour
         GhostWeapon.SetParent(RangedCombatRotation);
         RangedCombatRotation.localRotation = Quaternion.Euler(0,45f,0);
         RangedCombatRotationGoal.localRotation = Quaternion.Euler(0,-45f,0);
-        GhostWeapon.localPosition = new Vector3(0,1f,2f);
+        GhostWeapon.localPosition = new Vector3(0,1f,3f);
         rotate = true;
     }
 
