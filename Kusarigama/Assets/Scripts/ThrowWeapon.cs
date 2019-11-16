@@ -16,6 +16,13 @@ public class ThrowWeapon : MonoBehaviour
     float throwValue;
     bool weaponIsFlying = false;
 
+    public GrapplingHook grapplingHook;
+
+    private void Start()
+    {
+        grapplingHook = FindObjectOfType<GrapplingHook>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -24,18 +31,20 @@ public class ThrowWeapon : MonoBehaviour
 
         if (Input.GetButton("Fire2"))
         {                                     
-            if (throwValue >= 1)
+            if (throwValue > 0)
             {
-                ThrowWeaponForward();
-            }          
+                if (grapplingHook.hookEnemy == true || grapplingHook.hookAnchor == true) 
+                {
+                    return;
+                }
+                else 
+                {
+                    ThrowWeaponForward(); 
+                }
+            }         
         }
-
-        if (Input.GetButtonUp("Fire2"))
-        {                                  
-           
-        }
-
-        if (throwValue < 1 && weaponIsFlying == true)
+  
+        if (throwValue == 0 && weaponIsFlying == true)
         {
             PullWeaponBack();
             anim.SetBool("pullBack",true);
@@ -57,12 +66,15 @@ public class ThrowWeapon : MonoBehaviour
         anim.SetBool("pullBack",false);
 
         weaponIsFlying = false;
+
+        grapplingHook.hookAnchor = false;
+        grapplingHook.hookEnemy = false;
     }
 
     void PullWeaponBack()
     {
         weapon.rotation = weaponPoint.rotation;
-        weapon.position = Vector3.Lerp(weapon.position,weaponPoint.position,0.1f);                  
+        weapon.position = Vector3.Lerp(weapon.position,weaponPoint.position,0.1f);      
     }
 
     void ThrowWeaponForward()
