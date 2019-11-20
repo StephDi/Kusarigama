@@ -10,10 +10,12 @@ public class GrapplingHook : MonoBehaviour
 
     public bool hookEnemy = false;
     public bool hookAnchor = false;
+    public bool hanging = false;
 
     float grappleSpeed = 25f;
     float forwardspeed = 5f;
     float upForce = 5f;
+    float distance;
 
     public Animator anim;
 
@@ -25,6 +27,11 @@ public class GrapplingHook : MonoBehaviour
 
     void Update()
     {
+        if (HookedObject != null) 
+        {
+            distance = ((HookedObject.transform.localPosition + new Vector3(0, -3.5f, 0)) - character.transform.position).magnitude;
+        }
+
         if (hookEnemy)
         {
             transform.parent.position = HookedObject.transform.position;
@@ -35,11 +42,20 @@ public class GrapplingHook : MonoBehaviour
             }
         }
 
-        if (hookAnchor)
+        if (hookAnchor || hanging)
         {
             if (anim.GetBool("pullBack") == true)
             {
-                PullToAnchor();
+                if (distance > 3f) 
+                {
+                    PullToAnchor();
+                }
+            }
+            if (distance < 3f && hanging == true)
+            {
+                HangOnAnchor();
+                LetAnchorGo();
+                hookAnchor = false;
             }
         }
     }
@@ -64,8 +80,10 @@ public class GrapplingHook : MonoBehaviour
             weaponCollider.enabled = false;
             HookedObject = other.gameObject;
             hookAnchor = true;
-
-            transform.parent.position = other.transform.position;
+            if (HookedObject != null) 
+            {
+                transform.parent.position = other.transform.position;
+            }
         }
         else
         {
@@ -88,18 +106,30 @@ public class GrapplingHook : MonoBehaviour
 
     void PullToAnchor()
     {
-        character.position = Vector3.Lerp(character.position, HookedObject.transform.localPosition, 0.1f);
+        character.position = Vector3.Lerp(character.position, HookedObject.transform.localPosition + new Vector3(0,-3.5f,0), 0.1f);
+        anim.SetBool("hanging",false);
+        hookAnchor = false;
+        hanging = true;
+    }
 
-        float dist = Vector3.Distance(character.position, HookedObject.transform.localPosition + new Vector3 (0,5,3));
-        float distance = (HookedObject.transform.position - character.transform.position).magnitude;
-        Vector3 direction = HookedObject.transform.position - character.transform.position;
-        if (distance > 2f)
+    void HangOnAnchor()
+    {
+        character.position = HookedObject.transform.position + new Vector3(0, -3.5f, 0);
+        anim.SetBool("hanging",true);
+    }
+
+    void LetAnchorGo()
+    {
+        if (Input.GetAxis("Throw") > 0)
         {
-            //rbCharacter.AddForce((direction * grappleSpeed) + (Vector3.forward * forwardspeed) + (Vector3.up * upForce));
-        }
-        if (distance < 3f)
-        {
+            anim.SetBool("hanging", false);
             hookAnchor = false;
         }
+        if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Dash"))
+        {
+            anim.SetBool("hanging",false);
+            hanging = false;
+        }
+        
     }
 }

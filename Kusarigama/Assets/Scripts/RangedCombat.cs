@@ -29,7 +29,6 @@ public class RangedCombat : MonoBehaviour
         if (rotate == true)
         {
             RangedCombatRotation.localRotation = Quaternion.Slerp(RangedCombatRotation.localRotation, RangedCombatRotationGoal.localRotation, 0.1f);
-            Weapon.rotation = RangedCombatRotation.rotation * Quaternion.Euler(0, 0, -90f);
         }
     }
 
@@ -39,6 +38,7 @@ public class RangedCombat : MonoBehaviour
         RangedCombatRotation.localRotation = Quaternion.Euler(0, 45f, 0);
         RangedCombatRotationGoal.localRotation = Quaternion.Euler(0, -45f, 0);
         Weapon.localPosition = new Vector3(0, 1f, 3f);
+        Weapon.rotation = RangedCombatRotation.rotation * Quaternion.Euler(0, 0, -90f);
         rotate = true;
     }
 
@@ -57,6 +57,7 @@ public class RangedCombat : MonoBehaviour
         RangedCombatRotation.localRotation = Quaternion.Euler(0, -45f, 0);
         RangedCombatRotationGoal.localRotation = Quaternion.Euler(0, 45f, 0);
         Weapon.localPosition = new Vector3(0, 1f, 3f);
+        Weapon.rotation = RangedCombatRotation.rotation * Quaternion.Euler(0, 0, 90f);
         rotate = true;
     }
 

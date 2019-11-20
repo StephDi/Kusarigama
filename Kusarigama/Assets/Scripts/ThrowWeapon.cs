@@ -67,7 +67,7 @@ public class ThrowWeapon : MonoBehaviour
 
         weaponIsFlying = false;
 
-        grapplingHook.hookAnchor = false;
+        //grapplingHook.hookAnchor = false;
         grapplingHook.hookEnemy = false;
     }
 
