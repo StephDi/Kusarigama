@@ -14,13 +14,13 @@ public class ThrowWeapon : MonoBehaviour
     public Animator anim;
 
     float throwValue;
-    bool weaponIsFlying = false;
+    public bool weaponIsFlying = false;
 
-    public GrapplingHook grapplingHook;
+    public PullEnemy PullEnemy;
 
     private void Start()
     {
-        grapplingHook = FindObjectOfType<GrapplingHook>();
+        PullEnemy = FindObjectOfType<PullEnemy>();
     }
 
     // Update is called once per frame
@@ -32,15 +32,8 @@ public class ThrowWeapon : MonoBehaviour
         if (Input.GetButton("Fire2"))
         {                                     
             if (throwValue > 0)
-            {
-                if (grapplingHook.hookEnemy == true || grapplingHook.hookAnchor == true) 
-                {
-                    return;
-                }
-                else 
-                {
-                    ThrowWeaponForward(); 
-                }
+            {                
+                ThrowWeaponForward(); 
             }         
         }
   
@@ -67,8 +60,7 @@ public class ThrowWeapon : MonoBehaviour
 
         weaponIsFlying = false;
 
-        //grapplingHook.hookAnchor = false;
-        grapplingHook.hookEnemy = false;
+        PullEnemy.hookEnemy = false;
     }
 
     void PullWeaponBack()

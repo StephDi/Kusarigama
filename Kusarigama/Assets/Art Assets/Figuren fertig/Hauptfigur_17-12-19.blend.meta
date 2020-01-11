@@ -57,6 +57,57 @@ ModelImporter:
   - first:
       74: 1636581481516328034
     second: Tod_State
+  - first:
+      74: 6222304123726234452
+    second: Armature|Auswerfen
+  - first:
+      74: 6990056404958587351
+    second: Armature|Auswerfen_Geisterklinge
+  - first:
+      74: -8486533594290707287
+    second: Armature|Damage Taken
+  - first:
+      74: -2246502780319343731
+    second: Armature|Dash
+  - first:
+      74: -7598262754081568794
+    second: Armature|Einholen_Geisterklinge
+  - first:
+      74: 1744820426516830047
+    second: Armature|Einholen_langsam
+  - first:
+      74: 5650327267903480622
+    second: Armature|Einholen_schnell
+  - first:
+      74: 1571830204861550811
+    second: Armature|Hanging
+  - first:
+      74: -8945691123924629249
+    second: Armature|Idle
+  - first:
+      74: 1079665108409675491
+    second: Armature|Jump
+  - first:
+      74: 1521241755115578417
+    second: Armature|Nahkampfschlag
+  - first:
+      74: 7339801022146195669
+    second: Armature|Nahkampfschlag_von_links
+  - first:
+      74: -7551964380084998518
+    second: Armature|Run
+  - first:
+      74: -7203013242469972023
+    second: Armature|Rundumschlag
+  - first:
+      74: 7670434528202373008
+    second: Armature|Rundumschlag_mit_rechts
+  - first:
+      74: 3867698765507187939
+    second: Armature|Tod
+  - first:
+      74: 4652017469769435900
+    second: Armature|Tod_State
   externalObjects:
   - first:
       type: UnityEngine:Material
