@@ -2,11 +2,10 @@
 
 public class PullEnemy : MonoBehaviour
 {
-    public Transform weapon;
     public Transform character;
     public Rigidbody rbCharacter;
     public BoxCollider weaponCollider;
-    private GameObject HookedObject;
+    private GameObject hookedObject;
 
     public bool hookEnemy = false;
     public bool hanging = false;
@@ -15,7 +14,6 @@ public class PullEnemy : MonoBehaviour
 
     void Start()
     {
-        weapon = GetComponent<Transform>();
         weaponCollider = GetComponent<BoxCollider>();
     }
 
@@ -23,7 +21,7 @@ public class PullEnemy : MonoBehaviour
     {
         if (hookEnemy)
         {
-            transform.parent.position = HookedObject.transform.position;
+            transform.parent.position = hookedObject.transform.position;
 
             if (anim.GetBool("pullBack") == true)
             {            
@@ -38,7 +36,7 @@ public class PullEnemy : MonoBehaviour
         {
             //PullEnemy   
             weaponCollider.enabled = false;
-            HookedObject = other.gameObject;
+            hookedObject = other.gameObject;
             hookEnemy = true;      
         }
         else
@@ -49,10 +47,10 @@ public class PullEnemy : MonoBehaviour
 
     void PullEnemyToPlayer()
     {
-        if (HookedObject != null)
+        if (hookedObject != null)
         {
-            HookedObject.transform.position = Vector3.Lerp(HookedObject.transform.position, character.position + new Vector3(0,1,0), 0.1f);
-            float dist = Vector3.Distance(HookedObject.transform.position, character.position);
+            hookedObject.transform.position = Vector3.Lerp(hookedObject.transform.position, character.position + new Vector3(0,1,0), 0.1f);
+            float dist = Vector3.Distance(hookedObject.transform.position, character.position);
             if (dist < 4f)
             {
                 hookEnemy = false;

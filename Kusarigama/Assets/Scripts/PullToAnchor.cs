@@ -2,17 +2,88 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GrappleState { NONE, PULLING, HIT, HANGING, LETGO }
+
 public class PullToAnchor : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GrappleState state;
+
+    public GameObject character;
+    public Animator anim;
+    public GameObject hangingPoint;
+
+    public GameObject hookedObject;
+    public GameObject hangingposition;
+    public ThrowWeapon throwWeapon;
+
+    public float throwValue;
+
     void Start()
     {
-        
+        throwWeapon = FindObjectOfType<ThrowWeapon>();
+
+
+        state = GrappleState.NONE;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        throwValue = Input.GetAxis("Throw");
+
+        if (state == GrappleState.NONE)
+        {
+            return;
+        }
+        if (state == GrappleState.HIT)
+        {
+            Debug.Log("HitAnchor");
+            transform.parent.position = hookedObject.transform.position;
+
+            if (hangingposition != null)
+            {
+                character.transform.position = hangingposition.transform.position + new Vector3(0f, -3f, 0f);
+            }
+
+            if (throwValue < 0.3f)
+            {
+                state = GrappleState.PULLING;
+            }
+        }
+        if (state == GrappleState.PULLING)
+        {
+            float dist = Vector3.Distance(hookedObject.transform.position, hangingPoint.transform.position);
+            if (dist > 1f) 
+            {
+                character.transform.position = Vector3.Lerp(character.transform.position, hookedObject.transform.position + new Vector3(0f,-3f,0f), 0.2f);
+            }
+            else
+            {
+                state = GrappleState.HANGING;
+            }
+        }
+        if (state == GrappleState.HANGING)
+        {
+            hangingposition = hookedObject;
+            character.transform.position = hangingposition.transform.position + new Vector3(0f, -3f, 0f);
+            if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Dash"))
+            {
+                state = GrappleState.LETGO;
+            }
+        }
+        if (state == GrappleState.LETGO)
+        {
+            hookedObject = null;
+            hangingposition = null;
+            state = GrappleState.NONE;
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Anchor")
+        {
+            state = GrappleState.HIT;
+            hookedObject = other.gameObject;  
+        }
     }
 }
