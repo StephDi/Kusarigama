@@ -9,6 +9,7 @@ public class PullToAnchor : MonoBehaviour
     public GrappleState state;
 
     public GameObject character;
+    public Rigidbody characterRb;
     public Animator anim;
     public GameObject hangingPoint;
 
@@ -22,7 +23,6 @@ public class PullToAnchor : MonoBehaviour
     {
         throwWeapon = FindObjectOfType<ThrowWeapon>();
 
-
         state = GrappleState.NONE;
     }
 
@@ -32,16 +32,17 @@ public class PullToAnchor : MonoBehaviour
 
         if (state == GrappleState.NONE)
         {
+            characterRb.isKinematic = false;
             return;
         }
         if (state == GrappleState.HIT)
         {
-            Debug.Log("HitAnchor");
+            Debug.Log("HitAnchor");         
             transform.parent.position = hookedObject.transform.position;
 
             if (hangingposition != null)
             {
-                character.transform.position = hangingposition.transform.position + new Vector3(0f, -3f, 0f);
+                character.transform.position = hangingposition.transform.position + new Vector3(0f, -3.5f, 0f);
             }
 
             if (throwValue < 0.3f)
@@ -51,10 +52,11 @@ public class PullToAnchor : MonoBehaviour
         }
         if (state == GrappleState.PULLING)
         {
+            characterRb.isKinematic = true;
             float dist = Vector3.Distance(hookedObject.transform.position, hangingPoint.transform.position);
-            if (dist > 1f) 
+            if (dist > 2f) 
             {
-                character.transform.position = Vector3.Lerp(character.transform.position, hookedObject.transform.position + new Vector3(0f,-3f,0f), 0.2f);
+                character.transform.position = Vector3.Lerp(character.transform.position, hookedObject.transform.position + new Vector3(0f,-3.5f,0f), 0.15f);
             }
             else
             {
@@ -63,8 +65,10 @@ public class PullToAnchor : MonoBehaviour
         }
         if (state == GrappleState.HANGING)
         {
+            anim.SetBool("hanging", true);
+            characterRb.isKinematic = true;
             hangingposition = hookedObject;
-            character.transform.position = hangingposition.transform.position + new Vector3(0f, -3f, 0f);
+            character.transform.position = hangingposition.transform.position + new Vector3(0f, -3.5f, 0f);
             if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Dash"))
             {
                 state = GrappleState.LETGO;
@@ -72,6 +76,8 @@ public class PullToAnchor : MonoBehaviour
         }
         if (state == GrappleState.LETGO)
         {
+            anim.SetBool("hanging", false);
+            characterRb.isKinematic = false;
             hookedObject = null;
             hangingposition = null;
             state = GrappleState.NONE;
