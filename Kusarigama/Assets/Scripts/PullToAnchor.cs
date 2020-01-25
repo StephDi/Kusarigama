@@ -42,7 +42,7 @@ public class PullToAnchor : MonoBehaviour
 
             if (hangingposition != null)
             {
-                character.transform.position = hangingposition.transform.position + new Vector3(0f, -3.5f, 0f);
+                character.transform.position = hangingposition.transform.position + new Vector3(0f, -4f, 0f);
             }
 
             if (throwValue < 0.3f)
@@ -56,7 +56,7 @@ public class PullToAnchor : MonoBehaviour
             float dist = Vector3.Distance(hookedObject.transform.position, hangingPoint.transform.position);
             if (dist > 2f) 
             {
-                character.transform.position = Vector3.Lerp(character.transform.position, hookedObject.transform.position + new Vector3(0f,-3.5f,0f), 0.15f);
+                character.transform.position = Vector3.Lerp(character.transform.position, hookedObject.transform.position + new Vector3(0f,-4f,0f), 0.15f);
             }
             else
             {
@@ -68,7 +68,7 @@ public class PullToAnchor : MonoBehaviour
             anim.SetBool("hanging", true);
             characterRb.isKinematic = true;
             hangingposition = hookedObject;
-            character.transform.position = hangingposition.transform.position + new Vector3(0f, -3.5f, 0f);
+            character.transform.position = hangingposition.transform.position + new Vector3(0f, -4f, 0f);
             if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Dash"))
             {
                 state = GrappleState.LETGO;
