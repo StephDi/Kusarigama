@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 339d3fa2ed550ea4d9fe70ced84b4d54
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19300
   internalIDToNameTable:
   - first:
       1: 100000
@@ -282,9 +282,12 @@ ModelImporter:
   - first:
       74: 5384404994155627246
     second: Leg_IK_VR|Tod_State
+  - first:
+      74: -623603649343465320
+    second: Scene
   externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -348,7 +351,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -366,8 +368,10 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
