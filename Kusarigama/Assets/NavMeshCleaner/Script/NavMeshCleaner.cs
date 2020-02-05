@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 #if UNITY_5_3_OR_NEWER
 using UnityEngine.AI;
@@ -12,6 +11,8 @@ public class NavMeshCleaner : MonoBehaviour
 {
     public List<Vector3> m_WalkablePoint = new List<Vector3>();
     public float m_Height = 1.0f;
+    public float m_Offset = 0.0f;
+    public int m_MidLayerCount = 3;
 
 #if UNITY_EDITOR
     private void Awake()
@@ -58,12 +59,13 @@ public class NavMeshCleaner : MonoBehaviour
 
         for (int i = 0; i < m.Length || i == 0; i++)
         {
+            GameObject o;
             if (i >= m_Child.Count)
             {
-                GameObject o = new GameObject();
-                o.hideFlags = HideFlags.DontSave|HideFlags.HideInHierarchy;
+                o = new GameObject();
+
                 //o.hideFlags = HideFlags.DontSave;
-                o.name = gameObject.name + "ExtraMesh";
+                o.name = gameObject.name + "_Mesh(DontSave)";
                 o.AddComponent<MeshFilter>();
 
                 MeshRenderer meshrenderer = o.AddComponent<MeshRenderer>();
@@ -78,6 +80,12 @@ public class NavMeshCleaner : MonoBehaviour
                 m_Child.Add(o);
                 Undo.RegisterCreatedObjectUndo(o, "");
             }
+            else
+            {
+                o = m_Child[i].gameObject;
+            }
+
+            o.hideFlags = i == 0 ? (HideFlags.DontSave | HideFlags.HideInHierarchy) : m_Child[0].gameObject.hideFlags;
 
             MeshFilter meshfilter = m_Child[i].GetComponent<MeshFilter>();
             Undo.RecordObject(meshfilter, "MeshUpdate");
@@ -294,7 +302,7 @@ public class NavMeshCleaner : MonoBehaviour
                         if (newtable[idx] == -1)
                         {
                             newtable[idx] = isolatevtx.Count;
-                            isolatevtx.Add(transform.InverseTransformPoint(vertices[idx]));
+                            isolatevtx.Add(transform.InverseTransformPoint(vertices[idx] + Vector3.up * m_Offset));
                         }
                     }
                     iolateidx.Add(newtable[triangles[i + 0]]);
@@ -308,24 +316,30 @@ public class NavMeshCleaner : MonoBehaviour
 
             int maxvertex = 32768;
 
-            if (vtx.Count > maxvertex || vtx.Count + isolatevtx.Count*2 >= 65536)
+            if (vtx.Count > maxvertex || vtx.Count + isolatevtx.Count*(2+m_MidLayerCount) >= 65536)
             {
                 result.Add(CreateMesh(vtx.ToArray(), indices.ToArray()));
                 vtx.Clear();
                 indices.Clear();
             }
 
-            Vector3 h = transform.InverseTransformVector(Vector2.up * m_Height);
+            Vector3 h = transform.InverseTransformVector(Vector3.up * m_Height);
             int vtxoffset = vtx.Count;
+            int layer = 2 + m_MidLayerCount;
             for (int i = 0; i < isolatevtx.Count; i++)
             {
-                vtx.Add(isolatevtx[i]);
-                vtx.Add(isolatevtx[i] + h);
+                for(int j=0; j<layer; j++)
+                    vtx.Add(isolatevtx[i] + h * ((float)j / (layer-1)));
             }
             for (int i = 0; i < iolateidx.Count; i += 3)
             {
-                indices.AddRange(new int[] { vtxoffset+iolateidx[i]*2, vtxoffset + iolateidx[i+2]*2, vtxoffset + iolateidx[i+1]*2 });
-                indices.AddRange(new int[] { vtxoffset + iolateidx[i]*2+1, vtxoffset + iolateidx[i+1]*2+1, vtxoffset + iolateidx[i+2]*2+1 });
+                for (int j = 0; j < layer; j++)
+                {
+                    if (j == 0)
+                        indices.AddRange(new int[] { vtxoffset + iolateidx[i] * layer + j, vtxoffset + iolateidx[i + 2] * layer + j, vtxoffset + iolateidx[i + 1] * layer + j });
+                    else
+                        indices.AddRange(new int[] { vtxoffset + iolateidx[i] * layer + j, vtxoffset + iolateidx[i + 1] * layer + j, vtxoffset + iolateidx[i + 2] * layer + j });
+                }
             }
 
             if (m_Height > 0)
@@ -397,6 +411,9 @@ public class NavMeshCleaner : MonoBehaviour
 
             for (int i = 0; i < indices.Length; i += 3)
             {
+                if (indices[i] == indices[i + 1] || indices[i] == indices[i + 2] || indices[i + 1] == indices[i + 2])
+                    continue;
+
                 if (PointInTriangle(vtx[indices[i]], vtx[indices[i + 2]], vtx[indices[i + 1]], p))
                     return true;
             }
@@ -408,13 +425,14 @@ public class NavMeshCleaner : MonoBehaviour
     {
         Vector3 up = Vector3.Cross(v3 - v1, v2 - v1);
 
-        if (Vector3.Dot(Vector3.Cross(p - v1, v2 - v1), up) >= 0 &&
-            Vector3.Dot(Vector3.Cross(p - v2, v3 - v2), up) >= 0 &&
-            Vector3.Dot(Vector3.Cross(p - v3, v1 - v3), up) >= 0)
+        if (Vector3.Dot(Vector3.Cross(p - v1, v2 - v1), up) > 0 &&
+            Vector3.Dot(Vector3.Cross(p - v2, v3 - v2), up) > 0 &&
+            Vector3.Dot(Vector3.Cross(p - v3, v1 - v3), up) > 0)
             return true;
 
         return false;
     }
+
     [UnityEditor.CustomEditor(typeof(NavMeshCleaner))]
     public class NavMeshCleanerEditor : Editor
     {
@@ -444,6 +462,24 @@ public class NavMeshCleaner : MonoBehaviour
             base.OnInspectorGUI();
 
             NavMeshCleaner t = (NavMeshCleaner)target;
+
+            if (t.m_Child.Count > 0)
+            {
+                EditorGUI.BeginChangeCheck();
+                bool hideInHierarchy = EditorGUILayout.Toggle("Hide Temp Mesh Object In Hierarchy", (t.m_Child[0].gameObject.hideFlags & HideFlags.HideInHierarchy) != 0 ? true : false);
+                if (EditorGUI.EndChangeCheck())
+                {
+                    for (int i = 0; i < t.m_Child.Count; i++)
+                        t.m_Child[i].gameObject.hideFlags = hideInHierarchy ? (t.m_Child[i].gameObject.hideFlags | HideFlags.HideInHierarchy) : (t.m_Child[i].gameObject.hideFlags & (~HideFlags.HideInHierarchy));
+                    try
+                    {
+                        EditorApplication.RepaintHierarchyWindow();
+                        EditorApplication.DirtyHierarchyWindowSorting();
+                    }
+                    catch { }
+                }
+            }
+
             if (GUILayout.Button(t.HasMesh() ? "Recalculate" : "Calculate", GUILayout.Height(30.0f)))
             {
                 t.Build();
@@ -453,7 +489,7 @@ public class NavMeshCleaner : MonoBehaviour
 
             if (t.HasMesh() && GUILayout.Button(t.MeshVisible() ? "Hide Mesh" : "Show Mesh", GUILayout.Height(30.0f)))
             {
-                StaticEditorFlags flags = GameObjectUtility.GetStaticEditorFlags(t.gameObject);
+                //StaticEditorFlags flags = GameObjectUtility.GetStaticEditorFlags(t.gameObject);
                 bool enabled = !t.MeshVisible();
                 t.SetMeshVisible(enabled);
                 SceneView.RepaintAll();
