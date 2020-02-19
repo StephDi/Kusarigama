@@ -19,14 +19,15 @@ public class CharMovement : MonoBehaviour {
     float leftRigh_RightJoyStick;
     public Vector3 movement;
     public Vector3 turnVector;
-    bool dashPossible;
+    public bool dashPossible;
     //falling
     public float fallMultiplier = 2.5f;
     //other
     public Transform cam;
     public Cinemachine.CinemachineVirtualCamera LockOnCam;
     public Rigidbody character;
-    public bool isGrounded = false;
+    private float groundDistance = 0.1f;
+    public LayerMask layerMask;
     public AimWeapon aimWeapon;
     public RangedCombatGhost rangedCombatGhost;
     public RangedCombat rangedCombat;
@@ -47,6 +48,20 @@ public class CharMovement : MonoBehaviour {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         leftRigh_RightJoyStick = Input.GetAxis("Mouse X");
+
+        //Jump
+        if (Input.GetButtonDown("Jump") && canJump())
+        {
+            anim.SetBool("jump", true);
+            anim.SetBool("grounded",false);
+        }
+        else if (!canJump())
+        {
+            anim.SetBool("jump",false);
+            anim.SetBool("grounded", true);
+        }
+
+        StopSliding();
     }
 
     void FixedUpdate ()
@@ -129,27 +144,17 @@ public class CharMovement : MonoBehaviour {
             anim.SetBool("moving", false);
         }
 
-        //jump
-        if (Input.GetButtonDown("Jump") && isGrounded == true)
-        {
-            isGrounded = false;
-            anim.SetBool("grounded", false);
-            anim.SetBool("jump", true);
-        }
-
         //dash
         if (Input.GetButtonDown("Dash") && movement.sqrMagnitude != 0 && dashPossible == true)
         {
             StartCoroutine(DashCoolDown());
             dashPossible = false;
             anim.SetTrigger("dash");
-        }       
-        if(dashPossible == false)
+        }
+        if (dashPossible == false)
         {
             character.MovePosition(character.position + (movement.z * camF + movement.x * camR) * dashForce * Time.fixedDeltaTime);
         }
-        
-        StopSliding();        
     }
 
 
@@ -182,20 +187,20 @@ public class CharMovement : MonoBehaviour {
         character.velocity = new Vector3(0, jumpForce, 0);
     }
 
-    void OnTriggerStay(Collider other)
+    private bool canJump()
     {
-        if (other.tag == "Ground")
-        {
-            isGrounded = true;
-            anim.SetBool("grounded",true);           
-        }
-    }  
+        RaycastHit jumpHit;
+        Physics.Raycast(transform.position + Vector3.forward * .5f, Vector3.down, out jumpHit, groundDistance, layerMask);
+        Physics.Raycast(transform.position + Vector3.back * .4f, Vector3.down, out jumpHit, groundDistance, layerMask);
+        Physics.Raycast(transform.position, Vector3.down, out jumpHit, groundDistance, layerMask);
+        return jumpHit.collider != null;
+    }
 
-    void OnTriggerExit(Collider other)
+    private void OnDrawGizmos()
     {
-        isGrounded = false;
-        anim.SetBool("grounded", false);
-        anim.SetBool("jump",false);
+        Gizmos.DrawRay(transform.position + Vector3.forward * .5f, Vector3.down * groundDistance);
+        Gizmos.DrawRay(transform.position + Vector3.back * .4f, Vector3.down * groundDistance);
+        Gizmos.DrawRay(transform.position, Vector3.down * groundDistance);
     }
 
     IEnumerator DashCoolDown()
