@@ -198,7 +198,7 @@ public class EnemyLockOn : MonoBehaviour
                     {
 
                         if (changeTarget < 0)
-                        {
+                        {                           
                             //change to left Target
                             if (enemyPos.x < closestEnemyPos.x)
                             {
@@ -218,7 +218,7 @@ public class EnemyLockOn : MonoBehaviour
                             }
                         }
                         else if (changeTarget > 0)
-                        {
+                        {                         
                             //change to right Target
                             if (enemyPos.x > closestEnemyPos.x)
                             {

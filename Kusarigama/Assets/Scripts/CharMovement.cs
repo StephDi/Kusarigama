@@ -32,6 +32,7 @@ public class CharMovement : MonoBehaviour {
     public RangedCombatGhost rangedCombatGhost;
     public RangedCombat rangedCombat;
     public float dashCoolDown;
+    private Vector3 raycastPoint;
 
     void Start ()
     {
@@ -50,25 +51,36 @@ public class CharMovement : MonoBehaviour {
         leftRigh_RightJoyStick = Input.GetAxis("Mouse X");
 
         //Jump
-        if (Input.GetButtonDown("Jump") && canJump())
-        {
-            anim.SetBool("jump", true);
-            anim.SetBool("grounded",false);
-        }
-        else if (!canJump())
+        if (canJump())
         {
             anim.SetBool("jump",false);
             anim.SetBool("grounded", true);
+            if (Input.GetButtonDown("Jump")) 
+            {
+                anim.SetBool("jump", true);
+                anim.SetBool("grounded",false);
+            }
+        }     
+        else if (!canJump())
+        {
+            anim.SetBool("jump",false);
+            anim.SetBool("grounded",false);
         }
 
         StopSliding();
     }
 
     void FixedUpdate ()
-    {     
+    {
         if (character.velocity.y < 0)
         {
             character.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
+
+        if (canJump())
+        {
+            Vector3 antiGravity = Physics.gravity * character.mass;
+            character.AddForce(-antiGravity);
         }
 
         //Cameramovement
@@ -171,7 +183,7 @@ public class CharMovement : MonoBehaviour {
     //StopSlidingOnSlpoes
     void StopSliding()
     {
-        if (movement == new Vector3(0,0,0) && dashPossible == true)
+        if (movement == new Vector3(0, 0, 0) && dashPossible == true)
         {
             character.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
         }
@@ -189,17 +201,25 @@ public class CharMovement : MonoBehaviour {
 
     private bool canJump()
     {
-        RaycastHit jumpHit;
-        Physics.Raycast(transform.position + Vector3.forward * .5f, Vector3.down, out jumpHit, groundDistance, layerMask);
-        Physics.Raycast(transform.position + Vector3.back * .4f, Vector3.down, out jumpHit, groundDistance, layerMask);
-        Physics.Raycast(transform.position, Vector3.down, out jumpHit, groundDistance, layerMask);
-        return jumpHit.collider != null;
+        RaycastHit jumpHit1;
+        RaycastHit jumpHit2;
+        RaycastHit jumpHit3;
+        RaycastHit jumpHit4;
+        RaycastHit jumpHit5;
+        Physics.Raycast (transform.position + Vector3.forward * .5f, Vector3.down, out jumpHit1, groundDistance, layerMask);
+        Physics.Raycast(transform.position + Vector3.back * .5f, Vector3.down, out jumpHit2, groundDistance, layerMask);
+        Physics.Raycast(transform.position + Vector3.left * .5f, Vector3.down, out jumpHit3, groundDistance, layerMask);
+        Physics.Raycast(transform.position + Vector3.right * .5f, Vector3.down, out jumpHit4, groundDistance, layerMask);
+        Physics.Raycast(transform.position, Vector3.down, out jumpHit5, groundDistance, layerMask);
+        return jumpHit1.collider != null || jumpHit2.collider != null|| jumpHit3.collider != null|| jumpHit4.collider != null|| jumpHit5.collider != null;
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.DrawRay(transform.position + Vector3.forward * .5f, Vector3.down * groundDistance);
-        Gizmos.DrawRay(transform.position + Vector3.back * .4f, Vector3.down * groundDistance);
+        Gizmos.DrawRay(transform.position + Vector3.back * .5f, Vector3.down * groundDistance);
+        Gizmos.DrawRay(transform.position + Vector3.left * .5f, Vector3.down * groundDistance);
+        Gizmos.DrawRay(transform.position + Vector3.right * .5f, Vector3.down * groundDistance);
         Gizmos.DrawRay(transform.position, Vector3.down * groundDistance);
     }
 
