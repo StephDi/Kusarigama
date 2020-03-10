@@ -10,6 +10,9 @@ public class EnemyFox : MonoBehaviour
     public NavMeshAgent nmafuchs;    
     public Animator anim;
 
+    private float distanceToPlayer;
+    public float aggroRange;
+
     public float stunDuration = 0.2f;
     public float Health;
 
@@ -23,6 +26,30 @@ public class EnemyFox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        NmaRemoveTarget();
+        GetDistanceToPlayer();
+        AggroPlayer();
+    }
+
+    void AggroPlayer()
+    {
+        if (distanceToPlayer <= aggroRange)
+        {
+            NmaSetTarget();
+        }
+        else if (distanceToPlayer >= aggroRange)
+        {
+            NmaRemoveTarget();
+        }
+    }
+
+    void GetDistanceToPlayer()
+    {
+        distanceToPlayer = Vector3.Distance(this.transform.position,character.transform.position);
+    }
+
+    void NmaSetTarget()
+    {
         if (NavMeshAgentManager.instance.chasing == true)
         {
             nmafuchs.SetDestination(character.position);
@@ -31,7 +58,11 @@ public class EnemyFox : MonoBehaviour
             anim.SetBool("moving", true);
 
         }
-        else if (NavMeshAgentManager.instance.chasing == false)
+    }
+
+    void NmaRemoveTarget()
+    {
+        if (NavMeshAgentManager.instance.chasing == false)
         {
             nmafuchs.ResetPath();
             nmafuchs.updatePosition = false;

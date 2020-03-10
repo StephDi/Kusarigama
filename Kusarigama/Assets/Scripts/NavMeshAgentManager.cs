@@ -26,14 +26,14 @@ public class NavMeshAgentManager : MonoBehaviour {
 
     void Start()
     {
-        chasing = false;
+        chasing = true;
         StartCoroutine(ChaseCooldown());
     }
 
     IEnumerator ChaseCooldown()
     {
         yield return new WaitForSeconds(chaseDuration);
-        chasing = !chasing;
+       // chasing = !chasing;
         StartCoroutine(ChaseCooldown());
     }
 }

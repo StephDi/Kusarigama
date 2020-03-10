@@ -18,21 +18,28 @@ public class CharMovement : MonoBehaviour {
     float vertical;
     float leftRigh_RightJoyStick;
     public Vector3 movement;
+    public Vector3 direction;
     public Vector3 turnVector;
+    RaycastHit sphereCastHit;
     public bool dashPossible;
+    //Cam
+    Vector3 camF;
+    Vector3 camR;
+    public Transform cam;
     //falling
     public float fallMultiplier = 2.5f;
     //other
-    public Transform cam;
     public Cinemachine.CinemachineVirtualCamera LockOnCam;
     public Rigidbody character;
-    private float groundDistance = 0.1f;
+    private float groundDistance = .6f;
     public LayerMask layerMask;
     public AimWeapon aimWeapon;
     public RangedCombatGhost rangedCombatGhost;
     public RangedCombat rangedCombat;
     public float dashCoolDown;
-    private Vector3 raycastPoint;
+    private Vector3 groundNormal;
+    public float maxGroundAngle;
+    public float groundAngle;
 
     void Start ()
     {
@@ -50,6 +57,31 @@ public class CharMovement : MonoBehaviour {
         vertical = Input.GetAxis("Vertical");
         leftRigh_RightJoyStick = Input.GetAxis("Mouse X");
 
+        movement = new Vector3(horizontal, 0, vertical);
+
+        StopSliding();
+        CalculateGroundAngle();
+
+        //Cameramovement
+        camF = cam.forward;
+        camR = cam.right;
+
+        camF.y = 0;
+        camR.y = 0;
+        camF = camF.normalized;
+        camR = camR.normalized;        
+
+        if (canJump() && groundAngle <= maxGroundAngle)
+        {
+            character.velocity = Vector3.zero;
+            groundNormal = sphereCastHit.normal;
+            direction = Vector3.Cross(groundNormal, -transform.right);
+        }
+        else if (!canJump() || groundAngle >= maxGroundAngle)
+        {
+            direction = (camF * movement.z + camR * movement.x);           
+        }
+
         //Jump
         if (canJump())
         {
@@ -65,32 +97,15 @@ public class CharMovement : MonoBehaviour {
         {
             anim.SetBool("jump",false);
             anim.SetBool("grounded",false);
-        }
-
-        StopSliding();
+        } 
     }
 
     void FixedUpdate ()
-    {
+    {       
         if (character.velocity.y < 0)
         {
             character.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
-
-        if (canJump())
-        {
-            Vector3 antiGravity = Physics.gravity * character.mass;
-            character.AddForce(-antiGravity);
-        }
-
-        //Cameramovement
-        Vector3 camF = cam.forward;
-        Vector3 camR = cam.right;
-
-        camF.y = 0;
-        camR.y = 0;
-        camF = camF.normalized;
-        camR = camR.normalized;
 
         //Move
         if (rangedCombat.rangedAttackTrigger == 0)
@@ -105,8 +120,10 @@ public class CharMovement : MonoBehaviour {
                         {
                             if (!AnimationIsPlaying(anim, "Armature_Rundumschlag_mit_rechts_ranged"))
                             {
-                                movement = new Vector3(horizontal, 0, vertical);
-                                character.MovePosition(transform.position + (camF * movement.z + camR * movement.x) * moveSpeed * Time.fixedDeltaTime);
+                                if (groundAngle <= maxGroundAngle)
+                                {
+                                    character.MovePosition(transform.position + (direction + (camF * movement.z + camR * movement.x)) * moveSpeed * Time.fixedDeltaTime);
+                                }
                             }                          
                         }
                     }
@@ -194,33 +211,33 @@ public class CharMovement : MonoBehaviour {
         }
     }
 
+    void CalculateGroundAngle()
+    {
+        if (!canJump())
+        {
+            groundAngle = 90;
+            return;
+        }
+
+        groundAngle = Vector3.Angle(sphereCastHit.normal, transform.forward);
+    }
+
     void Jump()
     {
         character.velocity = new Vector3(0, jumpForce, 0);
     }
 
     private bool canJump()
-    {
-        RaycastHit jumpHit1;
-        RaycastHit jumpHit2;
-        RaycastHit jumpHit3;
-        RaycastHit jumpHit4;
-        RaycastHit jumpHit5;
-        Physics.Raycast (transform.position + Vector3.forward * .5f, Vector3.down, out jumpHit1, groundDistance, layerMask);
-        Physics.Raycast(transform.position + Vector3.back * .5f, Vector3.down, out jumpHit2, groundDistance, layerMask);
-        Physics.Raycast(transform.position + Vector3.left * .5f, Vector3.down, out jumpHit3, groundDistance, layerMask);
-        Physics.Raycast(transform.position + Vector3.right * .5f, Vector3.down, out jumpHit4, groundDistance, layerMask);
-        Physics.Raycast(transform.position, Vector3.down, out jumpHit5, groundDistance, layerMask);
-        return jumpHit1.collider != null || jumpHit2.collider != null|| jumpHit3.collider != null|| jumpHit4.collider != null|| jumpHit5.collider != null;
+    {           
+        Physics.SphereCast(transform.position + Vector3.up,groundDistance, Vector3.down * .5f, out sphereCastHit,groundDistance, layerMask);       
+        return sphereCastHit.collider != null;
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawRay(transform.position + Vector3.forward * .5f, Vector3.down * groundDistance);
-        Gizmos.DrawRay(transform.position + Vector3.back * .5f, Vector3.down * groundDistance);
-        Gizmos.DrawRay(transform.position + Vector3.left * .5f, Vector3.down * groundDistance);
-        Gizmos.DrawRay(transform.position + Vector3.right * .5f, Vector3.down * groundDistance);
-        Gizmos.DrawRay(transform.position, Vector3.down * groundDistance);
+        Gizmos.DrawWireSphere(transform.position + (Vector3.up*.5f), groundDistance);
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position + Vector3.up, direction * 10f);
     }
 
     IEnumerator DashCoolDown()

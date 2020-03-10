@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class UIManager : MonoBehaviour
 {
@@ -27,7 +27,8 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         if (Input.GetButtonDown("Exit"))
-        {
+        {        
+            NavMeshAgentManager.instance.chasing = !NavMeshAgentManager.instance.chasing;
             panel.SetActive(!panel.activeInHierarchy);
             character.GetComponent<CharMovement>().enabled = !character.GetComponent<CharMovement>().enabled;
             menuCam.enabled = !menuCam.enabled;
