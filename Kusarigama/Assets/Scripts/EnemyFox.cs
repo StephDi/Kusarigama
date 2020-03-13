@@ -13,20 +13,23 @@ public class EnemyFox : MonoBehaviour
     private float distanceToPlayer;
     public float aggroRange;
 
-    public float stunDuration = 0.2f;
+    public float stunDuration = .5f;
     public float Health;
 
     public bool isDead = false;
+    private PullEnemy pullEnemy;
+
 
     void Start()
-    {       
+    {
+        pullEnemy = FindObjectOfType<PullEnemy>();
         Health = 30;
+        NmaRemoveTarget();
     }
 
     // Update is called once per frame
     void Update()
     {
-        NmaRemoveTarget();
         GetDistanceToPlayer();
         AggroPlayer();
     }
@@ -48,7 +51,7 @@ public class EnemyFox : MonoBehaviour
         distanceToPlayer = Vector3.Distance(this.transform.position,character.transform.position);
     }
 
-    void NmaSetTarget()
+    public void NmaSetTarget()
     {
         if (NavMeshAgentManager.instance.chasing == true)
         {
@@ -60,7 +63,7 @@ public class EnemyFox : MonoBehaviour
         }
     }
 
-    void NmaRemoveTarget()
+    public void NmaRemoveTarget()
     {
         if (NavMeshAgentManager.instance.chasing == false)
         {
@@ -101,7 +104,7 @@ public class EnemyFox : MonoBehaviour
     IEnumerator DamageTakenSlow()
     {
         yield return new WaitForSeconds(stunDuration);
-        if (!isDead)
+        if (!isDead && this.gameObject != pullEnemy.hookedObject)
         {
             nmafuchs.speed = 4f;
         }

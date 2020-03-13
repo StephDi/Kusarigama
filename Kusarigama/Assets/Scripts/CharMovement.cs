@@ -57,7 +57,7 @@ public class CharMovement : MonoBehaviour {
         vertical = Input.GetAxis("Vertical");
         leftRigh_RightJoyStick = Input.GetAxis("Mouse X");
 
-        movement = new Vector3(horizontal, 0, vertical);
+        movement = new Vector3(-vertical, 0, horizontal);
 
         StopSliding();
         CalculateGroundAngle();
@@ -73,13 +73,16 @@ public class CharMovement : MonoBehaviour {
 
         if (canJump() && groundAngle <= maxGroundAngle)
         {
-            character.velocity = Vector3.zero;
             groundNormal = sphereCastHit.normal;
-            direction = Vector3.Cross(groundNormal, -transform.right);
+            direction = Vector3.Cross(groundNormal, (camF * movement.z + camR * movement.x));
+            if (!AnimationIsPlaying(anim, "Armature_Jump"))
+            {
+                character.velocity = Vector3.zero;
+            }
         }
         else if (!canJump() || groundAngle >= maxGroundAngle)
         {
-            direction = (camF * movement.z + camR * movement.x);           
+            direction = (camF * -movement.x + camR * movement.z);           
         }
 
         //Jump
@@ -102,7 +105,7 @@ public class CharMovement : MonoBehaviour {
 
     void FixedUpdate ()
     {       
-        if (character.velocity.y < 0)
+        if (character.velocity.y < 0 && !canJump())
         {
             character.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
@@ -122,7 +125,7 @@ public class CharMovement : MonoBehaviour {
                             {
                                 if (groundAngle <= maxGroundAngle)
                                 {
-                                    character.MovePosition(transform.position + (direction + (camF * movement.z + camR * movement.x)) * moveSpeed * Time.fixedDeltaTime);
+                                    character.MovePosition(transform.position + direction * moveSpeed * Time.fixedDeltaTime);
                                 }
                             }                          
                         }
@@ -130,15 +133,15 @@ public class CharMovement : MonoBehaviour {
                 }
             }
         }
-       
-        //Turn Character
+
+        // Turn Character
         if (aimWeapon.aiming == false)
         {
             if (LockOnCam.Priority == 0)
             {
                 if (movement != Vector3.zero)
                 {
-                    character.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement.x * camR + movement.z * camF), 0.35F));
+                    character.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(direction.x,0,direction.z)), 0.35F));
                 }
             }
         }
@@ -182,7 +185,7 @@ public class CharMovement : MonoBehaviour {
         }
         if (dashPossible == false)
         {
-            character.MovePosition(character.position + (movement.z * camF + movement.x * camR) * dashForce * Time.fixedDeltaTime);
+            character.MovePosition(character.position + direction.normalized * dashForce * Time.fixedDeltaTime);
         }
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemyLockOn : MonoBehaviour
 {
     public Transform player;
+    public float playerWeight;
     //Cameras
     public GameObject playerCamera;
     public GameObject lockOnCamera;
@@ -66,7 +67,7 @@ public class EnemyLockOn : MonoBehaviour
 
         if (closestEnemy == null)
         {
-            targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = 1.0f };
+            targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = playerWeight };
             targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = null, radius = 4.0f, weight = 1.0f };
         }
 
@@ -154,7 +155,7 @@ public class EnemyLockOn : MonoBehaviour
                     {
                         dot = curEnemyPos;
                         closestEnemy = e;
-                        targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = 1.0f };
+                        targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = playerWeight };
                         targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = closestEnemy.transform, radius = 4.0f, weight = 1.0f };
                         ActivateLockOncam();
                     }
@@ -210,7 +211,7 @@ public class EnemyLockOn : MonoBehaviour
                                 {
                                     dot = curEnemyPos;
                                     closestEnemy = e;
-                                    targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = 1.0f };
+                                    targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = playerWeight };
                                     targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = closestEnemy.transform, radius = 4.0f, weight = 1.0f };
                                     return;
                                 }
@@ -230,7 +231,7 @@ public class EnemyLockOn : MonoBehaviour
                                 {
                                     dot = curEnemyPos;
                                     closestEnemy = e;
-                                    targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = 1.0f };
+                                    targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = playerWeight };
                                     targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = closestEnemy.transform, radius = 4.0f, weight = 1.0f };
                                     return;
                                 }
@@ -259,7 +260,7 @@ public class EnemyLockOn : MonoBehaviour
     {
         if (closestEnemy != null)
         {
-            player.LookAt ( new Vector3(closestEnemy.transform.position.x, player.position.y, closestEnemy.transform.position.z ));
+            player.LookAt(new Vector3(closestEnemy.transform.position.x, player.position.y, closestEnemy.transform.position.z));
         }
     }
 

@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class PullEnemy : MonoBehaviour
 {
     public Transform character;
     public Rigidbody rbCharacter;
     public BoxCollider weaponCollider;
-    private GameObject hookedObject;
+    public GameObject hookedObject;
+    private float pullBackTime = 3f;
 
     public bool hookEnemy = false;
     public bool hanging = false;
@@ -37,7 +39,9 @@ public class PullEnemy : MonoBehaviour
             //PullEnemy   
             weaponCollider.enabled = false;
             hookedObject = other.gameObject;
-            hookEnemy = true;      
+            hookedObject.GetComponent<EnemyFox>().nmafuchs.speed = 0f;
+            hookEnemy = true;
+            StartCoroutine(PullbackTimer());
         }
         else
         {
@@ -56,5 +60,13 @@ public class PullEnemy : MonoBehaviour
                 hookEnemy = false;
             }
         }
+    }
+
+    IEnumerator PullbackTimer()
+    {
+        yield return new WaitForSeconds(pullBackTime);
+        PullEnemyToPlayer();
+        hookedObject.GetComponent<EnemyFox>().nmafuchs.speed = 4f;
+        anim.SetBool("pullBack",true);
     }
 }
