@@ -75,7 +75,7 @@ public class CharMovement : MonoBehaviour {
         {
             groundNormal = sphereCastHit.normal;
             direction = Vector3.Cross(groundNormal, (camF * movement.z + camR * movement.x));
-            if (!AnimationIsPlaying(anim, "Armature_Jump"))
+            if (!AnimationIsPlaying(anim, "Armature_Jump") && dashPossible == false)
             {
                 character.velocity = Vector3.zero;
             }
@@ -184,8 +184,8 @@ public class CharMovement : MonoBehaviour {
             anim.SetTrigger("dash");
         }
         if (dashPossible == false)
-        {
-            character.MovePosition(character.position + direction.normalized * dashForce * Time.fixedDeltaTime);
+        {           
+            character.velocity = direction * dashForce;
         }
     }
 
