@@ -80,12 +80,6 @@ public class EnemyLockOn : MonoBehaviour
         }
     }
 
-    bool TargetObstructed(GameObject target)
-    {
-        Physics.Raycast(mainCamera.transform.position, target.transform.position - mainCamera.transform.position, out hit, Mathf.Infinity, layerMask);       
-        return hit.collider == null;                  
-    }
-
     void TargetIndicator()
     {
         //TargetIndicator
@@ -93,6 +87,12 @@ public class EnemyLockOn : MonoBehaviour
         {
             targetIndicator.transform.position = mainCamera.WorldToScreenPoint(closestEnemy.transform.position);
         }
+    }
+
+    bool TargetObstructed(GameObject target)
+    {
+        Physics.Raycast(mainCamera.transform.position, target.transform.position - mainCamera.transform.position, out hit, Mathf.Infinity, layerMask);       
+        return hit.collider == null;                  
     }
 
     void FindClosestEnemy()
@@ -171,6 +171,9 @@ public class EnemyLockOn : MonoBehaviour
                         //change to left Target
                         if (enemyPos.x < closestEnemyPos.x)
                         {
+                            //ignore depth values
+                            enemyPos.z = 0f;
+                            closestEnemyPos.z = 0f;
                             //take the closest to the current trageted enemy
                             var enemyDiff = (enemyPos - closestEnemyPos);
                             var curEnemyPos = enemyDiff.magnitude;
@@ -178,7 +181,7 @@ public class EnemyLockOn : MonoBehaviour
                             if (curEnemyPos < dot)
                             {
                                 dot = curEnemyPos;
-                                closestEnemy = enemies[i];
+                                closestChangeEnemy = enemies[i];
                             }
                         }
                     }
@@ -187,6 +190,9 @@ public class EnemyLockOn : MonoBehaviour
                         //change to right Target
                         if (enemyPos.x > closestEnemyPos.x)
                         {
+                            //ignore depth values
+                            enemyPos.z = 0f;
+                            closestEnemyPos.z = 0f;
                             //take the closest to the current trageted enemy
                             var enemyDiff = (enemyPos - closestEnemyPos);
                             var curEnemyPos = enemyDiff.magnitude;
@@ -194,13 +200,14 @@ public class EnemyLockOn : MonoBehaviour
                             if (curEnemyPos < dot)
                             {
                                 dot = curEnemyPos;
-                                closestEnemy = enemies[i];
+                                closestChangeEnemy = enemies[i];
                             }
                         }
                     }
                 }
             }
         }
+        closestEnemy = closestChangeEnemy;
         targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = playerWeight };
         targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = closestEnemy.transform, radius = 4.0f, weight = 1.0f };
     }
