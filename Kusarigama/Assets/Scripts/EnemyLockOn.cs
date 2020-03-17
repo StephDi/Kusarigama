@@ -12,13 +12,16 @@ public class EnemyLockOn : MonoBehaviour
     public Camera mainCamera;
     public Cinemachine.CinemachineFreeLook playerCam;
     public Cinemachine.CinemachineVirtualCamera lockOnCam;
+    private Cinemachine.CinemachineCollider lockOnCamCollider;
     //Enemies
     private GameObject[] enemies;
     public GameObject closestEnemy;
     public GameObject closestChangeEnemy;
     //Raycast
-    RaycastHit hit;
-    public LayerMask layerMask;
+    RaycastHit enemyRayHit;
+    RaycastHit playerRayHit;
+    public LayerMask enemyRayLayerMask;
+    public LayerMask playerRayLayerMask;
     //Target
     public Cinemachine.CinemachineTargetGroup group;
     public Cinemachine.CinemachineTargetGroup.Target[] targets;
@@ -27,20 +30,22 @@ public class EnemyLockOn : MonoBehaviour
     public float changeTarget;
     public bool changedTarget;
     //Timer
-    public float waitForUnLock;
+    public float obstructionTime;
 
 
     private void Start()
     {
+        lockOnCamCollider = lockOnCam.GetComponent<Cinemachine.CinemachineCollider>();
+        lockOnCamCollider.enabled = false;
+        obstructionTime = 0;
         targets = group.m_Targets;
-        waitForUnLock = 0.3f;
+        closestEnemy = null;
         changedTarget = false;
     }
 
     void Update()
     {
         changeTarget = Input.GetAxis("Mouse X");
-
 
         //Press the Button to Lock on 
         if (Input.GetButtonDown("LockOn") && lockOnCam.Priority == 0)
@@ -52,12 +57,14 @@ public class EnemyLockOn : MonoBehaviour
         }
         else if (Input.GetButtonDown("LockOn") && lockOnCam.Priority == 1 || closestEnemy == null)
         {
+            obstructionTime = 0f;
             ActivatePlayerCam();
             targetIndicator.gameObject.SetActive(false);
-            closestEnemy = null;
+            targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = playerWeight };
+            targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = null, radius = 4.0f, weight = 1.0f };
         }
 
-        //changeTarget
+        //changeTarget reset
         if (changeTarget != 0 && lockOnCam.Priority == 1 && changedTarget == false)
         {
             changedTarget = true;
@@ -68,31 +75,43 @@ public class EnemyLockOn : MonoBehaviour
             changedTarget = false;
         }
 
-        if (closestEnemy == null)
-        {
-            targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = playerWeight };
-            targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = null, radius = 4.0f, weight = 1.0f };
-        }     
-
+        //Look at Target
         if (lockOnCam.Priority == 1)
         {
             LookAtEnemy();
         }
-    }
 
-    void TargetIndicator()
-    {
-        //TargetIndicator
         if (closestEnemy != null)
         {
-            targetIndicator.transform.position = mainCamera.WorldToScreenPoint(closestEnemy.transform.position);
-        }
-    }
+            //TargetObstructionTimer       
+            if (TargetObstructed(closestEnemy))
+            {
+                obstructionTime += Time.deltaTime;
+            }
+            else if (!TargetObstructed(closestEnemy) && obstructionTime != 0f)
+            {
+                obstructionTime = 0f;
+            }
 
-    bool TargetObstructed(GameObject target)
-    {
-        Physics.Raycast(mainCamera.transform.position, target.transform.position - mainCamera.transform.position, out hit, Mathf.Infinity, layerMask);       
-        return hit.collider == null;                  
+            //PlayerObstructed -> activate lockoncamCollider
+            if (PlayerObstructed())
+            {
+                lockOnCamCollider.enabled = false;
+            }
+            else if (!PlayerObstructed())
+            {
+                lockOnCamCollider.enabled = true;
+            }
+
+            //check if Distance to Targeted Enemy gets too big || if Tagret gets obstructed for too long
+            if (Vector3.Distance(closestEnemy.transform.position, player.position) >= 35f || TargetObstructed(closestEnemy) && obstructionTime >= 1.5f)
+            {
+                closestEnemy = null;
+                ActivatePlayerCam();
+            }
+
+            Debug.Log(playerRayHit.collider);
+        }
     }
 
     void FindClosestEnemy()
@@ -210,6 +229,44 @@ public class EnemyLockOn : MonoBehaviour
         closestEnemy = closestChangeEnemy;
         targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = playerWeight };
         targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = closestEnemy.transform, radius = 4.0f, weight = 1.0f };
+    }
+
+    void TargetIndicator() //Gets called in Update by invokeRepeating
+    {
+        //TargetIndicator
+        if (closestEnemy != null)
+        {
+            targetIndicator.transform.position = mainCamera.WorldToScreenPoint(closestEnemy.transform.position);
+        }
+    }
+
+    bool TargetObstructed(GameObject target)
+    {
+        Physics.Raycast(mainCamera.transform.position, target.transform.position - mainCamera.transform.position, out enemyRayHit,Mathf.Infinity , enemyRayLayerMask);
+        if (enemyRayHit.collider.CompareTag("Enemy"))
+        {
+            //cam See's Enemy
+            return false;                  
+        }
+        else
+        {
+            //Cam cant see Enemy
+            return true;
+        }
+    }
+
+    bool PlayerObstructed()
+    {
+        Physics.Raycast(mainCamera.transform.position, (player.transform.position + Vector3.up) - mainCamera.transform.position, out playerRayHit, Mathf.Infinity, playerRayLayerMask);
+        Debug.DrawRay(mainCamera.transform.position, (player.transform.position + Vector3.up) - mainCamera.transform.position);
+        if (playerRayHit.collider.CompareTag("Player"))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     void ActivateLockOncam()
