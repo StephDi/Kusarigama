@@ -109,8 +109,6 @@ public class EnemyLockOn : MonoBehaviour
                 closestEnemy = null;
                 ActivatePlayerCam();
             }
-
-            Debug.Log(playerRayHit.collider);
         }
     }
 
@@ -258,7 +256,6 @@ public class EnemyLockOn : MonoBehaviour
     bool PlayerObstructed()
     {
         Physics.Raycast(mainCamera.transform.position, (player.transform.position + Vector3.up) - mainCamera.transform.position, out playerRayHit, Mathf.Infinity, playerRayLayerMask);
-        Debug.DrawRay(mainCamera.transform.position, (player.transform.position + Vector3.up) - mainCamera.transform.position);
         if (playerRayHit.collider.CompareTag("Player"))
         {
             return false;

@@ -20,6 +20,7 @@ public class CharMovement : MonoBehaviour {
     public Vector3 movement;
     public Vector3 direction;
     public Vector3 turnVector;
+    [SerializeField] private bool dashInput;
     RaycastHit sphereCastHit;
     public bool dashPossible;
     //Cam
@@ -37,6 +38,7 @@ public class CharMovement : MonoBehaviour {
     public RangedCombatGhost rangedCombatGhost;
     public RangedCombat rangedCombat;
     public float dashCoolDown;
+    private float dashDuration;
     private Vector3 groundNormal;
     public float maxGroundAngle;
     public float groundAngle;
@@ -56,6 +58,11 @@ public class CharMovement : MonoBehaviour {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         leftRigh_RightJoyStick = Input.GetAxis("Mouse X");
+        if (Input.GetButtonDown("Dash"))
+        {
+            dashInput = true;
+
+        }
 
         movement = new Vector3(-vertical, 0, horizontal);
 
@@ -107,7 +114,7 @@ public class CharMovement : MonoBehaviour {
     {       
         if (character.velocity.y < 0 && !canJump())
         {
-            character.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            character.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
         }
 
         //Move
@@ -177,15 +184,19 @@ public class CharMovement : MonoBehaviour {
         }
 
         //dash
-        if (Input.GetButtonDown("Dash") && movement.sqrMagnitude != 0 && dashPossible == true)
+        if (dashInput && movement.sqrMagnitude != 0 && dashPossible == true)
         {
-            StartCoroutine(DashCoolDown());
+            dashDuration = .3f;
+            dashInput = false;
             dashPossible = false;
             anim.SetTrigger("dash");
+            StartCoroutine(DashCoolDown());
         }
-        if (dashPossible == false)
-        {           
+        if (dashPossible == false && dashDuration > 0)
+        {
+            dashDuration -= Time.deltaTime;
             character.velocity = direction * dashForce;
+            dashInput = false;
         }
     }
 

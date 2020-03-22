@@ -12,6 +12,7 @@ public class EnemyFox : MonoBehaviour
 
     private float distanceToPlayer;
     public float aggroRange;
+    [SerializeField] private LayerMask playerLayerMask;
 
     public float stunDuration = .5f;
     public float Health;
@@ -36,11 +37,11 @@ public class EnemyFox : MonoBehaviour
 
     void AggroPlayer()
     {
-        if (distanceToPlayer <= aggroRange)
+        if (distanceToPlayer <= aggroRange && PlayerIsVisible())
         {
             NmaSetTarget();
         }
-        else if (distanceToPlayer >= aggroRange)
+        else if (distanceToPlayer >= aggroRange && PlayerIsVisible())
         {
             NmaRemoveTarget();
         }
@@ -49,6 +50,13 @@ public class EnemyFox : MonoBehaviour
     void GetDistanceToPlayer()
     {
         distanceToPlayer = Vector3.Distance(this.transform.position,character.transform.position);
+    }
+
+    bool PlayerIsVisible()
+    {
+        RaycastHit hit;
+        Physics.Raycast(this.transform.position, character.transform.position - this.transform.position, out hit, Mathf.Infinity, playerLayerMask);
+        return hit.collider.CompareTag("Player");
     }
 
     public void NmaSetTarget()
