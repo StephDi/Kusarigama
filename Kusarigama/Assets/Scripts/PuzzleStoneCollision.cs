@@ -25,6 +25,7 @@ public class PuzzleStoneCollision : MonoBehaviour
         if (Stone1 && Stone2 && Stone3 && Stone4)
         {
             anim.SetBool("openDoor",true);
+            FindObjectOfType<AudioManager>().Play("GateOpen");
         }    
     }
 

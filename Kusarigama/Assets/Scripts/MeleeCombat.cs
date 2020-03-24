@@ -23,6 +23,7 @@ public class MeleeCombat : MonoBehaviour {
         {
             //set mecanim State
             anim.SetTrigger("attack");
+            FindObjectOfType<AudioManager>().Play("MeleeAttack");
 
             if (charMovement.movement.sqrMagnitude != 0)
             {

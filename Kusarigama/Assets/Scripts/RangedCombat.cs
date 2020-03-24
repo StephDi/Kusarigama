@@ -24,6 +24,7 @@ public class RangedCombat : MonoBehaviour
         if (rangedAttackTrigger > 0 && !Input.GetButton("Fire2"))
         {
             anim.SetTrigger("rangedAttack");
+            FindObjectOfType<AudioManager>().Play("ThrowChain");
         }
 
         if (rotate == true)

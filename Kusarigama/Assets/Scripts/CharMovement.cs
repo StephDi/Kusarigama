@@ -239,6 +239,7 @@ public class CharMovement : MonoBehaviour {
     void Jump()
     {
         character.velocity = new Vector3(0, jumpForce, 0);
+        FindObjectOfType<AudioManager>().Play("Jump");
     }
 
     private bool canJump()

@@ -35,14 +35,18 @@ public class ThrowWeapon : MonoBehaviour
         {                                     
             if (throwValue > 0)
             {                
-                ThrowWeaponForward(); 
+                ThrowWeaponForward();
+                FindObjectOfType<AudioManager>().Play("ThrowChain");
+
             }         
         }
   
         if (throwValue == 0 && weaponIsFlying == true)
         {
             PullWeaponBack();
+            FindObjectOfType<AudioManager>().Play("PullChainBack");
             anim.SetBool("pullBack",true);
+            
         }
     }  
 
@@ -68,7 +72,8 @@ public class ThrowWeapon : MonoBehaviour
     void PullWeaponBack()
     {
         weapon.rotation = weaponPoint.rotation;
-        weapon.position = Vector3.Lerp(weapon.position,weaponPoint.position,0.1f);      
+        weapon.position = Vector3.Lerp(weapon.position,weaponPoint.position,0.1f);
+        
     }
 
     void ThrowWeaponForward()
