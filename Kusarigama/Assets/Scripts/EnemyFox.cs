@@ -40,6 +40,7 @@ public class EnemyFox : MonoBehaviour
         if (distanceToPlayer <= aggroRange && PlayerIsVisible())
         {
             NmaSetTarget();
+            FindObjectOfType<AudioManager>().Play("FoxAlarmed");
         }
         else if (distanceToPlayer >= aggroRange && PlayerIsVisible())
         {
@@ -88,6 +89,7 @@ public class EnemyFox : MonoBehaviour
         {
             Health = Health - Gamemanager.instance.Damage;
             anim.SetTrigger("damageTaken");
+            FindObjectOfType<AudioManager>().Play("FoxHurt");
             nmafuchs.speed = 0;
             StartCoroutine(DamageTakenSlow());
         }
@@ -96,6 +98,7 @@ public class EnemyFox : MonoBehaviour
             EnemyDie();
             isDead = true;
             nmafuchs.speed = 0f;
+
         }
     }
 
@@ -104,6 +107,7 @@ public class EnemyFox : MonoBehaviour
         if (!anim.GetBool("isDead"))
         {
             anim.SetBool("isDead", true);
+            FindObjectOfType<AudioManager>().Play("FoxDying");
         }
         nmafuchs.speed = 0f;
         Destroy(this.gameObject,3f);
