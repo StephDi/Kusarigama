@@ -190,6 +190,7 @@ public class CharMovement : MonoBehaviour {
             dashInput = false;
             dashPossible = false;
             anim.SetTrigger("dash");
+            FindObjectOfType<AudioManager>().Play("Dash");
             StartCoroutine(DashCoolDown());
         }
         if (dashPossible == false && dashDuration > 0)

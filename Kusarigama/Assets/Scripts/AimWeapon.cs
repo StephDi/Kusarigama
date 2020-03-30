@@ -48,7 +48,9 @@ public class AimWeapon : MonoBehaviour
         {
             if (lockOnCam.Priority == 1)
             {
+            //    FindObjectOfType<AudioManager>().Play("AimWeapon");
                 LockOnWasActive = true;
+ 
             }
             else if (lockOnCam.Priority == 0)
             {
@@ -61,6 +63,7 @@ public class AimWeapon : MonoBehaviour
             AimCamActive();           
             MoveAimingTarget();
             AimActions();
+            
         }
 
         if (Input.GetButtonUp("Fire2"))
@@ -70,6 +73,7 @@ public class AimWeapon : MonoBehaviour
             RevertAimActions();
             if (LockOnWasActive == true)
             {
+                
                 LockOnCamActive();
             }
         }
@@ -107,6 +111,7 @@ public class AimWeapon : MonoBehaviour
 
     void AimCamActive()
     {
+        
         aimCam.Priority = 1;
         lockOnCam.Priority = 0;
         playerCam.Priority = 0;

@@ -25,7 +25,7 @@ public class PuzzleStoneCollision : MonoBehaviour
         if (Stone1 && Stone2 && Stone3 && Stone4)
         {
             anim.SetBool("openDoor",true);
-            FindObjectOfType<AudioManager>().Play("GateOpen");
+          //  FindObjectOfType<AudioManager>().Play("GateOpen");
         }    
     }
 
@@ -37,18 +37,22 @@ public class PuzzleStoneCollision : MonoBehaviour
             if (other.gameObject.name == "Rätselstein 1")
             {
                 Stone1 = true;
+                FindObjectOfType<AudioManager>().Play("PuzzlestoneHit1");
             }
             if (other.gameObject.name == "Rätselstein 2")
             {
                 Stone2 = true;
+                FindObjectOfType<AudioManager>().Play("PuzzlestoneHit2");
             }
             if (other.gameObject.name == "Rätselstein 3")
             {
                 Stone3 = true;
+                FindObjectOfType<AudioManager>().Play("PuzzlestoneHit3");
             }
             if (other.gameObject.name == "Rätselstein 4")
             {
                 Stone4 = true;
+                FindObjectOfType<AudioManager>().Play("PuzzlestoneHit4");
             }
         }
     }

@@ -27,7 +27,8 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         if (Input.GetButtonDown("Exit"))
-        {        
+        {
+            FindObjectOfType<AudioManager>().Play("PauseMenuOpen");
             NavMeshAgentManager.instance.chasing = !NavMeshAgentManager.instance.chasing;
             panel.SetActive(!panel.activeInHierarchy);
             character.GetComponent<CharMovement>().enabled = !character.GetComponent<CharMovement>().enabled;
