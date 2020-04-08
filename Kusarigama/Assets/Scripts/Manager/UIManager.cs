@@ -24,12 +24,16 @@ public class UIManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    void Start()
+    {
+        panel.SetActive(false);    
+    }
+
     void Update()
     {
         if (Input.GetButtonDown("Exit"))
         {
             FindObjectOfType<AudioManager>().Play("PauseMenuOpen");
-            NavMeshAgentManager.instance.chasing = !NavMeshAgentManager.instance.chasing;
             panel.SetActive(!panel.activeInHierarchy);
             character.GetComponent<CharMovement>().enabled = !character.GetComponent<CharMovement>().enabled;
             menuCam.enabled = !menuCam.enabled;

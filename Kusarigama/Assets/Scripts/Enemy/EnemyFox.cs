@@ -22,6 +22,8 @@ public class EnemyFox : MonoBehaviour
     public bool isDead = false;
     private PullEnemy pullEnemy;
 
+    private bool isAttacking;
+
 
     void Start()
     {
@@ -33,9 +35,16 @@ public class EnemyFox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetDistanceToPlayer();
-        AggroPlayer();
-        EnemyAttack();
+        if (!UIManager.instance.panel.activeInHierarchy) 
+        {
+            GetDistanceToPlayer();
+            AggroPlayer();
+            EnemyAttack();
+        }
+        else
+        {
+            NmaRemoveTarget();
+        }
     }
 
     void AggroPlayer()
@@ -64,24 +73,21 @@ public class EnemyFox : MonoBehaviour
 
     public void NmaSetTarget()
     {
-        if (NavMeshAgentManager.instance.chasing == true)
-        {
-            nmafuchs.SetDestination(character.position);
-            nmafuchs.nextPosition = fuchs.transform.position;
-            nmafuchs.updatePosition = true;
-            anim.SetBool("moving", true);
 
-        }
+        nmafuchs.SetDestination(character.position);
+        nmafuchs.nextPosition = fuchs.transform.position;
+        nmafuchs.updatePosition = true;
+        anim.SetBool("moving", true);
+
     }
 
     public void NmaRemoveTarget()
     {
-        if (NavMeshAgentManager.instance.chasing == false)
-        {
-            nmafuchs.ResetPath();
-            nmafuchs.updatePosition = false;
-            anim.SetBool("moving", false);
-        }
+
+        nmafuchs.ResetPath();
+        nmafuchs.updatePosition = false;
+        anim.SetBool("moving", false);
+
     }
 
     //Take damage if a hit is detected -> MeleeCombat
@@ -119,11 +125,16 @@ public class EnemyFox : MonoBehaviour
 
     void EnemyAttack()
     {
+        if (distanceToPlayer >= attackRange)
+            return;
+
         if (distanceToPlayer <= attackRange)
         {
-            anim.SetTrigger("attack");
-            anim.SetBool("attackbool", true);
-            Debug.Log("Foxattack");
+           
+            if (!isAttacking)
+            {
+                StartCoroutine(AttackMove());
+            }
         }
     }
 
@@ -134,5 +145,15 @@ public class EnemyFox : MonoBehaviour
         {
             nmafuchs.speed = 4f;
         }
+    }
+
+    IEnumerator AttackMove()
+    {
+        isAttacking = true;
+        yield return new WaitForSeconds(.5f);
+        anim.SetTrigger("attack");
+        anim.SetBool("attackbool", true);
+        yield return new WaitForSeconds(5f);
+        isAttacking = false;
     }
 }
