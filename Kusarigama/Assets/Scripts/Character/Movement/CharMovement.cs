@@ -122,19 +122,28 @@ public class CharMovement : MonoBehaviour {
         {
             if (rangedCombatGhost.rangedAttackTriggerGhost == 0)
             {
-                if (!AnimationIsPlaying(anim, "Armature_Rundumschlag_Ghost"))
+                if (!AnimationIsPlaying(anim, "Armature_Nahkampfschlag"))
                 {
-                    if (!AnimationIsPlaying(anim, "Armature_Nahkampfschlag_Ranged"))
+                    if (!AnimationIsPlaying(anim, "Armature_Nahkampfschlag_von_links"))
                     {
-                        if (!AnimationIsPlaying(anim, "Armature_Nahkampfschlag_von_links_Ranged"))
+                        if (!AnimationIsPlaying(anim, "Armature_Nahkampfschlag_von_rechts"))
                         {
-                            if (!AnimationIsPlaying(anim, "Armature_Rundumschlag_mit_rechts_ranged"))
+                            if (!AnimationIsPlaying(anim, "Armature_Rundumschlag_Ghost"))
                             {
-                                if (groundAngle <= maxGroundAngle)
+                                if (!AnimationIsPlaying(anim, "Armature_Nahkampfschlag_Ranged"))
                                 {
-                                    character.MovePosition(transform.position + direction * moveSpeed * Time.fixedDeltaTime);
+                                    if (!AnimationIsPlaying(anim, "Armature_Nahkampfschlag_von_links_Ranged"))
+                                    {
+                                        if (!AnimationIsPlaying(anim, "Armature_Rundumschlag_mit_rechts_ranged"))
+                                        {
+                                            if (groundAngle <= maxGroundAngle)
+                                            {
+                                                character.MovePosition(transform.position + direction * moveSpeed * Time.fixedDeltaTime);
+                                            }
+                                        }
+                                    }
                                 }
-                            }                          
+                            }
                         }
                     }
                 }

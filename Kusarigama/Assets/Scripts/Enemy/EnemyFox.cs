@@ -1,32 +1,37 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyFox : MonoBehaviour
 {
+    public delegate void AttackAction();
+    public static event AttackAction HitPlayer;
+    
     public Transform fuchs;
     public Transform character;
+    public Transform dashGoal;
     public NavMeshAgent nmafuchs;    
     public Animator anim;
 
+    private BoxCollider Attackhitbox;
     private float distanceToPlayer;
     public float aggroRange;
     public float attackRange;
+    private bool isAttacking;
+    [SerializeField]private Vector3 attackGoal;
 
     [SerializeField] private LayerMask playerLayerMask;
 
     public float stunDuration = .5f;
     public float health;
 
-    public bool isDead = false;
+    private bool isDead = false;
     private PullEnemy pullEnemy;
-
-    private bool isAttacking;
-
 
     void Start()
     {
+        Attackhitbox = GetComponentsInChildren<BoxCollider>()[1];
+        Attackhitbox.enabled = false;
         pullEnemy = FindObjectOfType<PullEnemy>();
         health = 30;
         NmaRemoveTarget();
@@ -49,11 +54,11 @@ public class EnemyFox : MonoBehaviour
 
     void AggroPlayer()
     {
-        if (distanceToPlayer <= aggroRange && PlayerIsVisible())
+        if (distanceToPlayer <= aggroRange && PlayerIsVisible() && !isAttacking)
         {
             NmaSetTarget();  
         }
-        else if (distanceToPlayer >= aggroRange && PlayerIsVisible())
+        else if (distanceToPlayer >= aggroRange && PlayerIsVisible() || isAttacking)
         {
             NmaRemoveTarget();
         }
@@ -73,21 +78,17 @@ public class EnemyFox : MonoBehaviour
 
     public void NmaSetTarget()
     {
-
         nmafuchs.SetDestination(character.position);
         nmafuchs.nextPosition = fuchs.transform.position;
         nmafuchs.updatePosition = true;
         anim.SetBool("moving", true);
-
     }
 
     public void NmaRemoveTarget()
     {
-
         nmafuchs.ResetPath();
         nmafuchs.updatePosition = false;
         anim.SetBool("moving", false);
-
     }
 
     //Take damage if a hit is detected -> MeleeCombat
@@ -130,11 +131,20 @@ public class EnemyFox : MonoBehaviour
 
         if (distanceToPlayer <= attackRange)
         {
-           
             if (!isAttacking)
             {
+                StopCoroutine(AttackMove());
                 StartCoroutine(AttackMove());
+                attackGoal = dashGoal.position;
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            HitPlayer();
         }
     }
 
@@ -150,10 +160,21 @@ public class EnemyFox : MonoBehaviour
     IEnumerator AttackMove()
     {
         isAttacking = true;
+        NmaRemoveTarget();
+        anim.SetTrigger("prepareAttack"); 
         yield return new WaitForSeconds(.5f);
         anim.SetTrigger("attack");
-        anim.SetBool("attackbool", true);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(.5f);
+        Attackhitbox.enabled = true;
+        while (transform.position != attackGoal)
+        {
+            transform.position = Vector3.MoveTowards(transform.position,attackGoal, .6f);
+            yield return null;
+        }
+        yield return new WaitForSeconds(.5f);
+        Attackhitbox.enabled = false;
+        yield return new WaitForSeconds(1f);
+        NmaSetTarget();
         isAttacking = false;
     }
 }

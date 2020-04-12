@@ -14,7 +14,7 @@ public class EnemyLockOn : MonoBehaviour
     public Cinemachine.CinemachineVirtualCamera lockOnCam;
     private Cinemachine.CinemachineCollider lockOnCamCollider;
     //Enemies
-    private GameObject[] enemies;
+    public GameObject[] enemies;
     public GameObject closestEnemy;
     public GameObject closestChangeEnemy;
     //Raycast
@@ -148,18 +148,14 @@ public class EnemyLockOn : MonoBehaviour
                     }
                     enemyPos = new Vector3(0, 0, 0);
                 }
-
-                //Enemy is not in CamSight  ---- turn Cam behind PLayer ----- 
-                else
-                {                    
-                    continue;
-                }
             }
         }
-
-        targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = playerWeight };
-        targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = closestEnemy.transform, radius = 4.0f, weight = 1.0f };
-        ActivateLockOncam();
+        if(closestEnemy != null)
+        {
+            targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = playerWeight };
+            targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = closestEnemy.transform, radius = 4.0f, weight = 1.0f };
+            ActivateLockOncam();
+        }
     }
 
     void ChangeTarget()
