@@ -50,6 +50,7 @@ public class EnemyFox : MonoBehaviour
         {
             NmaRemoveTarget();
         }
+
     }
 
     void AggroPlayer()
@@ -74,6 +75,21 @@ public class EnemyFox : MonoBehaviour
         RaycastHit hit;
         Physics.Raycast(this.transform.position, character.transform.position - this.transform.position, out hit, Mathf.Infinity, playerLayerMask);
         return hit.collider.CompareTag("Player");
+    }
+
+    bool PlayerIsInFront()
+    {
+
+        Vector3 dirToPlayer = character.position - transform.position;
+        float angleBetweenEnemyAndCharacter = Vector3.Angle(dirToPlayer, transform.forward);
+        if(angleBetweenEnemyAndCharacter <= 25f)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public void NmaSetTarget()
@@ -129,7 +145,7 @@ public class EnemyFox : MonoBehaviour
         if (distanceToPlayer >= attackRange)
             return;
 
-        if (distanceToPlayer <= attackRange)
+        if (distanceToPlayer <= attackRange && PlayerIsInFront())
         {
             if (!isAttacking)
             {
