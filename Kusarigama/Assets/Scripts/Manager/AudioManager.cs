@@ -47,11 +47,4 @@ public class AudioManager : MonoBehaviour
         }
         s.source.Play();
     }
-
-
-    public void PlayFootstep1()
-    {
-        FindObjectOfType<AudioManager>().Play("Footstep1");
-    }
-
 }

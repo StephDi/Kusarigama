@@ -23,7 +23,6 @@ public class MeleeCombat : MonoBehaviour {
         {
             //set mecanim State
             anim.SetTrigger("attack");
-            FindObjectOfType<AudioManager>().Play("MeleeAttack");
 
             if (charMovement.movement.sqrMagnitude != 0)
             {
@@ -71,4 +70,8 @@ public class MeleeCombat : MonoBehaviour {
         weaponCollider.enabled = false;
     }
 
+    public void PlayAttackSound()
+    {
+        AudioManager.instance.Play("MeleeAttack");
+    }
 }

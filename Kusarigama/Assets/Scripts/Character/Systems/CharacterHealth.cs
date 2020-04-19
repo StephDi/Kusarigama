@@ -25,6 +25,11 @@ public class CharacterHealth : MonoBehaviour
         health = 100f;    
     }
 
+    void OnDisable()
+    {
+        EnemyFox.HitPlayer -= GetDamage;
+    }
+
     void GetDamage()
     {
         if (health >= 1f)
@@ -37,11 +42,6 @@ public class CharacterHealth : MonoBehaviour
                 CharacterDie();
             }
         }
-    }
-
-    void OnDisable()
-    {
-        EnemyFox.HitPlayer -= GetDamage;
     }
 
     void CharacterDie()

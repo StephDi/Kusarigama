@@ -4,8 +4,8 @@ using UnityEngine.AI;
 
 public class EnemyFox : MonoBehaviour
 {
-    public delegate void AttackAction();
-    public static event AttackAction HitPlayer;
+    public delegate void FoxAttackAction();
+    public static event FoxAttackAction HitPlayer;
     
     public Transform fuchs;
     public Transform character;
@@ -28,8 +28,11 @@ public class EnemyFox : MonoBehaviour
     private bool isDead = false;
     private PullEnemy pullEnemy;
 
+    private FoxHealth foxHealth;
+
     void Start()
     {
+        foxHealth = GetComponentInChildren<FoxHealth>();
         Attackhitbox = GetComponentsInChildren<BoxCollider>()[1];
         Attackhitbox.enabled = false;
         pullEnemy = FindObjectOfType<PullEnemy>();
@@ -55,7 +58,7 @@ public class EnemyFox : MonoBehaviour
 
     void AggroPlayer()
     {
-        if (distanceToPlayer <= aggroRange && PlayerIsVisible() && !isAttacking)
+        if (distanceToPlayer <= aggroRange && PlayerIsVisible() && !isAttacking && !isDead)
         {
             NmaSetTarget();  
         }
@@ -116,6 +119,7 @@ public class EnemyFox : MonoBehaviour
             anim.SetTrigger("damageTaken");
             FindObjectOfType<AudioManager>().Play("FoxHurt");
             nmafuchs.speed = 0;
+            foxHealth.UpdateUI(health);
             StartCoroutine(DamageTakenSlow());
         }
         if (health <= 0)
@@ -135,6 +139,7 @@ public class EnemyFox : MonoBehaviour
             anim.SetBool("isDead", true);
             
         }
+        NmaRemoveTarget();
         nmafuchs.speed = 0f;
         Destroy(this.gameObject,3f);
     }
@@ -145,7 +150,7 @@ public class EnemyFox : MonoBehaviour
         if (distanceToPlayer >= attackRange)
             return;
 
-        if (distanceToPlayer <= attackRange && PlayerIsInFront())
+        if (distanceToPlayer <= attackRange && PlayerIsInFront() && !isDead)
         {
             if (!isAttacking)
             {

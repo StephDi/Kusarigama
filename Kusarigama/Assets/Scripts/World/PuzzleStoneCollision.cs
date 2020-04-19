@@ -12,6 +12,8 @@ public class PuzzleStoneCollision : MonoBehaviour
 
     public Animator anim;
 
+    [SerializeField] private Color emissionColor;
+
     void Start()
     {
         Stone1 = false;
@@ -20,39 +22,60 @@ public class PuzzleStoneCollision : MonoBehaviour
         Stone4 = false;
     }
 
-    void Update()
+    void OpenDoor()
     {
-        if (Stone1 && Stone2 && Stone3 && Stone4)
-        {
-            anim.SetBool("openDoor",true);
-            //FindObjectOfType<AudioManager>().Play("GateOpen");
-        }    
+        anim.SetBool("openDoor", true);
+        AudioManager.instance.Play("GateOpen");
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "RiddleStone")
         {
-            Debug.Log("Hit" + this.gameObject);
-            if (other.gameObject.name == "Rätselstein 1")
+                if (other.gameObject.name == "Rätselstein 1")
+                {
+                    if (!Stone1)
+                    {
+                        Stone1 = true;
+                        FindObjectOfType<AudioManager>().Play("PuzzlestoneHit1");
+                        other.GetComponent<Renderer>().material.SetColor("_EmissionColor", emissionColor);
+                    }              
+                }
+
+                if (other.gameObject.name == "Rätselstein 2")
+                {
+                    if (!Stone2)
+                    {
+                        Stone2 = true;
+                        FindObjectOfType<AudioManager>().Play("PuzzlestoneHit2");
+                        other.GetComponent<Renderer>().material.SetColor("_EmissionColor", emissionColor);
+                    }
+                }
+
+                if (other.gameObject.name == "Rätselstein 3")
+                {
+
+                    if (!Stone3)
+                    {
+                        Stone3 = true;
+                        FindObjectOfType<AudioManager>().Play("PuzzlestoneHit3");
+                        other.GetComponent<Renderer>().material.SetColor("_EmissionColor", emissionColor);
+                    }
+                }
+
+                if (other.gameObject.name == "Rätselstein 4")
+                {
+                    if (!Stone4)
+                    {
+                        Stone4 = true;
+                        FindObjectOfType<AudioManager>().Play("PuzzlestoneHit4");
+                        other.GetComponent<Renderer>().material.SetColor("_EmissionColor", emissionColor);
+                    }             
+                }
+
+            if (Stone1 && Stone2 && Stone3 && Stone4 && !anim.GetBool("openDoor"))
             {
-                Stone1 = true;
-                FindObjectOfType<AudioManager>().Play("PuzzlestoneHit1");
-            }
-            if (other.gameObject.name == "Rätselstein 2")
-            {
-                Stone2 = true;
-                FindObjectOfType<AudioManager>().Play("PuzzlestoneHit2");
-            }
-            if (other.gameObject.name == "Rätselstein 3")
-            {
-                Stone3 = true;
-                FindObjectOfType<AudioManager>().Play("PuzzlestoneHit3");
-            }
-            if (other.gameObject.name == "Rätselstein 4")
-            {
-                Stone4 = true;
-                FindObjectOfType<AudioManager>().Play("PuzzlestoneHit4");
+                OpenDoor();              
             }
         }
     }
