@@ -199,7 +199,7 @@ public class CharMovement : MonoBehaviour {
             dashInput = false;
             dashPossible = false;
             anim.SetTrigger("dash");
-            FindObjectOfType<AudioManager>().Play("Dash");
+            AudioManager.instance.Play("Dash");
             StartCoroutine(DashCoolDown());
         }
         if (dashPossible == false && dashDuration > 0)
@@ -249,7 +249,7 @@ public class CharMovement : MonoBehaviour {
     void Jump()
     {
         character.velocity = new Vector3(0, jumpForce, 0);
-        FindObjectOfType<AudioManager>().Play("Jump");
+        AudioManager.instance.Play("Jump");
     }
 
     private bool canJump()

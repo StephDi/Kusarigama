@@ -60,7 +60,8 @@ public class EnemyFox : MonoBehaviour
     {
         if (distanceToPlayer <= aggroRange && PlayerIsVisible() && !isAttacking && !isDead)
         {
-            NmaSetTarget();  
+            NmaSetTarget();
+            foxHealth.UpdateUI(health);
         }
         else if (distanceToPlayer >= aggroRange && PlayerIsVisible() || isAttacking)
         {
@@ -187,6 +188,7 @@ public class EnemyFox : MonoBehaviour
         anim.SetTrigger("attack");
         yield return new WaitForSeconds(.5f);
         Attackhitbox.enabled = true;
+        AudioManager.instance.Play("FoxAttack");
         while (transform.position != attackGoal)
         {
             transform.position = Vector3.MoveTowards(transform.position,attackGoal, .6f);

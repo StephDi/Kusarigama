@@ -11,7 +11,8 @@ public class FoxHealth : MonoBehaviour
 
     private void Start()
     {
-        mainCamera = Camera.main;  
+        mainCamera = Camera.main;
+        healthBarFill.transform.parent.GetComponent<Canvas>().enabled = false;
     }
 
     private void LateUpdate()
@@ -20,7 +21,8 @@ public class FoxHealth : MonoBehaviour
     }
 
     public void UpdateUI(float health)
-    {
+    {    
+        healthBarFill.transform.parent.GetComponent<Canvas>().enabled = true;
         healthBarFill.fillAmount = health / 30f;
     }
 }

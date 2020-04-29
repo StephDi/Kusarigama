@@ -25,7 +25,6 @@ public class ThrowWeapon : MonoBehaviour
         PullToAnchor = FindObjectOfType<PullToAnchor>();
     }
 
-    // Update is called once per frame
     void Update()
     {
      
@@ -36,21 +35,17 @@ public class ThrowWeapon : MonoBehaviour
             if (throwValue > 0)
             {                
                 ThrowWeaponForward();
-                FindObjectOfType<AudioManager>().Play("ThrowChain");
-
             }         
         }
   
         if (throwValue == 0 && weaponIsFlying == true)
         {
             PullWeaponBack();
-            FindObjectOfType<AudioManager>().Play("PullChainBack");
-            anim.SetBool("pullBack",true);
-            
+            anim.SetBool("pullBack",true);          
         }
     }  
 
-    //Event
+    //AnimationEvent
     public void ResetWeapon()
     {
         weapon.gameObject.SetActive(true);
@@ -73,11 +68,12 @@ public class ThrowWeapon : MonoBehaviour
     {
         weapon.rotation = weaponPoint.rotation;
         weapon.position = Vector3.Lerp(weapon.position,weaponPoint.position,0.1f);
-        
+        AudioManager.instance.Play("PullChainBack");
     }
 
     void ThrowWeaponForward()
     {
+        Debug.Log("Throw");      
         weaponIsFlying = true;
         anim.SetBool("throwing",true);
         weapon.SetParent(null);

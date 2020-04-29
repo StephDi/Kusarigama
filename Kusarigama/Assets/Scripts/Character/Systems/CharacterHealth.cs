@@ -15,6 +15,7 @@ public class CharacterHealth : MonoBehaviour
     void OnEnable()
     {
         EnemyFox.HitPlayer += GetDamage;
+        HealthSakura.HealPlayer += GetHealth;
     }
 
     void Start()
@@ -28,6 +29,7 @@ public class CharacterHealth : MonoBehaviour
     void OnDisable()
     {
         EnemyFox.HitPlayer -= GetDamage;
+        HealthSakura.HealPlayer -= GetHealth;
     }
 
     void GetDamage()
@@ -41,6 +43,15 @@ public class CharacterHealth : MonoBehaviour
             {
                 CharacterDie();
             }
+        }
+    }
+
+    void GetHealth()
+    {
+        if (health <= 90f)
+        {
+            health += 10f;
+            HealthbarImage.fillAmount = health / 100f;
         }
     }
 
