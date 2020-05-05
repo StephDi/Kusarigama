@@ -221,8 +221,11 @@ public class EnemyLockOn : MonoBehaviour
             }
         }
         closestEnemy = closestChangeEnemy;
-        targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = playerWeight };
-        targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = closestEnemy.transform, radius = 4.0f, weight = 1.0f };
+        if (closestEnemy != null) 
+        {
+            targets[0] = new Cinemachine.CinemachineTargetGroup.Target { target = player, radius = 4.0f, weight = playerWeight };
+            targets[1] = new Cinemachine.CinemachineTargetGroup.Target { target = closestEnemy.transform, radius = 4.0f, weight = 1.0f };
+        }
     }
 
     void TargetIndicator() //Gets called in Update by invokeRepeating

@@ -14,34 +14,36 @@ public class CharMovement : MonoBehaviour {
     //Movement
     public float moveSpeed = 10f;
     public float rotateSpeed = 3f;
-    float horizontal;
-    float vertical;
-    float leftRigh_RightJoyStick;
     public Vector3 movement;
     public Vector3 direction;
     public Vector3 turnVector;
     [SerializeField] private bool dashInput;
+    float horizontal;
+    float vertical;
+    float leftRigh_RightJoyStick;
     RaycastHit sphereCastHit;
-    public bool dashPossible;
-    //Cam
-    Vector3 camF;
-    Vector3 camR;
-    public Transform cam;
+    private bool dashPossible;
     //falling
     public float fallMultiplier = 2.5f;
+    //Cam
+    private Vector3 camF;
+    private Vector3 camR;
+    private Transform cam;
+    [SerializeField]private float XAxisDrag;
     //other
+    public Cinemachine.CinemachineFreeLook PlayerCam;
     public Cinemachine.CinemachineVirtualCamera LockOnCam;
     public Rigidbody character;
-    private float groundDistance = .6f;
-    public LayerMask layerMask;
-    public AimWeapon aimWeapon;
-    public RangedCombatGhost rangedCombatGhost;
-    public RangedCombat rangedCombat;
     public float dashCoolDown;
-    private float dashDuration;
-    private Vector3 groundNormal;
+    public LayerMask layerMask;
     public float maxGroundAngle;
     public float groundAngle;
+    private float groundDistance = .6f;
+    private AimWeapon aimWeapon;
+    private RangedCombatGhost rangedCombatGhost;
+    private RangedCombat rangedCombat;
+    private float dashDuration;
+    private Vector3 groundNormal;
 
     void Start ()
     {
@@ -49,6 +51,7 @@ public class CharMovement : MonoBehaviour {
         aimWeapon = GetComponent<AimWeapon>();
         rangedCombatGhost = GetComponent<RangedCombatGhost>();
         rangedCombat = GetComponent<RangedCombat>();
+        cam = Camera.main.transform;
 
         dashPossible = true;
     }
@@ -107,7 +110,17 @@ public class CharMovement : MonoBehaviour {
         {
             anim.SetBool("jump",false);
             anim.SetBool("grounded",false);
-        } 
+        }
+
+        //Move Cam slightly while Moving LeftRight
+        if (horizontal > 0)
+        {
+            PlayerCam.m_XAxis.Value += horizontal * XAxisDrag * Time.deltaTime;
+        }
+        if (horizontal < 0)
+        {
+            PlayerCam.m_XAxis.Value += horizontal * XAxisDrag * Time.deltaTime;
+        }
     }
 
     void FixedUpdate ()
