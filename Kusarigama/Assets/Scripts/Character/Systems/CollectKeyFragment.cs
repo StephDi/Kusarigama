@@ -23,6 +23,7 @@ public class CollectKeyFragment : MonoBehaviour
         KeyFragment key = other.GetComponent<KeyFragment>();
         if (key != null)
         {
+            FindObjectOfType<AudioManager>().Play("ItemPickUp");
             AddKey(key.GetKeyType());
             Destroy(key.gameObject);
         }

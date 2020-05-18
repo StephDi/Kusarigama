@@ -119,6 +119,7 @@ public class EnemyFox : MonoBehaviour
             health -= Playermanager.instance.Damage;
             anim.SetTrigger("damageTaken");
             FindObjectOfType<AudioManager>().Play("FoxHurt");
+            FindObjectOfType<AudioManager>().Play("EnemyHit");
             nmafuchs.speed = 0;
             foxHealth.UpdateUI(health);
             StartCoroutine(DamageTakenSlow());

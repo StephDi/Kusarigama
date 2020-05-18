@@ -36,11 +36,14 @@ public class CharacterHealth : MonoBehaviour
     {
         if (health >= 1f)
         {
+           
             health -= 10f;
             HealthbarImage.fillAmount = health / 100f;
-            anim.SetTrigger("damageTaken");         
-            if(health <= 0f)
+            anim.SetTrigger("damageTaken");
+            FindObjectOfType<AudioManager>().Play("CharacterHit");
+            if (health <= 0f)
             {
+                FindObjectOfType<AudioManager>().Play("CharacterDied");
                 CharacterDie();
             }
         }
@@ -50,6 +53,7 @@ public class CharacterHealth : MonoBehaviour
     {
         if (health <= 90f)
         {
+            FindObjectOfType<AudioManager>().Play("SakuraConsumed");
             health += 10f;
             HealthbarImage.fillAmount = health / 100f;
         }
