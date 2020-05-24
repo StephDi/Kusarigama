@@ -11,6 +11,11 @@ public class CharacterHealth : MonoBehaviour
     [SerializeField] private CapsuleCollider playerCollider;
 
     private CharMovement charMovement;
+    private MeleeCombat meleeCombat;
+    private RangedCombat rangedCombat;
+    private RangedCombatGhost rangedCombatGhost;
+    private AimWeapon aimWeapon;
+    private ThrowWeapon throwWeapon;
 
     void OnEnable()
     {
@@ -18,11 +23,21 @@ public class CharacterHealth : MonoBehaviour
         HealthSakura.HealPlayer += GetHealth;
     }
 
-    void Start()
+    private void Awake()
     {
         charMovement = GetComponent<CharMovement>();
+        meleeCombat = GetComponent<MeleeCombat>();
+        rangedCombat = GetComponent<RangedCombat>();
+        rangedCombatGhost = GetComponent<RangedCombatGhost>();
+        aimWeapon = GetComponent<AimWeapon>();
+        throwWeapon = GetComponent<ThrowWeapon>();
         playerCollider = GetComponent<CapsuleCollider>();
         anim = GetComponent<Animator>();
+            
+    }
+
+    void Start()
+    {
         health = 100f;    
     }
 
@@ -64,5 +79,10 @@ public class CharacterHealth : MonoBehaviour
         anim.SetBool("isDead",true);
         playerCollider.direction = 2;
         charMovement.enabled = false;
+        meleeCombat.enabled = false;
+        rangedCombat.enabled = false;
+        rangedCombatGhost.enabled = false;
+        aimWeapon.enabled = false;
+        throwWeapon.enabled = false;
     }
 }

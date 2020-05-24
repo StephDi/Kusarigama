@@ -184,13 +184,13 @@ public class CharMovement : MonoBehaviour {
             {
                 //Turn left
                 Quaternion deltaRotation = Quaternion.Euler(turnVector);
-                character.MoveRotation(Quaternion.Slerp(character.rotation, character.rotation * deltaRotation, 0.35f));
+                character.MoveRotation(Quaternion.Slerp(character.rotation, character.rotation * deltaRotation, 0.20f));
             }
             if (aimWeapon.leftRight < -14f)
             {
                 //Turn right
                 Quaternion deltaRotation = Quaternion.Euler(turnVector);
-                character.MoveRotation(Quaternion.Slerp(character.rotation, character.rotation * deltaRotation, 0.35f));
+                character.MoveRotation(Quaternion.Slerp(character.rotation, character.rotation * deltaRotation, 0.20f));
             }
         }
 

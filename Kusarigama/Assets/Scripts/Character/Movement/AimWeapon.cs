@@ -27,6 +27,7 @@ public class AimWeapon : MonoBehaviour
     public CharMovement charMovement;
     private float camSwitchTime;
     bool LockOnWasActive;
+    private float CrosshairSpeed = 50f;
 
     // Start is called before the first frame update
     void Start()
@@ -41,14 +42,13 @@ public class AimWeapon : MonoBehaviour
     void Update()
     {
         //Inputs
-        upDown = Mathf.Clamp(upDown - Input.GetAxis("Mouse Y"), minClampUpDown, maxClampUpDown);
-        leftRight = Mathf.Clamp(leftRight - Input.GetAxis("Mouse X"), minClampLeftRight, maxClampLeftRight);
+        upDown = Mathf.Clamp(upDown - (Input.GetAxis("Mouse Y") * Time.deltaTime * CrosshairSpeed), minClampUpDown, maxClampUpDown);
+        leftRight = Mathf.Clamp(leftRight - (Input.GetAxis("Mouse X") * Time.deltaTime * CrosshairSpeed), minClampLeftRight, maxClampLeftRight);
 
         if (Input.GetButtonDown("Fire2"))
         {
             if (lockOnCam.Priority == 1)
             {
-            //    FindObjectOfType<AudioManager>().Play("AimWeapon");
                 LockOnWasActive = true;
  
             }
