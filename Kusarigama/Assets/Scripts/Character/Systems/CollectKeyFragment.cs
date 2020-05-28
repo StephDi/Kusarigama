@@ -18,6 +18,11 @@ public class CollectKeyFragment : MonoBehaviour
         UpdateKeyFragmentUI();
     }
 
+    public bool ContainsKey(KeyFragment.KeyType keyType)
+    {
+        return keyList.Contains(keyType);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         KeyFragment key = other.GetComponent<KeyFragment>();

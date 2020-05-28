@@ -38,7 +38,7 @@ public class PullToAnchor : MonoBehaviour
         if (state == GrappleState.HIT)
         {
             Debug.Log("HitAnchor");         
-            transform.parent.position = hookedObject.transform.position;
+            transform.position = hookedObject.transform.position;
 
             if (hangingposition != null)
             {
