@@ -64,7 +64,6 @@ public class CharMovement : MonoBehaviour {
         if (Input.GetButtonDown("Dash"))
         {
             dashInput = true;
-
         }
 
         movement = new Vector3(-vertical, 0, horizontal);
@@ -218,7 +217,14 @@ public class CharMovement : MonoBehaviour {
         if (dashPossible == false && dashDuration > 0)
         {
             dashDuration -= Time.deltaTime;
-            character.velocity = direction * dashForce;
+            if (canJump()) 
+            { 
+                character.velocity = direction * dashForce;
+            }
+            else
+            {
+                character.velocity = direction * dashForce + Physics.gravity;
+            }
             dashInput = false;
         }
     }
