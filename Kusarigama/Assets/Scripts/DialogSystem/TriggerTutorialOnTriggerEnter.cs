@@ -2,25 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggerDialogueOnCollision : MonoBehaviour
+public class TriggerTutorialOnTriggerEnter : MonoBehaviour
 {
     private DialogueTrigger dialogueTrigger;
-
-    private GetWeaponUpgrades getWeaponUpgrades;
     private bool gotTriggered;
-    private void Awake()
+    private void Start()
     {
-        getWeaponUpgrades = FindObjectOfType<GetWeaponUpgrades>();
         dialogueTrigger = GetComponent<DialogueTrigger>();
         gotTriggered = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && getWeaponUpgrades.weaponState == WeaponState.NONE && gotTriggered == false)
+        if (other.CompareTag("Player") && gotTriggered == false)
         {
             dialogueTrigger.TriggerDialogue();
             gotTriggered = true;
-        }        
+        }
     }
 }

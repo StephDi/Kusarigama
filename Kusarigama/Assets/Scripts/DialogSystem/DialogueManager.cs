@@ -6,24 +6,37 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
+    public static DialogueManager instance = null;
+
     public TMP_Text nameText;
     public TMP_Text dialogueText;
 
+    public TMP_Text tutName;
+    public TMP_Text tutText;
+
     public GameObject dialogueWindow;
+    public GameObject tutorialWindow;
 
     private Queue<string> sentences;
 
     private CharMovement charMovement;
 
+    public bool DialogueIsActive;
     private void Awake()
     {
+        if (instance == null)
+
+            instance = this;
+
+        else if (instance != this)
+
+            Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
         charMovement = FindObjectOfType<CharMovement>();
-    }
-    private void Start()
-    {
         sentences = new Queue<string>();
     }
-
+  
     private void Update()
     {
         if (Input.GetButtonDown("Jump"))
@@ -34,7 +47,25 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialog( Dialogue dialogue)
     {
+        DialogueIsActive = true;
         nameText.text = dialogue.name;
+
+        sentences.Clear();
+
+        foreach (string sentence in dialogue.sentences)
+        {
+            sentences.Enqueue(sentence);
+        }  
+        
+        charMovement.anim.SetBool("moving",false);
+        charMovement.enabled = false;
+        dialogueWindow.SetActive(true);
+        DisplayNextSentence();
+    }
+    public void StartTutorial( Dialogue dialogue)
+    {
+        DialogueIsActive = true;
+        tutName.text = dialogue.name;
 
         sentences.Clear();
 
@@ -45,7 +76,7 @@ public class DialogueManager : MonoBehaviour
 
         charMovement.anim.SetBool("moving",false);
         charMovement.enabled = false;
-        dialogueWindow.SetActive(true);
+        tutorialWindow.SetActive(true);
         DisplayNextSentence();
     }
 
@@ -65,17 +96,21 @@ public class DialogueManager : MonoBehaviour
     IEnumerator TypeSentence(string sentence)
     {
         dialogueText.text = "";
+        tutText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
+            tutText.text += letter;
             yield return null;
         }
     }
 
     private void EndDialogue()
     {
+        DialogueIsActive = false;
         charMovement.enabled = true;
         dialogueWindow.SetActive(false);
+        tutorialWindow.SetActive(false);
         Debug.Log("End");
     }
 }
