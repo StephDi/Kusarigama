@@ -54,7 +54,7 @@ namespace Aura2API
         {
             get
             {
-                return EditorPrefs.GetBool(_displayMainIntroductionScreenString, true);
+                return EditorPrefs.GetBool(_displayMainIntroductionScreenString, false);
             }
             set
             {
@@ -66,7 +66,7 @@ namespace Aura2API
         {
             get
             {
-                return EditorPrefs.GetBool(_displayCameraIntroductionScreenString, true);
+                return EditorPrefs.GetBool(_displayCameraIntroductionScreenString, false);
             }
             set
             {
@@ -78,7 +78,7 @@ namespace Aura2API
         {
             get
             {
-                return EditorPrefs.GetBool(_displayLightIntroductionScreenString, true);
+                return EditorPrefs.GetBool(_displayLightIntroductionScreenString, false);
             }
             set
             {
@@ -90,7 +90,7 @@ namespace Aura2API
         {
             get
             {
-                return EditorPrefs.GetBool(_displayVolumeIntroductionScreenString, true);
+                return EditorPrefs.GetBool(_displayVolumeIntroductionScreenString, false);
             }
             set
             {
