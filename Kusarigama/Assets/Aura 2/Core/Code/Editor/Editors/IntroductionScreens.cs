@@ -129,7 +129,7 @@ namespace Aura2API
         {
             get
             {
-                return ShowMainIntroductionScreen || ShowCameraIntroductionScreen || ShowLightIntroductionScreen || ShowVolumeIntroductionScreen;
+                return false;//ShowMainIntroductionScreen || ShowCameraIntroductionScreen || ShowLightIntroductionScreen || ShowVolumeIntroductionScreen;
             }
         }
         #endregion
