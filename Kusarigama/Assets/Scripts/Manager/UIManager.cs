@@ -31,10 +31,19 @@ public class UIManager : MonoBehaviour
         if (Input.GetButtonDown("Exit"))
         {
             FindObjectOfType<AudioManager>().Play("PauseMenuOpen");
-            panel.SetActive(!panel.activeInHierarchy);
-            character.GetComponent<CharMovement>().enabled = !character.GetComponent<CharMovement>().enabled;
-            menuCam.enabled = !menuCam.enabled;
+            UpdateUiState();
         }    
+
+        if(panel.activeSelf == true && Input.GetButtonDown("Cancel"))
+        {
+            UpdateUiState();
+        }
     }
 
+    void UpdateUiState()
+    {
+        panel.SetActive(!panel.activeInHierarchy);
+        character.GetComponent<CharMovement>().enabled = !character.GetComponent<CharMovement>().enabled;
+        menuCam.enabled = !menuCam.enabled;
+    }
 }
