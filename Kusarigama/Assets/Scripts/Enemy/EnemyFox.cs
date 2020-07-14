@@ -86,7 +86,21 @@ public class EnemyFox : MonoBehaviour
 
         Vector3 dirToPlayer = character.position - transform.position;
         float angleBetweenEnemyAndCharacter = Vector3.Angle(dirToPlayer, transform.forward);
-        if(angleBetweenEnemyAndCharacter <= 25f)
+        if(angleBetweenEnemyAndCharacter <= 60f)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    bool PlayerIsInAttackCone()
+    {
+
+        Vector3 dirToPlayer = character.position - transform.position;
+        float angleBetweenEnemyAndCharacter = Vector3.Angle(dirToPlayer, transform.forward);
+        if (angleBetweenEnemyAndCharacter <= 25f)
         {
             return true;
         }
@@ -152,7 +166,7 @@ public class EnemyFox : MonoBehaviour
         if (distanceToPlayer >= attackRange)
             return;
 
-        if (distanceToPlayer <= attackRange && PlayerIsInFront() && !isDead)
+        if (distanceToPlayer <= attackRange && PlayerIsInAttackCone() && !isDead)
         {
             if (!isAttacking)
             {
