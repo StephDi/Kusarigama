@@ -42,6 +42,15 @@ public class EnemyLockOn : MonoBehaviour
         closestEnemy = null;
         changedTarget = false;
     }
+    private void OnEnable()
+    {
+        EnemyFox.FoxDies += UpdateEnemyArray;
+    }
+
+    private void OnDisable()
+    {
+        EnemyFox.FoxDies -= UpdateEnemyArray;
+    }
 
     void Update()
     {
@@ -112,6 +121,11 @@ public class EnemyLockOn : MonoBehaviour
         }
     }
 
+    void UpdateEnemyArray()
+    {
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+    }
+
     void FindClosestEnemy()
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");      
@@ -160,6 +174,7 @@ public class EnemyLockOn : MonoBehaviour
 
     void ChangeTarget()
     {
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
         var position = player.transform.position;
         var dot = Mathf.Infinity;
 

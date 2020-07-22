@@ -6,28 +6,29 @@ public class EnemyFox : MonoBehaviour
 {
     public delegate void FoxAttackAction();
     public static event FoxAttackAction HitPlayer;
+
+    public delegate void FoxDiesEvent();
+    public static event FoxDiesEvent FoxDies;
     
     public Transform fuchs;
     public Transform character;
     public Transform dashGoal;
     public NavMeshAgent nmafuchs;    
     public Animator anim;
+    public bool isDead = false;
 
-    private BoxCollider Attackhitbox;
-    private float distanceToPlayer;
     public float aggroRange;
     public float attackRange;
-    private bool isAttacking;
-    [SerializeField]private Vector3 attackGoal;
-
-    [SerializeField] private LayerMask playerLayerMask;
-
     public float stunDuration = .5f;
     public float health;
 
-    private bool isDead = false;
-    private PullEnemy pullEnemy;
+    [SerializeField]private Vector3 attackGoal;
+    [SerializeField] private LayerMask playerLayerMask;
 
+    private BoxCollider Attackhitbox;
+    private float distanceToPlayer;
+    private bool isAttacking;
+    private PullEnemy pullEnemy;
     private FoxHealth foxHealth;
 
     void Start()
@@ -138,12 +139,12 @@ public class EnemyFox : MonoBehaviour
             foxHealth.UpdateUI(health);
             StartCoroutine(DamageTakenSlow());
         }
-        if (health <= 0)
+        if (health <= 0 && !isDead)
         {
-            EnemyDie();
             isDead = true;
             nmafuchs.speed = 0f;
             FindObjectOfType<AudioManager>().Play("FoxDying");
+            EnemyDie();
 
         }
     }
@@ -155,6 +156,7 @@ public class EnemyFox : MonoBehaviour
             anim.SetBool("isDead", true);
             
         }
+        FoxDies();
         NmaRemoveTarget();
         nmafuchs.speed = 0f;
         Destroy(this.gameObject,3f);

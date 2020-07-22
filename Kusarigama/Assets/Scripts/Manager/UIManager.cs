@@ -32,12 +32,13 @@ public class UIManager : MonoBehaviour
         {
             FindObjectOfType<AudioManager>().Play("PauseMenuOpen");
             UpdateUiState();
-        }    
-
+        }
+        
         if(panel.activeSelf == true && Input.GetButtonDown("Cancel"))
         {
             UpdateUiState();
         }
+        
     }
 
     void UpdateUiState()
