@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -18,7 +19,18 @@ public class UIManager : MonoBehaviour
 
             Destroy(gameObject);
 
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);      
+    }
+    private void OnEnable()
+    {       
+
+        Scenemanager.UILevelChanges += UIFindObjectsOnLevelWasLoaded;
+    }
+
+    private void OnDisable()
+    {
+
+        Scenemanager.UILevelChanges += UIFindObjectsOnLevelWasLoaded;
     }
 
     void Start()
@@ -33,12 +45,23 @@ public class UIManager : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("PauseMenuOpen");
             UpdateUiState();
         }
-        
-        if(panel.activeSelf == true && Input.GetButtonDown("Cancel"))
+
+        if (panel != null)
         {
-            UpdateUiState();
+            if (panel.activeSelf == true && Input.GetButtonDown("Cancel"))
+            {
+                UpdateUiState();
+            }
         }
-        
+
+    }
+
+    void UIFindObjectsOnLevelWasLoaded()
+    {
+        Debug.Log("EventUI");
+        panel = GameObject.Find("UIMenu").transform.GetChild(0).gameObject;
+        character = GameObject.Find("Character");
+        menuCam = GameObject.Find("MenuCam").GetComponent<Cinemachine.CinemachineVirtualCamera>();
     }
 
     void UpdateUiState()

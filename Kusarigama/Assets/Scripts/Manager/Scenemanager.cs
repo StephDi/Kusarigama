@@ -9,6 +9,13 @@ public class Scenemanager : MonoBehaviour
 
     public bool changeLvl = false;
 
+    public delegate void UILevelChange();
+    public static event UILevelChange UILevelChanges;
+    public delegate void DialogueLevelChange();
+    public static event DialogueLevelChange DialogueLevelChanges;
+
+    AsyncOperation operation;
+
     void Awake()
     {
 
@@ -26,12 +33,12 @@ public class Scenemanager : MonoBehaviour
 
     public void LoadLevel(int sceneIndex)
     {
-        StartCoroutine(LoadSynhronously(sceneIndex));
+        StartCoroutine(LoadSynchronously(sceneIndex));
     }
 
-   IEnumerator LoadSynhronously(int sceneIndex)
+   IEnumerator LoadSynchronously(int sceneIndex)
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+        operation = SceneManager.LoadSceneAsync(sceneIndex);
 
         operation.allowSceneActivation = false;
 
@@ -40,10 +47,21 @@ public class Scenemanager : MonoBehaviour
             {
                 if (changeLvl == true)
                 {
+                    changeLvl = false;
                     operation.allowSceneActivation = true;
+                    StartCoroutine(WaitForLevelChanged());
                 }
             }
             yield return null;
         }
+    }
+
+    IEnumerator WaitForLevelChanged()
+    {
+        yield return null;
+        Debug.Log("EventfiredDialogue");
+        UILevelChanges();
+        Debug.Log("EventfiredUI");
+        DialogueLevelChanges();
     }
 }

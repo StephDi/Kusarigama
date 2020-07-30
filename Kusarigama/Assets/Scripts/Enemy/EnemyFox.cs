@@ -44,15 +44,18 @@ public class EnemyFox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (UIManager.instance.panel.activeInHierarchy | DialogueManager.instance.DialogueIsActive) 
+        if (UIManager.instance.panel != null)
         {
-            NmaRemoveTarget();
-        }
-        else
-        {
-            GetDistanceToPlayer();
-            AggroPlayer();
-            EnemyAttack();
+            if (UIManager.instance.panel.activeInHierarchy | DialogueManager.instance.DialogueIsActive)
+            {
+                NmaRemoveTarget();
+            }
+            else
+            {
+                GetDistanceToPlayer();
+                AggroPlayer();
+                EnemyAttack();
+            }
         }
 
     }

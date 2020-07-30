@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+using System;
 
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager instance = null;
 
-    public TMP_Text nameText;
+    public TMP_Text dialogueName;
     public TMP_Text dialogueText;
 
     public TMP_Text tutName;
@@ -20,6 +21,8 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> sentences;
 
     private CharMovement charMovement;
+
+    private GameObject UIDialogue;
 
     public bool DialogueIsActive;
     private void Awake()
@@ -35,8 +38,32 @@ public class DialogueManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         charMovement = FindObjectOfType<CharMovement>();
         sentences = new Queue<string>();
+        UIDialogue = GameObject.Find("UIDialog");
     }
-  
+
+    private void OnEnable()
+    {
+        Scenemanager.DialogueLevelChanges += DialogueFindObjectsOnLevelWasLoaded;
+    }
+
+    private void OnDisable()
+    {
+        Scenemanager.DialogueLevelChanges -= DialogueFindObjectsOnLevelWasLoaded;
+    }
+
+    private void DialogueFindObjectsOnLevelWasLoaded()
+    {
+        Debug.Log("EventDialogue");
+        charMovement = FindObjectOfType<CharMovement>();
+        UIDialogue = GameObject.Find("UIDialog");
+        dialogueWindow = UIDialogue.transform.GetChild(0).gameObject;
+        tutorialWindow = UIDialogue.transform.GetChild(1).gameObject;
+        dialogueName = dialogueWindow.transform.GetChild(1).GetChild(0).GetComponent<TMP_Text>();
+        dialogueText = dialogueWindow.transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>();
+        tutName = tutorialWindow.transform.GetChild(1).GetChild(0).GetComponent<TMP_Text>();
+        tutText = tutorialWindow.transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>();
+    }
+
     private void Update()
     {
         if (Input.GetButtonDown("Jump"))
@@ -48,7 +75,7 @@ public class DialogueManager : MonoBehaviour
     public void StartDialog( Dialogue dialogue)
     {
         DialogueIsActive = true;
-        nameText.text = dialogue.name;
+        dialogueName.text = dialogue.name;
 
         sentences.Clear();
 

@@ -968,7 +968,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4210993085675210}
-  - component: {fileID: 95706399858891980}
   - component: {fileID: 65307186790294768}
   m_Layer: 0
   m_Name: Schaf2 (1)
@@ -996,25 +995,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &95706399858891980
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1626224350885020}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 88953523a49e84f459276de653a08282, type: 3}
-  m_Controller: {fileID: 9100000, guid: fb9d0bfdac0f1d1499c6ef3d453eda1c, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!65 &65307186790294768
 BoxCollider:
   m_ObjectHideFlags: 0
