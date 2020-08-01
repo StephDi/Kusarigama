@@ -14,38 +14,41 @@ public class PullEnemy : MonoBehaviour
 
     public Animator anim;
 
+    private ThrowWeapon throwWeapon;
     void Start()
     {
+        throwWeapon = FindObjectOfType<ThrowWeapon>();
         weaponCollider = GetComponent<BoxCollider>();
     }
 
     void Update()
-    {
-        if (hookEnemy)
+    {     
+        if (hookedObject != null)
         {
-            transform.parent.position = hookedObject.transform.position;
-
-            if (anim.GetBool("pullBack") == true)
-            {            
+            if (anim.GetBool("pullBack"))
+            {
                 PullEnemyToPlayer();
+            }
+            else
+            {
+                EnemyHit();
             }
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    public void EnemyHit()
     {
-        if (other.tag == "Enemy" && anim.GetBool("throwing") == true)
+        weaponCollider.enabled = false;
+        hookedObject.GetComponent<EnemyFox>().nmafuchs.speed = 0f;
+        hookEnemy = true;
+        transform.parent.position = hookedObject.transform.position; 
+        if (!throwWeapon.throwingInput)
         {
-            //PullEnemy   
-            weaponCollider.enabled = false;
-            hookedObject = other.gameObject;
-            hookedObject.GetComponent<EnemyFox>().nmafuchs.speed = 0f;
-            hookEnemy = true;
-            StartCoroutine(PullbackTimer());
+            PullEnemyToPlayer();
         }
         else
         {
-            hookEnemy = false;
+            StartCoroutine(PullbackTimer());
         }
     }
 
@@ -53,20 +56,25 @@ public class PullEnemy : MonoBehaviour
     {
         if (hookedObject != null)
         {
+            throwWeapon.ResetWeapon();
             hookedObject.transform.position = Vector3.Lerp(hookedObject.transform.position, character.position + new Vector3(0,1,0), 0.1f);
             float dist = Vector3.Distance(hookedObject.transform.position, character.position);
             if (dist < 4f)
             {
                 hookEnemy = false;
+                hookedObject = null;
             }
         }
     }
 
-    IEnumerator PullbackTimer()
+    public IEnumerator PullbackTimer()
     {
         yield return new WaitForSeconds(pullBackTime);
-        PullEnemyToPlayer();
-        hookedObject.GetComponent<EnemyFox>().nmafuchs.speed = 4f;
-        anim.SetBool("pullBack",true);
+        if (hookedObject != null)
+        {
+            PullEnemyToPlayer();
+            hookedObject.GetComponent<EnemyFox>().nmafuchs.speed = 4f;
+            anim.SetBool("pullBack",true);
+        }
     }
 }

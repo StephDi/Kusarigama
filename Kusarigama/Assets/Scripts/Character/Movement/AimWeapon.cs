@@ -27,7 +27,7 @@ public class AimWeapon : MonoBehaviour
     public CharMovement charMovement;
     private float camSwitchTime;
     bool LockOnWasActive;
-    private float CrosshairSpeed = 50f;
+    [SerializeField]private float CrosshairSpeed = 50f;
 
     // Start is called before the first frame update
     void Start()
