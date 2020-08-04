@@ -37,8 +37,8 @@ public class PullToAnchor : MonoBehaviour
         }
         if (state == GrappleState.HIT)
         {
-            Debug.Log("HitAnchor");         
-            transform.position = hookedObject.transform.position;
+              
+            transform.parent.position = hookedObject.transform.position;
 
             if (hangingposition != null)
             {
@@ -80,16 +80,8 @@ public class PullToAnchor : MonoBehaviour
             characterRb.isKinematic = false;
             hookedObject = null;
             hangingposition = null;
+            throwWeapon.ResetWeapon();
             state = GrappleState.NONE;
         }
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Anchor")
-        {
-            state = GrappleState.HIT;
-            hookedObject = other.gameObject;  
-        }
-    }
+    }   
 }

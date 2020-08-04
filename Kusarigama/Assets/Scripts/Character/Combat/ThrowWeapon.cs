@@ -18,7 +18,7 @@ public class ThrowWeapon : MonoBehaviour
     public float raycastLength;
 
     public PullEnemy pullEnemy;
-    public PullToAnchor PullToAnchor;
+    public PullToAnchor pullToAnchor;
     [SerializeField] private RaycastHit hit;
     [SerializeField] private LayerMask layerMask;
     private AimWeapon aimWeapon;
@@ -28,7 +28,7 @@ public class ThrowWeapon : MonoBehaviour
     {
         aimWeapon = FindObjectOfType<AimWeapon>();
         pullEnemy = FindObjectOfType<PullEnemy>();
-        PullToAnchor = FindObjectOfType<PullToAnchor>();
+        pullToAnchor = FindObjectOfType<PullToAnchor>();
     }
 
     void Update()
@@ -78,7 +78,6 @@ public class ThrowWeapon : MonoBehaviour
         anim.SetBool("throwing",false);
         anim.SetBool("pullBack",false);
         pullEnemy.hookEnemy = false;
-        AudioManager.instance.Play("PullChainBack");
     }
 
     //void ThrowWeaponForward()
@@ -97,13 +96,26 @@ public class ThrowWeapon : MonoBehaviour
     {
         Debug.DrawRay(weaponPoint.position,aimingTarget.position - weaponPoint.position);
         raycastLength = Vector3.Distance(weaponPoint.position,weapon.position);
-        Physics.Raycast(weaponPoint.position, aimingTarget.position - weaponPoint.position,out hit, raycastLength, layerMask);
-        if (hit.collider != null)
+        RaycastHit[] hits = Physics.RaycastAll(weaponPoint.position, aimingTarget.position - weaponPoint.position, raycastLength, layerMask);
+        for (int i = 0; i < hits.Length; i++)
         {
-            if (hit.collider.CompareTag("Enemy"))
+            if (hits[i].collider != null)
             {
-                Debug.Log(hit.collider);
-                pullEnemy.hookedObject = hit.collider.gameObject;
+                if (hits[i].collider.CompareTag("Enemy"))
+                {
+                    Debug.Log("Enemyhit");
+                    pullEnemy.hookedObject = hits[i].collider.gameObject;
+                }
+                if (hits[i].collider.CompareTag("Anchor"))
+                {
+                    Debug.Log("Anchorhit");
+                    pullToAnchor.state = GrappleState.HIT;
+                    if (hits[i].collider != pullToAnchor.hookedObject)
+                    {
+                        pullToAnchor.hookedObject = hits[i].collider.gameObject;
+                        pullToAnchor.hookedObject.layer = 2;
+                    }
+                }
             }
         }
         weapon.SetParent(null);
