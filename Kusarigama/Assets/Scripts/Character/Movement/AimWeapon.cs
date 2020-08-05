@@ -20,8 +20,8 @@ public class AimWeapon : MonoBehaviour
     //Clamprestrictions
     float minClampLeftRight = -15f;
     float maxClampLeftRight = 15f;
-    float minClampUpDown = -30f;
-    float maxClampUpDown = 30f;
+    float minClampUpDown = -45f;
+    float maxClampUpDown = 45f;
     //other
     public bool aiming;
     public CharMovement charMovement;

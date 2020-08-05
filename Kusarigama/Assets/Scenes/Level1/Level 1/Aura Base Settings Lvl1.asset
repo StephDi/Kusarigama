@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Aura Base Settings Lvl1
   m_EditorClassIdentifier: 
   useDensity: 1
-  density: 0.02
+  density: 0.04
   useScattering: 1
   scattering: 0.4
   useAmbientLighting: 1
-  ambientLightingStrength: 1
+  ambientLightingStrength: 0.13
   useColor: 1
-  color: {r: 0.5, g: 0.5, b: 0.0000005066395, a: 1}
+  color: {r: 0.5, g: 0.35167778, b: 0.05931747, a: 1}
   colorStrength: 0.5
-  useTint: 1
-  tint: {r: 0.999999, g: 0.7957096, b: 0.0000010132779, a: 1}
+  useTint: 0
+  tint: {r: 0.999999, g: 0.99614924, b: 0.93740267, a: 1}
   tintStrength: 1
   useExtinction: 1
-  extinction: 0.7
+  extinction: 0.647

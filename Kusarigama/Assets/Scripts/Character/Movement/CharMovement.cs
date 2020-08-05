@@ -103,6 +103,7 @@ public class CharMovement : MonoBehaviour {
             {
                 anim.SetBool("jump", true);
                 anim.SetBool("grounded",false);
+                Jump();
             }
         }     
         else if (!canJump())
@@ -183,13 +184,13 @@ public class CharMovement : MonoBehaviour {
             {
                 //Turn left
                 Quaternion deltaRotation = Quaternion.Euler(turnVector);
-                character.MoveRotation(Quaternion.Slerp(character.rotation, character.rotation * deltaRotation, 0.20f));
+                character.MoveRotation(Quaternion.Slerp(character.rotation, character.rotation * deltaRotation, 0.40f));
             }
             if (aimWeapon.leftRight < -14f)
             {
                 //Turn right
                 Quaternion deltaRotation = Quaternion.Euler(turnVector);
-                character.MoveRotation(Quaternion.Slerp(character.rotation, character.rotation * deltaRotation, 0.20f));
+                character.MoveRotation(Quaternion.Slerp(character.rotation, character.rotation * deltaRotation, 0.40f));
             }
         }
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum WeaponState {NONE, MELEE, MELEECHAIN, MELEECHAINGHOST}
+public enum WeaponState {NONE, MELEE, MELEECHAIN, MELEEGHOST, MELEECHAINGHOST}
 
 public class GetWeaponUpgrades : MonoBehaviour
 {
@@ -77,11 +77,17 @@ public class GetWeaponUpgrades : MonoBehaviour
                 throwWeapon.enabled = true;
                 break;
 
-            case WeaponState.MELEECHAINGHOST:
+            case WeaponState.MELEEGHOST:
                 if (kusarigamaGhostCollectable != null)
                 {
                     kusarigamaGhostCollectable.SetActive(false);
                 }
+                kusarigamaGhost.SetActive(true);
+                meleeCombat.enabled = true;
+                rangedCombatGhost.enabled = true;
+                break;
+
+            case WeaponState.MELEECHAINGHOST:
                 kusarigama.SetActive(true);
                 kusarigamaGhost.SetActive(true);
                 meleeCombat.enabled = true;
@@ -103,12 +109,26 @@ public class GetWeaponUpgrades : MonoBehaviour
 
         if (other.tag == "ChainUpgrade")
         {
-            weaponState = WeaponState.MELEECHAIN;
+            if (weaponState == WeaponState.MELEE)
+            {
+                weaponState = WeaponState.MELEECHAIN;
+            }
+            else
+            {
+                weaponState = WeaponState.MELEECHAINGHOST;
+            }
             GetWeaponState();
         }
         if (other.tag == "GhostUpgrade")
         {
-            weaponState = WeaponState.MELEECHAINGHOST;
+            if (weaponState == WeaponState.MELEE)
+            {
+                weaponState = WeaponState.MELEEGHOST;
+            }
+            else
+            {
+                weaponState = WeaponState.MELEECHAINGHOST;
+            }
             GetWeaponState();
         }
     }
