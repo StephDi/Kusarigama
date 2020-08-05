@@ -14,6 +14,7 @@ public class PullToAnchor : MonoBehaviour
     public GameObject hangingPoint;
 
     public GameObject hookedObject;
+    public GameObject lastHookedObject;
     public GameObject hangingposition;
     public ThrowWeapon throwWeapon;
 
@@ -52,6 +53,10 @@ public class PullToAnchor : MonoBehaviour
         }
         if (state == GrappleState.PULLING)
         {
+            if(lastHookedObject != null)
+            {
+                lastHookedObject.layer = 10;
+            }
             characterRb.isKinematic = true;
             float dist = Vector3.Distance(hookedObject.transform.position, hangingPoint.transform.position);
             if (dist > 2f) 
@@ -79,6 +84,7 @@ public class PullToAnchor : MonoBehaviour
             anim.SetBool("hanging", false);
             characterRb.isKinematic = false;
             hookedObject = null;
+            lastHookedObject = null;
             hangingposition = null;
             throwWeapon.ResetWeapon();
             state = GrappleState.NONE;

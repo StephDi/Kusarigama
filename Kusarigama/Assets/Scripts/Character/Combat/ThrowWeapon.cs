@@ -11,9 +11,7 @@ public class ThrowWeapon : MonoBehaviour
     public Transform weaponPoint;
     public Transform character;
 
-    public Animator anim;
-
-    
+    public Animator anim; 
 
     public float raycastLength;
 
@@ -80,46 +78,34 @@ public class ThrowWeapon : MonoBehaviour
         pullEnemy.hookEnemy = false;
     }
 
-    //void ThrowWeaponForward()
-    //{
-    //    Debug.Log("Throw");      
-    //    anim.SetBool("throwing",true);
-    //    weapon.SetParent(null);
-    //    if (PullToAnchor.state != GrappleState.HIT) 
-    //    {
-    //        weapon.position = Vector3.Lerp(weapon.position, aimingTarget.position, 0.1f);
-    //        weapon.rotation = character.rotation;
-    //    }
-    //} 
-
     void ThrowWeaponWithRaycast()
     {
-        Debug.DrawRay(weaponPoint.position,aimingTarget.position - weaponPoint.position);
-        raycastLength = Vector3.Distance(weaponPoint.position,weapon.position);
-        RaycastHit[] hits = Physics.RaycastAll(weaponPoint.position, aimingTarget.position - weaponPoint.position, raycastLength, layerMask);
-        for (int i = 0; i < hits.Length; i++)
+        Debug.DrawRay(weaponPoint.position, aimingTarget.position - weaponPoint.position);
+        raycastLength = Vector3.Distance(weaponPoint.position, weapon.position);
+        Physics.Raycast(weaponPoint.position, aimingTarget.position - weaponPoint.position,out hit, raycastLength, layerMask);
+
+        if (hit.collider != null)
         {
-            if (hits[i].collider != null)
+            if (hit.collider.CompareTag("Enemy"))
             {
-                if (hits[i].collider.CompareTag("Enemy"))
+                Debug.Log("Enemyhit");
+                pullEnemy.hookedObject = hit.collider.gameObject;
+            }
+            if (hit.collider.CompareTag("Anchor"))
+            {
+                Debug.Log("Anchorhit");
+                pullToAnchor.state = GrappleState.HIT;
+                if (hit.collider != pullToAnchor.hookedObject)
                 {
-                    Debug.Log("Enemyhit");
-                    pullEnemy.hookedObject = hits[i].collider.gameObject;
-                }
-                if (hits[i].collider.CompareTag("Anchor"))
-                {
-                    Debug.Log("Anchorhit");
-                    pullToAnchor.state = GrappleState.HIT;
-                    if (hits[i].collider != pullToAnchor.hookedObject)
-                    {
-                        pullToAnchor.hookedObject = hits[i].collider.gameObject;
-                        pullToAnchor.hookedObject.layer = 2;
-                    }
+                    pullToAnchor.lastHookedObject = pullToAnchor.hookedObject;
+                    pullToAnchor.hookedObject = hit.collider.gameObject;
+                    pullToAnchor.hookedObject.layer = 2;
                 }
             }
         }
+
         weapon.SetParent(null);
-        anim.SetBool("throwing",true);
+        anim.SetBool("throwing", true);
         StartCoroutine(ThrowOut());
 
     }
