@@ -12,6 +12,7 @@ public class RangedCombat : MonoBehaviour
     public Transform Weapon;
     public Collider weaponCollider;
     public Transform WeaponPoint;
+    [SerializeField] private float rangedCombatRange;
     //Rotation
     public Transform RangedCombatRotation;
     public Transform RangedCombatRotationGoal;
@@ -29,7 +30,7 @@ public class RangedCombat : MonoBehaviour
 
         if (rotate == true)
         {
-            RangedCombatRotation.localRotation = Quaternion.Slerp(RangedCombatRotation.localRotation, RangedCombatRotationGoal.localRotation, 0.1f);
+            RangedCombatRotation.localRotation = Quaternion.Slerp(RangedCombatRotation.localRotation, RangedCombatRotationGoal.localRotation, 0.15f);
         }
     }
 
@@ -38,7 +39,7 @@ public class RangedCombat : MonoBehaviour
         Weapon.SetParent(RangedCombatRotation);
         RangedCombatRotation.localRotation = Quaternion.Euler(0, 45f, 0);
         RangedCombatRotationGoal.localRotation = Quaternion.Euler(0, -45f, 0);
-        Weapon.localPosition = new Vector3(0, 1f, 3f);
+        Weapon.localPosition = new Vector3(0, 1f, rangedCombatRange);
         Weapon.rotation = RangedCombatRotation.rotation * Quaternion.Euler(0, 0, -90f);
         rotate = true;
     }
@@ -57,7 +58,7 @@ public class RangedCombat : MonoBehaviour
         Weapon.SetParent(RangedCombatRotation);
         RangedCombatRotation.localRotation = Quaternion.Euler(0, -45f, 0);
         RangedCombatRotationGoal.localRotation = Quaternion.Euler(0, 45f, 0);
-        Weapon.localPosition = new Vector3(0, 1f, 3f);
+        Weapon.localPosition = new Vector3(0, 1f, rangedCombatRange);
         Weapon.rotation = RangedCombatRotation.rotation * Quaternion.Euler(0, 0, 90f);
         rotate = true;
     }

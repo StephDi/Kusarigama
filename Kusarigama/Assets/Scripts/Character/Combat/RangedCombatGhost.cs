@@ -15,6 +15,7 @@ public class RangedCombatGhost : MonoBehaviour
     public Transform GhostWeapon;
     public Collider weaponCollider;
     public Transform WeaponPointGhost;
+    [SerializeField] private float rangedWeaponRangeGhost;
     //Rotation
     public Transform RangedCombatRotation;
     public Transform RangedCombatRotationGoal;
@@ -47,7 +48,7 @@ public class RangedCombatGhost : MonoBehaviour
         GhostWeapon.SetParent(RangedCombatRotation);
         RangedCombatRotation.localRotation = Quaternion.Euler(0,45f,0);
         RangedCombatRotationGoal.localRotation = Quaternion.Euler(0,-45f,0);
-        GhostWeapon.localPosition = new Vector3(0,1f,3f);
+        GhostWeapon.localPosition = new Vector3(0,1f,rangedWeaponRangeGhost);
         rotate = true;
     }
 

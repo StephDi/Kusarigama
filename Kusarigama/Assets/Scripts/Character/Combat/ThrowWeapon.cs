@@ -21,6 +21,7 @@ public class ThrowWeapon : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
     private AimWeapon aimWeapon;
     public bool throwingInput;
+    private bool weaponIsFlying = false;
 
     private void Start()
     {
@@ -32,7 +33,7 @@ public class ThrowWeapon : MonoBehaviour
     void Update()
     {
 
-        if (!aimWeapon.aiming)
+        if (!aimWeapon.aiming && weaponIsFlying)
         {
             ResetWeapon();
             weapon.position = weaponPoint.position;
@@ -51,10 +52,11 @@ public class ThrowWeapon : MonoBehaviour
 
         if (throwingInput && aimWeapon.aiming)
         {
+            weaponIsFlying = true;
             ThrowWeaponWithRaycast();
         }
             
-        if (!throwingInput)
+        if (!throwingInput && weaponIsFlying)
         {
             ResetWeapon();
             anim.SetBool("pullBack",true);          
@@ -70,6 +72,7 @@ public class ThrowWeapon : MonoBehaviour
         {
             weapon.SetParent(weaponPoint);
             weapon.position = weaponPoint.position;
+            weaponIsFlying = false;
         }
         
         weaponCollider.enabled = false;

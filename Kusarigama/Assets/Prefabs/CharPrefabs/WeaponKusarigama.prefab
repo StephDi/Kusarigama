@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &331322031
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 331322032}
+  - component: {fileID: 331322033}
+  m_Layer: 0
+  m_Name: RangedHitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &331322032
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331322031}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5507151530475772491}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &331322033
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331322031}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.07, y: 0.10689597, z: 0.052422263}
+  m_Center: {x: 0, y: -0.0300829, z: -0.017478378}
 --- !u!1 &5507151530476062315
 GameObject:
   m_ObjectHideFlags: 0
@@ -35,6 +79,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0.0028}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 331322032}
   - {fileID: 5507151531874936079}
   m_Father: {fileID: 5507151532301321220}
   m_RootOrder: 0
@@ -113,8 +158,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.06622014, y: 0.0876119, z: 0.0077792485}
-  m_Center: {x: 0.0001536567, y: -0.028068509, z: 0.0021743444}
+  m_Size: {x: 0.06622014, y: 0.0876119, z: 0.014899946}
+  m_Center: {x: 0.0001536567, y: -0.028068509, z: -0.0013860048}
 --- !u!114 &2308602002962265943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +228,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   hangingPoint: {fileID: 0}
   hookedObject: {fileID: 0}
+  lastHookedObject: {fileID: 0}
   hangingposition: {fileID: 0}
   throwWeapon: {fileID: 0}
   throwValue: 0
@@ -480,7 +526,7 @@ PrefabInstance:
     - target: {fileID: 1754765628335912143, guid: 3e983325363bd23418c13a2bb40dbe1c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1754765628335912143, guid: 3e983325363bd23418c13a2bb40dbe1c,
         type: 3}

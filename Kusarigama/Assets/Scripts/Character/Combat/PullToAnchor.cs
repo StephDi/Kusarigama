@@ -81,6 +81,10 @@ public class PullToAnchor : MonoBehaviour
         }
         if (state == GrappleState.LETGO)
         {
+            if (hookedObject != null)
+            {
+                hookedObject.layer = 10;
+            }
             anim.SetBool("hanging", false);
             characterRb.isKinematic = false;
             hookedObject = null;

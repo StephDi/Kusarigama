@@ -88,6 +88,14 @@ public class GetWeaponUpgrades : MonoBehaviour
                 break;
 
             case WeaponState.MELEECHAINGHOST:
+                if (kusarigamaGhostCollectable != null)
+                {
+                    kusarigamaGhostCollectable.SetActive(false);
+                }
+                if (ChainCollectable != null)
+                {
+                    ChainCollectable.SetActive(false);
+                }
                 kusarigama.SetActive(true);
                 kusarigamaGhost.SetActive(true);
                 meleeCombat.enabled = true;

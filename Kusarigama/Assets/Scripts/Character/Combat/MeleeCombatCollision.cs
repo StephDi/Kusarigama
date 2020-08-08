@@ -5,7 +5,7 @@ using UnityEngine;
 public class MeleeCombatCollision : MonoBehaviour
 {
 
-    public BoxCollider weaponCollider;
+    private BoxCollider weaponCollider;
 
     void Start()
     {
