@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 5507151530489847430}
   - component: {fileID: 2308602002644658507}
   - component: {fileID: 2308602002962265943}
+  - component: {fileID: 3715834441313498157}
   - component: {fileID: 2308602002644658504}
   - component: {fileID: 5507151530489847431}
   - component: {fileID: 5507151530476062312}
@@ -178,6 +179,18 @@ MonoBehaviour:
   Stone4: 0
   anim: {fileID: 0}
   emissionColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &3715834441313498157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5507151530476062315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb2aeb1f22685194d8fdbd02cc12378e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2308602002644658504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,7 +203,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13283fbf4148c0448326dae19f58de2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponCollider: {fileID: 2308602002644658507}
 --- !u!114 &5507151530489847431
 MonoBehaviour:
   m_ObjectHideFlags: 0

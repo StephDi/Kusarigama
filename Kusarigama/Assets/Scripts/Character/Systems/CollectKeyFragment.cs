@@ -7,6 +7,7 @@ public class CollectKeyFragment : MonoBehaviour
 {
     [SerializeField] private List<KeyFragment.KeyType> keyList;
     [SerializeField] private Image[] keys;
+    [SerializeField] private Image SecretKeyFull;
 
     private void Awake()
     {
@@ -49,6 +50,14 @@ public class CollectKeyFragment : MonoBehaviour
                 case KeyFragment.KeyType.R2: keys[4].gameObject.SetActive(true); break;
                 case KeyFragment.KeyType.R3: keys[5].gameObject.SetActive(true); break;
             }
+        }
+        if (keyList.Count >= 4)
+        {
+            for (int i = 0; i < keys.Length; i++)
+            {
+                keys[i].gameObject.SetActive(false);
+            }
+            SecretKeyFull.gameObject.SetActive(true);
         }
     }
 }
