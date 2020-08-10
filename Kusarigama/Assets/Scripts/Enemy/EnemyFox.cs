@@ -33,6 +33,7 @@ public class EnemyFox : MonoBehaviour
 
     void Start()
     {
+        character = GameObject.Find("Character").transform;
         foxHealth = GetComponentInChildren<FoxHealth>();
         Attackhitbox = GetComponentsInChildren<BoxCollider>()[1];
         Attackhitbox.enabled = false;

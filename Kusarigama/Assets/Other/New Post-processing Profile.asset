@@ -1513,10 +1513,10 @@ MonoBehaviour:
   active: 1
   enabled:
     overrideState: 1
-    value: 1
+    value: 0
   filtering:
     overrideState: 1
-    value: {x: 50, y: 95}
+    value: {x: 40.29703, y: 85.29695}
   minLuminance:
     overrideState: 1
     value: 0
