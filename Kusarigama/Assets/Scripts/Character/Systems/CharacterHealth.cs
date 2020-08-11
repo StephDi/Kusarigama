@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CharacterHealth : MonoBehaviour
@@ -84,5 +84,13 @@ public class CharacterHealth : MonoBehaviour
         rangedCombatGhost.enabled = false;
         aimWeapon.enabled = false;
         throwWeapon.enabled = false;
+        StartCoroutine(RestartLevel());
+    }
+
+    IEnumerator RestartLevel()
+    {
+        yield return new WaitForSeconds(5);
+        int activeScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(activeScene);
     }
 }
