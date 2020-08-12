@@ -82,6 +82,7 @@ public class GetWeaponUpgrades : MonoBehaviour
                 {
                     kusarigamaGhostCollectable.SetActive(false);
                 }
+                kusarigama.SetActive(true);
                 kusarigamaGhost.SetActive(true);
                 meleeCombat.enabled = true;
                 rangedCombatGhost.enabled = true;
