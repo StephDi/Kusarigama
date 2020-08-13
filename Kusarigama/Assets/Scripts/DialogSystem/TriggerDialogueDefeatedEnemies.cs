@@ -7,7 +7,7 @@ public class TriggerDialogueDefeatedEnemies : MonoBehaviour
     [SerializeField] private List<EnemyFox> foxesToKill;
 
     private DialogueTrigger dialogueTrigger;
-    [SerializeField] private int foxesKilled = 0;
+    private int foxesKilled = 0;
     private int foxesToKillArrayStartLength;
 
     private void Awake()

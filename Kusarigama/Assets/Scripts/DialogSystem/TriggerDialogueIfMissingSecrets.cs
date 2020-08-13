@@ -39,6 +39,7 @@ public class TriggerDialogueIfMissingSecrets : MonoBehaviour
             }
             if (collision.collider.CompareTag("Player") && collectKeyFragment.ContainsKey(KeyFragment.KeyType.L1) && collectKeyFragment.ContainsKey(KeyFragment.KeyType.R2))
             {
+                dialogueTrigger.dialogue.sentences.RemoveAt(1);
                 dialogueTrigger.dialogue.sentences[0] = "Great. Since I have the first two of the key fragments, I can go through.";
                 dialogueTrigger.TriggerDialogue();
                 gotTriggered = true;
