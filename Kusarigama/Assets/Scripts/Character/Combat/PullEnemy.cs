@@ -39,7 +39,14 @@ public class PullEnemy : MonoBehaviour
     public void EnemyHit()
     {
         weaponCollider.enabled = false;
-        hookedObject.GetComponent<EnemyFox>().nmafuchs.speed = 0f;
+        if (hookedObject.TryGetComponent(out EnemyFox enemyFox)) 
+        {
+            enemyFox.nmafuchs.speed = 0f;
+        }
+        if (hookedObject.TryGetComponent(out EnemyBear enemyBear)) 
+        {
+            enemyBear.nmabear.speed = 0f;
+        }
         hookEnemy = true;
         transform.parent.position = hookedObject.transform.position; 
         if (!throwWeapon.throwingInput)
@@ -73,7 +80,14 @@ public class PullEnemy : MonoBehaviour
         if (hookedObject != null)
         {
             PullEnemyToPlayer();
-            hookedObject.GetComponent<EnemyFox>().nmafuchs.speed = 4f;
+            if (hookedObject.TryGetComponent(out EnemyFox enemyFox))
+            {
+                enemyFox.nmafuchs.speed = 4f;
+            }
+            if (hookedObject.TryGetComponent(out EnemyBear enemyBear))
+            {
+                enemyBear.nmabear.speed = 4f;
+            }
             anim.SetBool("pullBack",true);
         }
     }

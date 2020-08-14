@@ -4,44 +4,59 @@ using UnityEngine;
 
 public class TriggerDialogueDefeatedEnemies : MonoBehaviour
 {
-    [SerializeField] private List<EnemyFox> foxesToKill;
+    [SerializeField] private List<GameObject> enemiesToKill;
 
     private DialogueTrigger dialogueTrigger;
-    private int foxesKilled = 0;
+    private int enemiesKilled = 0;
     private int foxesToKillArrayStartLength;
 
     private void Awake()
     {
         dialogueTrigger = GetComponent<DialogueTrigger>();
-        foxesToKillArrayStartLength = foxesToKill.Count;
+        foxesToKillArrayStartLength = enemiesToKill.Count;
     }
 
     private void OnEnable()
     {
         EnemyFox.FoxDies += TestForDialogueTrigger;
+        EnemyBear.BearDies += TestForDialogueTrigger;
     }
 
     private void OnDisable()
     {
         EnemyFox.FoxDies -= TestForDialogueTrigger;
+        EnemyBear.BearDies -= TestForDialogueTrigger;
     }
 
     void TestForDialogueTrigger()
     {
-        if (foxesToKill.Count == 0)
+        if (enemiesToKill.Count == 0)
         {
             return;
         }
-        for (int i = 0; i < foxesToKill.Count; i++)
+        for (int i = 0; i < enemiesToKill.Count; i++)
         {
-            if (foxesToKill[i].isDead)
+            enemiesToKill[i].TryGetComponent(out EnemyFox enemyFox);
+            enemiesToKill[i].TryGetComponent(out EnemyBear enemyBear);
+            if (enemyFox != null) 
             {
-                foxesToKill.RemoveAt(i);
-                foxesKilled++;
+                if (enemyFox.isDead) 
+                {
+                    enemiesToKill.RemoveAt(i);
+                    enemiesKilled++;
+                }
+            }
+            if (enemyBear != null)
+            {
+                if (enemyBear.isDead)
+                {
+                    enemiesToKill.RemoveAt(i);
+                    enemiesKilled++;
+                }
             }
         }
 
-        if (foxesKilled >= foxesToKillArrayStartLength)
+        if (enemiesKilled >= foxesToKillArrayStartLength)
         {
             dialogueTrigger.TriggerDialogue();
         }

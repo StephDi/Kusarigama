@@ -18,6 +18,7 @@ public class EnemyFox : MonoBehaviour
     public bool isDead = false;
 
     public float aggroRange;
+    public float aggroRangeshort;
     public float attackRange;
     public float stunDuration = .5f;
     public float health;
@@ -68,6 +69,11 @@ public class EnemyFox : MonoBehaviour
             NmaSetTarget();
             foxHealth.UpdateUI(health);
         }
+        else if(distanceToPlayer <= aggroRangeshort && !isAttacking && !isDead)
+        {
+            NmaSetTarget();
+            foxHealth.UpdateUI(health);
+        }
         else if (distanceToPlayer >= aggroRange && PlayerIsVisible() || isAttacking)
         {
             NmaRemoveTarget();
@@ -83,7 +89,14 @@ public class EnemyFox : MonoBehaviour
     {
         RaycastHit hit;
         Physics.Raycast(this.transform.position, character.transform.position - this.transform.position, out hit, Mathf.Infinity, playerLayerMask);
-        return hit.collider.CompareTag("Player");
+        if (hit.collider != null)
+        {
+            return hit.collider.CompareTag("Player");
+        }
+        else
+        {
+            return false;
+        }
     }
 
     bool PlayerIsInFront()
@@ -210,8 +223,8 @@ public class EnemyFox : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         Attackhitbox.enabled = true;
         AudioManager.instance.Play("FoxAttack");
-        while (transform.position != attackGoal)
-        {
+        while (Vector3.Distance(transform.position, attackGoal) >= .5f)
+        {          
             transform.position = Vector3.MoveTowards(transform.position,attackGoal, .6f);
             yield return null;
         }

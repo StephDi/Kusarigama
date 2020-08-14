@@ -527,7 +527,7 @@ Transform:
   m_GameObject: {fileID: 1262099960778220}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 0.6, y: 0.59999996, z: 0.6}
   m_Children:
   - {fileID: 5038381779015530999}
   - {fileID: 4449782506906444}
@@ -624,14 +624,16 @@ MonoBehaviour:
   dashGoal: {fileID: 2582726781012037165}
   nmafuchs: {fileID: 1016590289}
   anim: {fileID: 95812597456636098}
+  isDead: 0
   aggroRange: 70
+  aggroRangeshort: 10
   attackRange: 10
+  stunDuration: 0.2
+  health: 30
   attackGoal: {x: 0, y: 0, z: 0}
   playerLayerMask:
     serializedVersion: 2
-    m_Bits: 8193
-  stunDuration: 0.2
-  health: 30
+    m_Bits: 8192
 --- !u!1 &1289069077770126
 GameObject:
   m_ObjectHideFlags: 0
@@ -1859,6 +1861,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1987,6 +1990,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarFill: {fileID: 5871897401637537922}
+  MaxHealth: 30
 --- !u!1 &4672011434861953763
 GameObject:
   m_ObjectHideFlags: 0
@@ -2047,6 +2051,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.5849056, g: 0.06345675, b: 0.06345675, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2150,6 +2155,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []

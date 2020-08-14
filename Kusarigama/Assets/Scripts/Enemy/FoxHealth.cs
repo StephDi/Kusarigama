@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class FoxHealth : MonoBehaviour
 {
-    private Camera mainCamera;
     [SerializeField]private Image healthBarFill;
-
+    [SerializeField] private float MaxHealth;
+    private Camera mainCamera;
 
     private void Start()
     {
@@ -23,6 +23,6 @@ public class FoxHealth : MonoBehaviour
     public void UpdateUI(float health)
     {    
         healthBarFill.transform.parent.GetComponent<Canvas>().enabled = true;
-        healthBarFill.fillAmount = health / 30f;
+        healthBarFill.fillAmount = health / MaxHealth;
     }
 }
