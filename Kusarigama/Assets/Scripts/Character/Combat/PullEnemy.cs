@@ -6,7 +6,7 @@ public class PullEnemy : MonoBehaviour
     public Transform character;
     public Rigidbody rbCharacter;
     public BoxCollider weaponCollider;
-    public GameObject hookedObject;
+    public GameObject hookedObject = null;
     private float pullBackTime = 3f;
 
     public bool hookEnemy = false;

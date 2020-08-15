@@ -207,6 +207,7 @@ public class EnemyFox : MonoBehaviour
     IEnumerator DamageTakenSlow()
     {
         yield return new WaitForSeconds(stunDuration);
+        pullEnemy = FindObjectOfType<PullEnemy>();
         if (!isDead && this.gameObject != pullEnemy.hookedObject)
         {
             nmafuchs.speed = 4f;

@@ -134,10 +134,13 @@ public class DialogueManager : MonoBehaviour
 
     private void EndDialogue()
     {
-        DialogueIsActive = false;
-        charMovement.enabled = true;
-        dialogueWindow.SetActive(false);
-        tutorialWindow.SetActive(false);
-        Debug.Log("End");
+        if (DialogueIsActive == true)
+        {
+            DialogueIsActive = false;
+            charMovement.enabled = true;
+            dialogueWindow.SetActive(false);
+            tutorialWindow.SetActive(false);
+            Debug.Log("End");
+        }
     }
 }

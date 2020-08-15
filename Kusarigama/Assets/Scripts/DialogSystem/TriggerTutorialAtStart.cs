@@ -7,7 +7,7 @@ public class TriggerTutorialAtStart : MonoBehaviour
 
     private DialogueTrigger dialogueTrigger;
     // Start is called before the first frame update
-    void Start()
+    public void StartTutorial()
     {
         dialogueTrigger = GetComponent<DialogueTrigger>();
         dialogueTrigger.TriggerDialogue();

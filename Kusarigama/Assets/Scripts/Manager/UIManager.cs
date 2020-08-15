@@ -1,4 +1,7 @@
 ﻿using UnityEngine;
+using System.Collections;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
@@ -7,7 +10,13 @@ public class UIManager : MonoBehaviour
 
     public GameObject panel;
     public GameObject character;
+    public GameObject continueButton;
+    public GameObject startButton;
     public Cinemachine.CinemachineVirtualCamera menuCam;
+    public bool menuIsActive;
+
+    private bool gameStarted = false;
+    private TriggerTutorialAtStart triggerTutorialAtStart;
 
     void Awake()
     {
@@ -35,25 +44,46 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        panel.SetActive(false);    
+        panel.SetActive(true);
+        continueButton = GameObject.Find("ContinueButton");
+        startButton = GameObject.Find("StartButton");
+        panel.SetActive(false);
+        panel = GameObject.Find("UIMenu").transform.GetChild(0).gameObject;
+        character = GameObject.Find("Character");
+        menuCam = GameObject.Find("MenuCam").GetComponent<Cinemachine.CinemachineVirtualCamera>();
+        if(GameObject.Find("TutorialTriggerMovement").TryGetComponent(out TriggerTutorialAtStart TutorialAtStart))
+        {
+            triggerTutorialAtStart = TutorialAtStart;   
+        }
+
+        if (SceneManager.GetActiveScene().buildIndex == 0 && gameStarted == false)
+        {
+            continueButton.SetActive(false);
+            startButton.SetActive(true);
+            OpenStartUiMenu();
+        }
     }
 
     void Update()
     {
-        if (Input.GetButtonDown("Exit"))
+        if (!panel.activeSelf && !DialogueManager.instance.DialogueIsActive)
         {
-            FindObjectOfType<AudioManager>().Play("PauseMenuOpen");
-            UpdateUiState();
-        }
-
-        if (panel != null)
-        {
-            if (panel.activeSelf == true && Input.GetButtonDown("Cancel"))
+            if (Input.GetButtonDown("Exit"))
             {
-                UpdateUiState();
+
+                continueButton.SetActive(true);
+                startButton.SetActive(false);
+                OpenUiMenu();
+                FindObjectOfType<AudioManager>().Play("PauseMenuOpen");
             }
         }
-
+        else
+        {
+            if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Exit"))
+            {
+                CloseUiMenu();
+            }
+        }
     }
 
     void UIFindObjectsOnLevelWasLoaded()
@@ -62,12 +92,68 @@ public class UIManager : MonoBehaviour
         panel = GameObject.Find("UIMenu").transform.GetChild(0).gameObject;
         character = GameObject.Find("Character");
         menuCam = GameObject.Find("MenuCam").GetComponent<Cinemachine.CinemachineVirtualCamera>();
+        panel.SetActive(true);
+        continueButton = GameObject.Find("ContinueButton");
+        panel.SetActive(false);
     }
 
-    void UpdateUiState()
+    void OpenStartUiMenu()
     {
-        panel.SetActive(!panel.activeInHierarchy);
-        character.GetComponent<CharMovement>().enabled = !character.GetComponent<CharMovement>().enabled;
-        menuCam.enabled = !menuCam.enabled;
+        panel.SetActive(true);
+        character.GetComponent<CharMovement>().enabled = false;
+        character.GetComponent<MeleeCombat>().enabled = false;
+        EventSystem.current.SetSelectedGameObject(null);
+        startButton.GetComponent<Button>().Select();
+        menuCam.enabled = true;
+        menuIsActive = true;
+    }
+
+    void OpenUiMenu()
+    {
+        panel.SetActive(true);
+        character.GetComponent<CharMovement>().enabled = false;
+        character.GetComponent<MeleeCombat>().enabled = false;
+        EventSystem.current.SetSelectedGameObject(null);
+        continueButton.GetComponent<Button>().Select();
+        menuCam.enabled = true;
+        menuIsActive = true;
+    }
+
+    void CloseUiMenu()
+    {
+        panel.SetActive(false);
+        character.GetComponent<CharMovement>().enabled = true;
+        character.GetComponent<MeleeCombat>().enabled = true;
+        menuCam.enabled = false;
+        menuIsActive = false;
+    }
+
+    public void StartButton()
+    {
+        gameStarted = true;
+        Debug.Log("Start");
+        if (triggerTutorialAtStart != null)
+        {
+            CloseUiMenu();
+            StartCoroutine(StartGameAfterTime());
+        }
+
+    }
+
+    public void Continue()
+    {
+        CloseUiMenu();
+    }
+
+    public void Exit()
+    {
+        Debug.Log("Exit Game");
+        Application.Quit();
+    }
+
+    public IEnumerator StartGameAfterTime()
+    {
+        yield return new WaitForSeconds(1f);
+        triggerTutorialAtStart.StartTutorial();
     }
 }
