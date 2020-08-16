@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OpenDoorToLastRoom : MonoBehaviour
 {
-    private DialogueTrigger dialogueTrigger;
+    //private DialogueTrigger dialogueTrigger;
     private CollectKeyFragment collectKeyFragment;
     private bool gotTriggered;
 
@@ -12,7 +12,7 @@ public class OpenDoorToLastRoom : MonoBehaviour
 
     private void Awake()
     {
-        dialogueTrigger = GetComponent<DialogueTrigger>();
+        //dialogueTrigger = GetComponent<DialogueTrigger>();
         collectKeyFragment = FindObjectOfType<CollectKeyFragment>();
         gotTriggered = false;
     }
@@ -29,8 +29,8 @@ public class OpenDoorToLastRoom : MonoBehaviour
                                                && collectKeyFragment.ContainsKey(KeyFragment.KeyType.R3))
                 {
                     //dialogueTrigger.dialogue.sentences.RemoveAt(1);
-                    dialogueTrigger.dialogue.sentences[0] = "Done";
-                    dialogueTrigger.TriggerDialogue();
+                    //dialogueTrigger.dialogue.sentences[0] = "Done";
+                    //dialogueTrigger.TriggerDialogue();
                     anim.SetBool("openDoor",true);
                     gotTriggered = true;
                 }
