@@ -841,7 +841,7 @@ Transform:
   m_GameObject: {fileID: 3632447866105940309}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -4.313193, y: 1.6208726, z: 3.0220544}
-  m_LocalScale: {x: 0.46996433, y: 0.47003165, z: 0.46996447}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1009852303290640239}
   m_RootOrder: 5
@@ -1597,6 +1597,7 @@ GameObject:
   - component: {fileID: 815100353}
   - component: {fileID: 815100338}
   - component: {fileID: 3274539086941679570}
+  - component: {fileID: 7785928243892796748}
   m_Layer: 13
   m_Name: Character
   m_TagString: Player
@@ -1703,7 +1704,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 7735
-  maxGroundAngle: 150
+  maxGroundAngle: 145
   groundAngle: 0
 --- !u!114 &5116530058965162441
 MonoBehaviour:
@@ -1739,6 +1740,7 @@ MonoBehaviour:
   GhostWeapon: {fileID: 0}
   weaponCollider: {fileID: 0}
   WeaponPointGhost: {fileID: 6091324233415700046}
+  rangedWeaponRangeGhost: 4.5
   RangedCombatRotation: {fileID: 7984622509986367615}
   RangedCombatRotationGoal: {fileID: 2457115895274068335}
 --- !u!114 &7234339940797395148
@@ -1758,6 +1760,7 @@ MonoBehaviour:
   Weapon: {fileID: 0}
   weaponCollider: {fileID: 0}
   WeaponPoint: {fileID: 6091324232079492140}
+  rangedCombatRange: 4.5
   RangedCombatRotation: {fileID: 7984622509986367615}
   RangedCombatRotationGoal: {fileID: 2457115895274068335}
 --- !u!114 &1372734642995421942
@@ -1778,10 +1781,13 @@ MonoBehaviour:
   weaponPoint: {fileID: 6091324232079492140}
   character: {fileID: 1009852303290640239}
   anim: {fileID: 6091324232558668061}
-  throwValue: 0
-  weaponIsFlying: 0
+  raycastLength: 0
   pullEnemy: {fileID: 0}
-  PullToAnchor: {fileID: 0}
+  pullToAnchor: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 16179
+  throwingInput: 0
 --- !u!114 &3926593192303815143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1804,6 +1810,7 @@ MonoBehaviour:
   leftRight: 0
   aiming: 0
   charMovement: {fileID: 0}
+  CrosshairSpeed: 50
 --- !u!114 &2320451585448913486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1830,7 +1837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16d727918a518d54d9c459eca08564ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponState: 3
+  weaponState: 4
   kusarigama: {fileID: 0}
   kusarigamaGhost: {fileID: 0}
   kusarigamaCollectable: {fileID: 0}
@@ -1896,6 +1903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+  maxHealth: 0
   HealthbarImage: {fileID: 0}
   anim: {fileID: 0}
   playerCollider: {fileID: 0}
@@ -2008,7 +2016,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyList: 
-  keys: []
+  keys:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  SecretKeyFull: {fileID: 0}
+--- !u!114 &7785928243892796748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6091324232558668055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d98f2e0b1fb8e940ba7f5afedad188c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6309573394431969615
 GameObject:
   m_ObjectHideFlags: 0
@@ -2215,7 +2242,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6964678647758961033}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.04, z: 6.66}
+  m_LocalPosition: {x: 0, y: 0.981, z: 12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6470559027179722322}

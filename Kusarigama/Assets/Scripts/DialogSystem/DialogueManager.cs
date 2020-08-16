@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
-using System;
+
 
 public class DialogueManager : MonoBehaviour
 {
@@ -140,7 +139,7 @@ public class DialogueManager : MonoBehaviour
             charMovement.enabled = true;
             dialogueWindow.SetActive(false);
             tutorialWindow.SetActive(false);
-            Debug.Log("End");
+            Debug.Log("EndDialogue");
         }
     }
 }

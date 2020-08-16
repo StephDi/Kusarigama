@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CharacterHealth : MonoBehaviour
 {
     public float health;
+    public float maxHealth;
     [SerializeField] private Image HealthbarImage;
     [SerializeField] private Animator anim;
     [SerializeField] private CapsuleCollider playerCollider;
@@ -38,7 +39,8 @@ public class CharacterHealth : MonoBehaviour
 
     void Start()
     {
-        health = 100f;    
+        health = 100f;
+        maxHealth = health;
     }
 
     void OnDisable()
@@ -53,7 +55,7 @@ public class CharacterHealth : MonoBehaviour
         {
            
             health -= 10f;
-            HealthbarImage.fillAmount = health / 100f;
+            HealthbarImage.fillAmount = health / maxHealth;
             anim.SetTrigger("damageTaken");
             FindObjectOfType<AudioManager>().Play("CharacterHit");
             if (health <= 0f)

@@ -8,15 +8,20 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance = null;
 
+    public GameObject playerUi;
     public GameObject panel;
+    public GameObject endOfGamePanel;
     public GameObject character;
     public GameObject continueButton;
     public GameObject startButton;
+    public GameObject backToMainMenuButton;
+    public GameObject toolsPanel;
     public Cinemachine.CinemachineVirtualCamera menuCam;
     public bool menuIsActive;
 
     private bool gameStarted = false;
     private TriggerTutorialAtStart triggerTutorialAtStart;
+    private GameObject triggerTutorialAtStartObject;
 
     void Awake()
     {
@@ -44,16 +49,32 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        panel.SetActive(true);
-        continueButton = GameObject.Find("ContinueButton");
-        startButton = GameObject.Find("StartButton");
-        panel.SetActive(false);
+        playerUi = GameObject.Find("UIPlayer");
         panel = GameObject.Find("UIMenu").transform.GetChild(0).gameObject;
+        endOfGamePanel = GameObject.Find("UIMenu").transform.GetChild(1).gameObject ;
         character = GameObject.Find("Character");
         menuCam = GameObject.Find("MenuCam").GetComponent<Cinemachine.CinemachineVirtualCamera>();
-        if(GameObject.Find("TutorialTriggerMovement").TryGetComponent(out TriggerTutorialAtStart TutorialAtStart))
+        triggerTutorialAtStartObject = GameObject.Find("TutorialTriggerMovement");
+        panel.SetActive(true);
+        endOfGamePanel.SetActive(true);
+        for (int i = 0; i < panel.transform.childCount; i++)
         {
-            triggerTutorialAtStart = TutorialAtStart;   
+            panel.transform.GetChild(i).gameObject.SetActive(true);
+        }       
+        continueButton = GameObject.Find("ContinueButton");
+        startButton = GameObject.Find("StartButton");
+        backToMainMenuButton = GameObject.Find("BackToMainMenuButton");
+        toolsPanel = GameObject.Find("ToolsPanel");
+        toolsPanel.SetActive(false);
+        endOfGamePanel.SetActive(false);
+        panel.SetActive(false);
+
+        if (triggerTutorialAtStartObject != null)
+        {
+            if (triggerTutorialAtStartObject.TryGetComponent(out TriggerTutorialAtStart TutorialAtStart))
+            {
+                triggerTutorialAtStart = TutorialAtStart;
+            }
         }
 
         if (SceneManager.GetActiveScene().buildIndex == 0 && gameStarted == false)
@@ -61,6 +82,10 @@ public class UIManager : MonoBehaviour
             continueButton.SetActive(false);
             startButton.SetActive(true);
             OpenStartUiMenu();
+        }
+        else
+        {
+            gameStarted = true;
         }
     }
 
@@ -79,7 +104,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Exit"))
+            if ((Input.GetButtonDown("Cancel") || Input.GetButtonDown("Exit")) && gameStarted)
             {
                 CloseUiMenu();
             }
@@ -89,17 +114,28 @@ public class UIManager : MonoBehaviour
     void UIFindObjectsOnLevelWasLoaded()
     {
         Debug.Log("EventUI");
+        playerUi = GameObject.Find("UIPlayer");
         panel = GameObject.Find("UIMenu").transform.GetChild(0).gameObject;
         character = GameObject.Find("Character");
         menuCam = GameObject.Find("MenuCam").GetComponent<Cinemachine.CinemachineVirtualCamera>();
         panel.SetActive(true);
+        for (int i = 0; i < panel.transform.childCount; i++)
+        {
+            panel.transform.GetChild(i).gameObject.SetActive(true);
+        }
         continueButton = GameObject.Find("ContinueButton");
+        startButton = GameObject.Find("StartButton");
+        toolsPanel = GameObject.Find("ToolsPanel");
+        startButton.SetActive(false);
+        endOfGamePanel.SetActive(false);
+        toolsPanel.SetActive(false);
         panel.SetActive(false);
     }
 
     void OpenStartUiMenu()
     {
         panel.SetActive(true);
+        playerUi.SetActive(false);
         character.GetComponent<CharMovement>().enabled = false;
         character.GetComponent<MeleeCombat>().enabled = false;
         EventSystem.current.SetSelectedGameObject(null);
@@ -111,6 +147,7 @@ public class UIManager : MonoBehaviour
     void OpenUiMenu()
     {
         panel.SetActive(true);
+        playerUi.SetActive(false);
         character.GetComponent<CharMovement>().enabled = false;
         character.GetComponent<MeleeCombat>().enabled = false;
         EventSystem.current.SetSelectedGameObject(null);
@@ -119,9 +156,22 @@ public class UIManager : MonoBehaviour
         menuIsActive = true;
     }
 
+    public void OpenEndMenu()
+    {
+        endOfGamePanel.SetActive(true);
+        playerUi.SetActive(false);
+        character.GetComponent<CharMovement>().enabled = false;
+        character.GetComponent<MeleeCombat>().enabled = false;
+        EventSystem.current.SetSelectedGameObject(null);
+        backToMainMenuButton.GetComponent<Button>().Select();
+        menuCam.enabled = true;
+        menuIsActive = true;
+    }
+
     void CloseUiMenu()
     {
         panel.SetActive(false);
+        playerUi.SetActive(true);
         character.GetComponent<CharMovement>().enabled = true;
         character.GetComponent<MeleeCombat>().enabled = true;
         menuCam.enabled = false;
@@ -143,6 +193,26 @@ public class UIManager : MonoBehaviour
     public void Continue()
     {
         CloseUiMenu();
+    }
+
+    public void ToolsButton()
+    {
+        Debug.Log("OpenToolWindow");
+        if (!toolsPanel.activeSelf)
+        {
+            toolsPanel.SetActive(true);
+        }
+        else
+        {
+            toolsPanel.SetActive(false);
+        }
+    }
+
+    public void BackToMainMenu()
+    {
+        Debug.Log("BackToMainMenu");
+        endOfGamePanel.SetActive(false);
+        SceneManager.LoadScene(0);
     }
 
     public void Exit()
