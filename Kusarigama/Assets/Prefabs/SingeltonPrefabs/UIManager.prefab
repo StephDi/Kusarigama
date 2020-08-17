@@ -212,6 +212,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackToMainMenuButton
       objectReference: {fileID: 0}
+    - target: {fileID: 928685679013241561, guid: 5a04d5e4e27ef00418f6f36ab87c71d3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 967193385330912427, guid: 5a04d5e4e27ef00418f6f36ab87c71d3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -262,10 +267,20 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5373773868366596594}
+    - target: {fileID: 3089203590868183318, guid: 5a04d5e4e27ef00418f6f36ab87c71d3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3449979817673279601, guid: 5a04d5e4e27ef00418f6f36ab87c71d3,
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3516052362940018516, guid: 5a04d5e4e27ef00418f6f36ab87c71d3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 328
       objectReference: {fileID: 0}
     - target: {fileID: 4190971002587490981, guid: 5a04d5e4e27ef00418f6f36ab87c71d3,
         type: 3}
@@ -287,6 +302,16 @@ PrefabInstance:
       propertyPath: m_subTextObjects.Array.data[1]
       value: 
       objectReference: {fileID: 1756489561}
+    - target: {fileID: 4982192887520131847, guid: 5a04d5e4e27ef00418f6f36ab87c71d3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6328468486397884914, guid: 5a04d5e4e27ef00418f6f36ab87c71d3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6503996298962192101, guid: 5a04d5e4e27ef00418f6f36ab87c71d3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

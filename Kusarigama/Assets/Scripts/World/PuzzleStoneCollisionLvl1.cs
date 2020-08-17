@@ -11,12 +11,31 @@ public class PuzzleStoneCollisionLvl1 : MonoBehaviour
 
     [SerializeField] private Color emissionColor;
     private PuzzleStoneCollisionLvl1Ghost puzzleStoneCollisionLvl1Ghost;
+    [SerializeField]private ThrowWeapon throwWeapon;
 
     void Start()
     {
+        throwWeapon = FindObjectOfType<ThrowWeapon>();
         puzzleStoneCollisionLvl1Ghost = FindObjectOfType<PuzzleStoneCollisionLvl1Ghost>();
         Stone1 = false;
         Stone2 = false;
+    }
+
+    private void Update()
+    {
+        if (throwWeapon.hit.collider != null)
+        {
+            if (throwWeapon.hit.collider.name == "RätselsteinLvl1 3")
+            {
+                if (!Stone2)
+                {
+                    Stone2 = true;
+                    AudioManager.instance.Play("PuzzlestoneHit2");
+                    throwWeapon.hit.collider.GetComponent<Renderer>().material.SetColor("_EmissionColor", emissionColor);
+                }
+            }
+
+        }
     }
 
     void OpenDoor()

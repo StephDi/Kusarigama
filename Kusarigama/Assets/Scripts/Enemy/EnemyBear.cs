@@ -89,7 +89,14 @@ public class EnemyBear : MonoBehaviour
     {
         RaycastHit hit;
         Physics.Raycast(this.transform.position, character.transform.position - this.transform.position, out hit, Mathf.Infinity, playerLayerMask);
-        return hit.collider.CompareTag("Player");
+        if (hit.collider != null)
+        {
+            return hit.collider.CompareTag("Player");
+        }
+        else
+        {
+            return false;
+        }
     }
 
     bool PlayerIsInFront()

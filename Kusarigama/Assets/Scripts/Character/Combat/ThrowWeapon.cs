@@ -17,7 +17,7 @@ public class ThrowWeapon : MonoBehaviour
 
     public PullEnemy pullEnemy;
     public PullToAnchor pullToAnchor;
-    [SerializeField] private RaycastHit hit;
+    public RaycastHit hit;
     [SerializeField] private LayerMask layerMask;
     private AimWeapon aimWeapon;
     public bool throwingInput;
