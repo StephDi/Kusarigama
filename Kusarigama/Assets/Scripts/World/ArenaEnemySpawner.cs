@@ -18,6 +18,11 @@ public class ArenaEnemySpawner : MonoBehaviour
         EnemyFox.FoxDies -= TestForNextWave;
     }
 
+    private void Update()
+    {
+        TestForNextWave();
+    }
+
     void TestForNextWave()
     {
         if (firstFight.transform.childCount == 1)

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 331322032}
   - component: {fileID: 331322033}
-  - component: {fileID: 2627512348220615441}
+  - component: {fileID: 3537244575592260544}
   m_Layer: 0
   m_Name: RangedHitbox
   m_TagString: Untagged
@@ -45,7 +45,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07, y: 0.10689597, z: 0.052422263}
   m_Center: {x: 0, y: -0.0300829, z: -0.017478378}
---- !u!114 &2627512348220615441
+--- !u!114 &3537244575592260544
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -54,7 +54,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 331322031}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b13283fbf4148c0448326dae19f58de2, type: 3}
+  m_Script: {fileID: 11500000, guid: 29c2246e13e0a1c409ca1a724e4ae7d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5507151530476062315
@@ -208,6 +208,7 @@ MonoBehaviour:
   Stone2: 0
   anim: {fileID: 0}
   emissionColor: {r: 0.28627452, g: 0.78431374, b: 0.7529412, a: 0}
+  throwWeapon: {fileID: 0}
 --- !u!114 &2308602002644658504
 MonoBehaviour:
   m_ObjectHideFlags: 0

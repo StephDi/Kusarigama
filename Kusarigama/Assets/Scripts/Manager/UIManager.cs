@@ -116,6 +116,7 @@ public class UIManager : MonoBehaviour
         Debug.Log("EventUI");
         playerUi = GameObject.Find("UIPlayer");
         panel = GameObject.Find("UIMenu").transform.GetChild(0).gameObject;
+        endOfGamePanel = GameObject.Find("UIMenu").transform.GetChild(1).gameObject;
         character = GameObject.Find("Character");
         menuCam = GameObject.Find("MenuCam").GetComponent<Cinemachine.CinemachineVirtualCamera>();
         panel.SetActive(true);

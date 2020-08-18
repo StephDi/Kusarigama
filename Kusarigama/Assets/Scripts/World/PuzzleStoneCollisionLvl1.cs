@@ -33,6 +33,10 @@ public class PuzzleStoneCollisionLvl1 : MonoBehaviour
                     AudioManager.instance.Play("PuzzlestoneHit2");
                     throwWeapon.hit.collider.GetComponent<Renderer>().material.SetColor("_EmissionColor", emissionColor);
                 }
+                if (Stone1 && Stone2 && puzzleStoneCollisionLvl1Ghost.StoneGhost && !anim.GetBool("openDoor"))
+                {
+                    OpenDoor();
+                }
             }
 
         }

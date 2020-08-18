@@ -40,6 +40,18 @@ public class DialogueManager : MonoBehaviour
         UIDialogue = GameObject.Find("UIDialog");
     }
 
+    private void OnLevelWasLoaded(int level)
+    {
+        charMovement = FindObjectOfType<CharMovement>();
+        UIDialogue = GameObject.Find("UIDialog");
+        dialogueWindow = UIDialogue.transform.GetChild(0).gameObject;
+        tutorialWindow = UIDialogue.transform.GetChild(1).gameObject;
+        //dialogueName = dialogueWindow.transform.GetChild(1).GetChild(0).GetComponent<TMP_Text>();
+        dialogueText = dialogueWindow.transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>();
+        //tutName = tutorialWindow.transform.GetChild(1).GetChild(0).GetComponent<TMP_Text>();
+        tutText = tutorialWindow.transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>();
+    }
+
     private void OnEnable()
     {
         Scenemanager.DialogueLevelChanges += DialogueFindObjectsOnLevelWasLoaded;

@@ -337,6 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarFill: {fileID: 707615706}
+  MaxHealth: 100
 --- !u!1 &3970948856853990533
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,7 +347,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631333}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pole_Target_VR_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -376,7 +377,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631337}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pole_Target_VL_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -406,7 +407,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631339}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pole_Target_VR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,7 +428,7 @@ Transform:
   - {fileID: 3970948856853631333}
   m_Father: {fileID: 3970948856853631349}
   m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 88.49897, y: -0.00058334117, z: 179.9994}
+  m_LocalEulerAnglesHint: {x: 88.49897, y: -0.0005828997, z: 179.9994}
 --- !u!1 &3970948856853990541
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,7 +438,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631341}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pole_Target_HR_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -467,7 +468,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631343}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pole_Target_VL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -488,7 +489,7 @@ Transform:
   - {fileID: 3970948856853631337}
   m_Father: {fileID: 3970948856853631349}
   m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 88.49897, y: -0.0005833465, z: 179.9994}
+  m_LocalEulerAnglesHint: {x: 88.49897, y: -0.0005829044, z: 179.9994}
 --- !u!1 &3970948856853990545
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,7 +499,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631345}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pole_Target_HL_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -528,7 +529,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631347}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pole_Target_HR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -549,7 +550,7 @@ Transform:
   - {fileID: 3970948856853631341}
   m_Father: {fileID: 3970948856853631349}
   m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 88.49897, y: -0.00058335037, z: 179.9994}
+  m_LocalEulerAnglesHint: {x: 88.49897, y: -0.00058290776, z: 179.9994}
 --- !u!1 &3970948856853990549
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,7 +560,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631349}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Leg_IK_VR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -603,7 +604,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631351}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pole_Target_HL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -634,7 +635,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631353}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Leg_IK_VL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -655,7 +656,7 @@ Transform:
   - {fileID: 3970948856853631355}
   m_Father: {fileID: 3970948856853631349}
   m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 73.384895, y: -65.609024, z: -117.2}
+  m_LocalEulerAnglesHint: {x: 88.53633, y: -1.2182168, z: -40.827274}
 --- !u!1 &3970948856853990555
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,7 +666,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631355}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Leg_IK_VL_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -695,7 +696,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631357}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Leg_IK_HR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -716,7 +717,7 @@ Transform:
   - {fileID: 3970948856853631359}
   m_Father: {fileID: 3970948856853631349}
   m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 88.49897, y: -0.0015634759, z: -0.001565059}
+  m_LocalEulerAnglesHint: {x: 88.49897, y: -0.0015645055, z: -0.0015639686}
 --- !u!1 &3970948856853990559
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,7 +727,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631359}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Leg_IK_HR_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -756,7 +757,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631233}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.011
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -787,7 +788,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631235}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -808,7 +809,7 @@ Transform:
   - {fileID: 3970948856853631293}
   m_Father: {fileID: 3970948856853631233}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -24.959812, y: 9.936471, z: 84.30518}
+  m_LocalEulerAnglesHint: {x: -14.604397, y: 19.18559, z: 86.145325}
 --- !u!1 &3970948856853990693
 GameObject:
   m_ObjectHideFlags: 0
@@ -818,7 +819,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631237}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -840,7 +841,7 @@ Transform:
   - {fileID: 3970948856853631239}
   m_Father: {fileID: 3970948856853631243}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 15.288881, y: -2.4413419, z: -17.702412}
+  m_LocalEulerAnglesHint: {x: -0.0000032309997, y: 0.00000015089876, z: 0.0000022732324}
 --- !u!1 &3970948856853990695
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,7 +851,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631239}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.010_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -880,7 +881,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631241}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -901,7 +902,7 @@ Transform:
   - {fileID: 3970948856853631243}
   m_Father: {fileID: 3970948856853631247}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 26.08433, y: 38.054367, z: 12.793114}
+  m_LocalEulerAnglesHint: {x: 18.906733, y: 150.36263, z: 25.794357}
 --- !u!1 &3970948856853990699
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,7 +912,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631243}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -932,7 +933,7 @@ Transform:
   - {fileID: 3970948856853631237}
   m_Father: {fileID: 3970948856853631241}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -3.045006, y: 30.035614, z: -9.541567}
+  m_LocalEulerAnglesHint: {x: -8.413228, y: 174.08885, z: 3.1526556}
 --- !u!1 &3970948856853990701
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,7 +943,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631245}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -963,7 +964,7 @@ Transform:
   - {fileID: 3970948856853631247}
   m_Father: {fileID: 3970948856853631251}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 17.430714, y: 26.619545, z: 81.5741}
+  m_LocalEulerAnglesHint: {x: 16.934208, y: -72.96049, z: -44.223827}
 --- !u!1 &3970948856853990703
 GameObject:
   m_ObjectHideFlags: 0
@@ -973,7 +974,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631247}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -994,7 +995,7 @@ Transform:
   - {fileID: 3970948856853631241}
   m_Father: {fileID: 3970948856853631245}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.29487112, y: 0.021446314, z: 0.015632024}
+  m_LocalEulerAnglesHint: {x: 59.0435, y: 2.893939, z: 5.070441}
 --- !u!1 &3970948856853990705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1004,7 +1005,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631249}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.004_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1034,7 +1035,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631251}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1055,7 +1056,7 @@ Transform:
   - {fileID: 3970948856853631245}
   m_Father: {fileID: 3970948856853631349}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 31.552408, y: -160.05334, z: -40.956112}
+  m_LocalEulerAnglesHint: {x: 16.297338, y: -163.51909, z: -61.114902}
 --- !u!1 &3970948856853990709
 GameObject:
   m_ObjectHideFlags: 0
@@ -1065,7 +1066,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631253}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1086,7 +1087,7 @@ Transform:
   - {fileID: 3970948856853631255}
   m_Father: {fileID: 3970948856853631349}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 63.757412, y: 2.488165, z: -173.63481}
+  m_LocalEulerAnglesHint: {x: 67.49858, y: 10.193893, z: -173.55063}
 --- !u!1 &3970948856853990711
 GameObject:
   m_ObjectHideFlags: 0
@@ -1096,7 +1097,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631255}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1117,7 +1118,7 @@ Transform:
   - {fileID: 3970948856853631249}
   m_Father: {fileID: 3970948856853631253}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -33.74273, y: 1.9565717, z: -1.7857634}
+  m_LocalEulerAnglesHint: {x: -33.74273, y: 1.9565713, z: -1.7857629}
 --- !u!1 &3970948856853990713
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,7 +1128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631257}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1148,7 +1149,7 @@ Transform:
   - {fileID: 3970948856853631259}
   m_Father: {fileID: 3970948856853631263}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -2.553844, y: 0.0003109777, z: -0.000013794165}
+  m_LocalEulerAnglesHint: {x: -2.5538445, y: 0.0003102474, z: -0.000013978523}
 --- !u!1 &3970948856853990715
 GameObject:
   m_ObjectHideFlags: 0
@@ -1158,7 +1159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631259}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1179,7 +1180,7 @@ Transform:
   - {fileID: 3970948856853631233}
   m_Father: {fileID: 3970948856853631257}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 2.728171, y: -0.00029765858, z: 0.0000008208504}
+  m_LocalEulerAnglesHint: {x: 2.7281723, y: -0.0002986048, z: 0.0000007175264}
 --- !u!1 &3970948856853990717
 GameObject:
   m_ObjectHideFlags: 0
@@ -1195,9 +1196,9 @@ GameObject:
   - component: {fileID: 7743830978528794942}
   - component: {fileID: 7743830978528794944}
   - component: {fileID: 8025219484528945878}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bear
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1231,7 +1232,7 @@ Animator:
   m_GameObject: {fileID: 3970948856853990717}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 063617702e28d5d4582bc2a2d6446371, type: 3}
-  m_Controller: {fileID: 9100000, guid: 10b49627c4cb0bb499c2dadc663fe642, type: 2}
+  m_Controller: {fileID: 9100000, guid: f91b8e753aeac7446a10514649cdc186, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1252,21 +1253,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b81e65666b1250a41bcbb22b4067f4e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bear: {fileID: 0}
+  bear: {fileID: 3970948856853631261}
   character: {fileID: 0}
-  dashGoal: {fileID: 0}
-  nmabear: {fileID: 0}
-  anim: {fileID: 0}
+  dashGoal: {fileID: 4747707161317284756}
+  nmabear: {fileID: 8025219484528945878}
+  anim: {fileID: 3970948856863522557}
   isDead: 0
-  aggroRange: 0
-  aggroRangeshort: 0
-  attackRange: 0
+  aggroRange: 70
+  aggroRangeshort: 10
+  attackRange: 10
   stunDuration: 0.5
-  health: 0
+  health: 100
   attackGoal: {x: 0, y: 0, z: 0}
   playerLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 12083
 --- !u!114 &3356543295993967783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1291,8 +1292,8 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1340,7 +1341,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631263}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1361,7 +1362,7 @@ Transform:
   - {fileID: 3970948856853631257}
   m_Father: {fileID: 3970948856853631349}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 52.16644, y: 2.7361548, z: 6.233013}
+  m_LocalEulerAnglesHint: {x: 56.151234, y: 3.2126584, z: 6.147637}
 --- !u!1 &3970948856853990721
 GameObject:
   m_ObjectHideFlags: 0
@@ -1371,7 +1372,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631265}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.025_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1401,7 +1402,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631267}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.026
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1422,7 +1423,7 @@ Transform:
   - {fileID: 3970948856853631325}
   m_Father: {fileID: 3970948856853631349}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 63.757435, y: 2.4881096, z: -173.63484}
+  m_LocalEulerAnglesHint: {x: 67.49859, y: 10.193855, z: -173.55066}
 --- !u!1 &3970948856853990725
 GameObject:
   m_ObjectHideFlags: 0
@@ -1432,7 +1433,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631269}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.024
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1453,7 +1454,7 @@ Transform:
   - {fileID: 3970948856853631271}
   m_Father: {fileID: 3970948856853631275}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -11.624413, y: -179.99998, z: 0.00000221251}
+  m_LocalEulerAnglesHint: {x: -11.6244135, y: -179.99998, z: 0.0000019340116}
 --- !u!1 &3970948856853990727
 GameObject:
   m_ObjectHideFlags: 0
@@ -1463,7 +1464,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631271}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.025
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1484,7 +1485,7 @@ Transform:
   - {fileID: 3970948856853631265}
   m_Father: {fileID: 3970948856853631269}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -11.214942, y: 179.99997, z: 0.000001941385}
+  m_LocalEulerAnglesHint: {x: -11.214941, y: 179.99997, z: 0.0000016970148}
 --- !u!1 &3970948856853990729
 GameObject:
   m_ObjectHideFlags: 0
@@ -1494,7 +1495,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631273}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.022
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1515,7 +1516,7 @@ Transform:
   - {fileID: 3970948856853631275}
   m_Father: {fileID: 3970948856853631279}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -25.021816, y: -51.591755, z: 130.0537}
+  m_LocalEulerAnglesHint: {x: -23.1503, y: -53.861282, z: 135.4915}
 --- !u!1 &3970948856853990731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1525,7 +1526,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631275}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.023
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1546,7 +1547,7 @@ Transform:
   - {fileID: 3970948856853631269}
   m_Father: {fileID: 3970948856853631273}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 30.338898, y: -104.66248, z: -173.93826}
+  m_LocalEulerAnglesHint: {x: 36.349873, y: -103.950325, z: -171.76982}
 --- !u!1 &3970948856853990733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1556,7 +1557,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631277}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.020
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1587,7 +1588,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631279}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.021
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1608,7 +1609,7 @@ Transform:
   - {fileID: 3970948856853631273}
   m_Father: {fileID: 3970948856853631277}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -4.9805984, y: -45.84384, z: -30.717926}
+  m_LocalEulerAnglesHint: {x: 1.3998959, y: -51.995457, z: -42.957485}
 --- !u!1 &3970948856853990737
 GameObject:
   m_ObjectHideFlags: 0
@@ -1618,7 +1619,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631281}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.018
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1639,7 +1640,7 @@ Transform:
   - {fileID: 3970948856853631283}
   m_Father: {fileID: 3970948856853631287}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -2.5538445, y: 0.0002501906, z: -0.000013788161}
+  m_LocalEulerAnglesHint: {x: -2.553845, y: 0.00024942908, z: -0.000013973275}
 --- !u!1 &3970948856853990739
 GameObject:
   m_ObjectHideFlags: 0
@@ -1649,7 +1650,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631283}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.019
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1670,7 +1671,7 @@ Transform:
   - {fileID: 3970948856853631277}
   m_Father: {fileID: 3970948856853631281}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 2.728171, y: -0.00030640335, z: 0.0000003969934}
+  m_LocalEulerAnglesHint: {x: 2.7281723, y: -0.00030624884, z: 0.00000034702225}
 --- !u!1 &3970948856853990741
 GameObject:
   m_ObjectHideFlags: 0
@@ -1680,7 +1681,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631285}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.016_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1710,7 +1711,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631287}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.017
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1732,7 +1733,7 @@ Transform:
   - {fileID: 3970948856853631307}
   m_Father: {fileID: 3970948856853631349}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 52.16643, y: 2.73626, z: 6.233097}
+  m_LocalEulerAnglesHint: {x: 56.15121, y: 3.2127662, z: 6.1477256}
 --- !u!1 &3970948856853990745
 GameObject:
   m_ObjectHideFlags: 0
@@ -1742,7 +1743,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631289}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.015
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1763,7 +1764,7 @@ Transform:
   - {fileID: 3970948856853631291}
   m_Father: {fileID: 3970948856853631295}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -11.624407, y: -179.99998, z: 0.0000018554697}
+  m_LocalEulerAnglesHint: {x: -11.624407, y: -179.99998, z: 0.0000016219141}
 --- !u!1 &3970948856853990747
 GameObject:
   m_ObjectHideFlags: 0
@@ -1773,7 +1774,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631291}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.016
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1794,7 +1795,7 @@ Transform:
   - {fileID: 3970948856853631285}
   m_Father: {fileID: 3970948856853631289}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -11.2149515, y: -179.99998, z: 0.0000033668002}
+  m_LocalEulerAnglesHint: {x: -11.2149515, y: -179.99998, z: 0.000002943007}
 --- !u!1 &3970948856853990749
 GameObject:
   m_ObjectHideFlags: 0
@@ -1804,7 +1805,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631293}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.013
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1825,7 +1826,7 @@ Transform:
   - {fileID: 3970948856853631295}
   m_Father: {fileID: 3970948856853631235}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -28.609056, y: 45.457554, z: -116.485344}
+  m_LocalEulerAnglesHint: {x: -26.92647, y: 48.81191, z: -123.61158}
 --- !u!1 &3970948856853990751
 GameObject:
   m_ObjectHideFlags: 0
@@ -1835,7 +1836,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631295}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.014
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1856,7 +1857,7 @@ Transform:
   - {fileID: 3970948856853631289}
   m_Father: {fileID: 3970948856853631293}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 51.3178, y: 121.91056, z: 122.6348}
+  m_LocalEulerAnglesHint: {x: 51.679104, y: 110.661, z: 117.14569}
 --- !u!1 &3970948856853990753
 GameObject:
   m_ObjectHideFlags: 0
@@ -1866,7 +1867,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631297}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Leg_IK_HL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1897,7 +1898,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631299}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Leg_IK_HL_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1927,7 +1928,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631301}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.035_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1958,7 +1959,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3970948856853631303}
   - component: {fileID: 3970948856867586109}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cube.000
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2082,7 +2083,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631305}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.034_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2112,7 +2113,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631307}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.035
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2133,7 +2134,7 @@ Transform:
   - {fileID: 3970948856853631301}
   m_Father: {fileID: 3970948856853631287}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 26.554077, y: -0.89839375, z: -2.08904}
+  m_LocalEulerAnglesHint: {x: 26.554077, y: -0.8983935, z: -2.0890393}
 --- !u!1 &3970948856853990765
 GameObject:
   m_ObjectHideFlags: 0
@@ -2143,7 +2144,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631309}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.033_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2173,7 +2174,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631311}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.034
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2194,7 +2195,7 @@ Transform:
   - {fileID: 3970948856853631305}
   m_Father: {fileID: 3970948856853631349}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 78.54801, y: 115.40678, z: 174.86935}
+  m_LocalEulerAnglesHint: {x: 79.40971, y: 116.32734, z: 172.19211}
 --- !u!1 &3970948856853990769
 GameObject:
   m_ObjectHideFlags: 0
@@ -2204,7 +2205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631313}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.032
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2225,7 +2226,7 @@ Transform:
   - {fileID: 3970948856853631315}
   m_Father: {fileID: 3970948856853631319}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -8.413251, y: 178.59935, z: -3.1527648}
+  m_LocalEulerAnglesHint: {x: -8.413251, y: 178.59935, z: -3.1527655}
 --- !u!1 &3970948856853990771
 GameObject:
   m_ObjectHideFlags: 0
@@ -2235,7 +2236,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631315}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.033
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2257,7 +2258,7 @@ Transform:
   - {fileID: 3970948856853631309}
   m_Father: {fileID: 3970948856853631313}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -0.0000073257243, y: 0.0000083571085, z: -0.000002043912}
+  m_LocalEulerAnglesHint: {x: -0.000008324292, y: 0.000007305167, z: -0.0000017866366}
 --- !u!1 &3970948856853990773
 GameObject:
   m_ObjectHideFlags: 0
@@ -2267,7 +2268,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631317}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.030
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2288,7 +2289,7 @@ Transform:
   - {fileID: 3970948856853631319}
   m_Father: {fileID: 3970948856853631323}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 61.844334, y: -19.480051, z: -31.800823}
+  m_LocalEulerAnglesHint: {x: 68.12171, y: -31.118607, z: -44.61564}
 --- !u!1 &3970948856853990775
 GameObject:
   m_ObjectHideFlags: 0
@@ -2298,7 +2299,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631319}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.031
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2319,7 +2320,7 @@ Transform:
   - {fileID: 3970948856853631313}
   m_Father: {fileID: 3970948856853631317}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -1.3501935, y: -65.72331, z: -7.0027103}
+  m_LocalEulerAnglesHint: {x: -5.263324, y: -60.74063, z: -2.0558784}
 --- !u!1 &3970948856853990777
 GameObject:
   m_ObjectHideFlags: 0
@@ -2329,7 +2330,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631321}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.028
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2350,7 +2351,7 @@ Transform:
   - {fileID: 3970948856853631323}
   m_Father: {fileID: 3970948856853631349}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 13.770475, y: 157.95627, z: 40.08333}
+  m_LocalEulerAnglesHint: {x: 5.942197, y: 162.95065, z: 39.3121}
 --- !u!1 &3970948856853990779
 GameObject:
   m_ObjectHideFlags: 0
@@ -2360,7 +2361,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631323}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.029
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2381,7 +2382,7 @@ Transform:
   - {fileID: 3970948856853631317}
   m_Father: {fileID: 3970948856853631321}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 18.281105, y: 22.518566, z: -24.03816}
+  m_LocalEulerAnglesHint: {x: 15.939475, y: 11.656355, z: -21.871908}
 --- !u!1 &3970948856853990781
 GameObject:
   m_ObjectHideFlags: 0
@@ -2391,7 +2392,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631325}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.027
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2412,7 +2413,7 @@ Transform:
   - {fileID: 3970948856853631327}
   m_Father: {fileID: 3970948856853631267}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -33.742744, y: 1.9565552, z: -1.7857637}
+  m_LocalEulerAnglesHint: {x: -33.742744, y: 1.9565548, z: -1.7857633}
 --- !u!1 &3970948856853990783
 GameObject:
   m_ObjectHideFlags: 0
@@ -2422,7 +2423,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970948856853631327}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bone.027_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2453,7 +2454,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3164554204182496794}
   - component: {fileID: 1268804656}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: AttackHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2496,7 +2497,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4747707161317284756}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: DashGoal
   m_TagString: Untagged
   m_Icon: {fileID: 0}

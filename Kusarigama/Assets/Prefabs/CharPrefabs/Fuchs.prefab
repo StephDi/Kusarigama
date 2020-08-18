@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4092946355348428}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Jaw_Oben
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4681904389292216}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Schwanz1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4747300893048460}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Brust
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4702409186710048}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_H_R_IK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4807521356000192}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_V_R__Einleitung
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4633396701052078}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: To_The_SChwanz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4201467028736706}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_Unterschenkel_V_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4677307962948502}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Foot_V_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4926575717409086}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Jaw_Unten_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -291,7 +291,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4720738258882340}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_H_R_Pole_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -321,7 +321,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4603854076802014}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_Oberschenkel_V_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -352,7 +352,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4032481925971764}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_V_L_Pole_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,7 +382,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4452173267530684}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_Unterschenkel_H_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -413,7 +413,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4041569332339840}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_Oberschenkel_V_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -444,7 +444,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4371944269455004}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_H_L_IK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -475,7 +475,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4982146190643360}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Foot_V_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -583,8 +583,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.7369907, y: 5.4052787, z: 5.9591312}
-  m_Center: {x: -0.044131458, y: 0.036371935, z: 0.32317096}
+  m_Size: {x: 3.7884383, y: 5.4052787, z: 5.9591312}
+  m_Center: {x: -0.018407475, y: 0.036371958, z: 0.32317096}
 --- !u!195 &1016590289
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -594,7 +594,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1262099960778220}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 3.16
+  m_Radius: 1.88
   m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
@@ -625,7 +625,7 @@ MonoBehaviour:
   nmafuchs: {fileID: 1016590289}
   anim: {fileID: 95812597456636098}
   isDead: 0
-  aggroRange: 70
+  aggroRange: 40
   aggroRangeshort: 10
   attackRange: 10
   stunDuration: 0.2
@@ -633,7 +633,7 @@ MonoBehaviour:
   attackGoal: {x: 0, y: 0, z: 0}
   playerLayerMask:
     serializedVersion: 2
-    m_Bits: 8192
+    m_Bits: 8193
 --- !u!1 &1289069077770126
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,7 +643,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4529846165352084}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_V_L__Einleitung
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -674,7 +674,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4530871546436814}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Foot_H_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -705,7 +705,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4203341943028774}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Vorne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -736,7 +736,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4661722156242400}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_H_L_Pole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -767,7 +767,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4353503002417680}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_H_L_Pole_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -797,7 +797,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4899011710068458}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Foot_V_L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -827,7 +827,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4681212059200332}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_V_R_Pole_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -857,7 +857,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4804779749294652}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_V_L_IK_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -887,7 +887,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4237573796759576}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_H_R_Pole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -918,7 +918,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4546830209377582}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Foot_H_L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -948,7 +948,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4555448963374444}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -979,7 +979,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4193620965409278}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_H_L__Einleitung
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1010,7 +1010,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4421223871874594}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Jaw_Unten
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1041,7 +1041,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4708559266542972}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_Oberschenkel_H_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1072,7 +1072,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4784224730820350}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_H_L_IK_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1102,7 +1102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4397433333982722}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_Unterschenkel_H_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1133,7 +1133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4070604262694328}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Foot_V_R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1163,7 +1163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4194004686143810}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_Unterschenkel_V_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1195,7 +1195,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4962465782992392}
   - component: {fileID: 137985520632932240}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1309,7 +1309,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4262469313662768}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_V_R_IK_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1339,7 +1339,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4580584501709106}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Head_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1369,7 +1369,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4271313989578586}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_V_L_Pole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1400,7 +1400,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4559544014300874}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Schwanz2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1431,7 +1431,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4915303498326734}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_H_R__Einleitung
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1462,7 +1462,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4710149538586380}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_H_R_IK_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1492,7 +1492,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4351651313521282}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_Oberschenkel_H_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1523,7 +1523,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4449782506906444}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1563,7 +1563,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4822928853916462}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_V_R_Pole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1594,7 +1594,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4829340600433612}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Foot_H_R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1624,7 +1624,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4779318084711498}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1657,7 +1657,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4276428570253434}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Foot_H_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1688,7 +1688,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4382766572123312}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Jaw_Oben_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1718,7 +1718,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4417728846093034}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_V_L_IK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1749,7 +1749,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4748913753020282}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Leg_V_R_IK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1780,7 +1780,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4166113291512582}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: Schwanz2_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1812,7 +1812,7 @@ GameObject:
   - component: {fileID: 4137696642272757320}
   - component: {fileID: 6856669424397539226}
   - component: {fileID: 4513507551008861806}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: HealthbarBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1888,7 +1888,7 @@ GameObject:
   - component: {fileID: 8379780502885817873}
   - component: {fileID: 817563354483580528}
   - component: {fileID: 1463055067}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: HealthBarCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2002,7 +2002,7 @@ GameObject:
   - component: {fileID: 2216248027234979568}
   - component: {fileID: 6893174416706989328}
   - component: {fileID: 5871897401637537922}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: HealthbarFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2074,7 +2074,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2582726781012037165}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: DashGoal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2106,7 +2106,7 @@ GameObject:
   - component: {fileID: 3724842150032363535}
   - component: {fileID: 8830497209855313758}
   - component: {fileID: 2227038027821557811}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: HealthbarHighlights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2179,7 +2179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5038381779015530999}
   - component: {fileID: 1350994087244740325}
-  m_Layer: 12
+  m_Layer: 2
   m_Name: AttackHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
