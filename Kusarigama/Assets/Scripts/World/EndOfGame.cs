@@ -22,6 +22,8 @@ public class EndOfGame : MonoBehaviour
 
    IEnumerator WaitForEndOfGame()
     {
+        AudioManager.instance.Play("WaterSplash");
+        AudioManager.instance.Play("EndMusic");
         yield return new WaitForSeconds(5);
         EndOfGameMenu();
 
