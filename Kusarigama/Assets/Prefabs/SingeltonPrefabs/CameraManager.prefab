@@ -55,10 +55,10 @@ MonoBehaviour:
   closestChangeEnemy: {fileID: 0}
   enemyRayLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4097
   playerRayLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8193
   group: {fileID: 0}
   targets: []
   targetIndicator: {fileID: 0}

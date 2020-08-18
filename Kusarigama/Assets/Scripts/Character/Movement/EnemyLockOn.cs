@@ -255,10 +255,17 @@ public class EnemyLockOn : MonoBehaviour
     bool TargetObstructed(GameObject target)
     {
         Physics.Raycast(mainCamera.transform.position, target.transform.position - mainCamera.transform.position, out enemyRayHit,Mathf.Infinity , enemyRayLayerMask);
-        if (enemyRayHit.collider.CompareTag("Enemy"))
+        if (enemyRayHit.collider != null) 
         {
-            //cam See's Enemy
-            return false;                  
+            if (enemyRayHit.collider.CompareTag("Enemy"))
+            {
+                //cam See's Enemy
+                return false;                  
+            }
+            else
+            {
+                return true;
+            }       
         }
         else
         {

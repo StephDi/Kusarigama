@@ -51,6 +51,7 @@ public class PullEnemy : MonoBehaviour
         transform.parent.position = hookedObject.transform.position; 
         if (!throwWeapon.throwingInput)
         {
+            StopCoroutine("PullbackTimer");
             PullEnemyToPlayer();
         }
         else
@@ -63,7 +64,6 @@ public class PullEnemy : MonoBehaviour
     {
         if (hookedObject != null)
         {
-            throwWeapon.ResetWeapon();
             hookedObject.transform.position = Vector3.Lerp(hookedObject.transform.position, character.position + new Vector3(0,1,0), 0.1f);
             float dist = Vector3.Distance(hookedObject.transform.position, character.position);
             if (dist < 4f)
@@ -71,6 +71,7 @@ public class PullEnemy : MonoBehaviour
                 hookEnemy = false;
                 hookedObject = null;
             }
+            StartCoroutine(SetHookedObjectToNullAfterTime());
         }
     }
 
@@ -79,7 +80,6 @@ public class PullEnemy : MonoBehaviour
         yield return new WaitForSeconds(pullBackTime);
         if (hookedObject != null)
         {
-            PullEnemyToPlayer();
             if (hookedObject.TryGetComponent(out EnemyFox enemyFox))
             {
                 enemyFox.nmafuchs.speed = 4f;
@@ -89,6 +89,13 @@ public class PullEnemy : MonoBehaviour
                 enemyBear.nmabear.speed = 4f;
             }
             anim.SetBool("pullBack",true);
+            PullEnemyToPlayer();
         }
+    }
+
+    IEnumerator SetHookedObjectToNullAfterTime()
+    {
+        yield return new WaitForSeconds(1.5f);
+        hookedObject = null;
     }
 }

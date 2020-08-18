@@ -40,7 +40,7 @@ public class ThrowWeapon : MonoBehaviour
             return;
         }
 
-        if (Input.GetAxis("Throw") > 0.1f || Input.GetButton("Fire1"))
+        if (Input.GetAxis("Throw") > .5f || Input.GetButton("Fire1"))
         {
             throwingInput = true;
             anim.SetBool("pullBack", false);

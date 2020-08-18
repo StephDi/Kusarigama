@@ -16,7 +16,7 @@ public class MeleeCombatCollision : MonoBehaviour
     //Check for EnemyHit
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy" && weaponCollider.enabled == true)
+        if (other.CompareTag("Enemy"))
         {
             //Damage the Enemy -> EnemyFox
             Debug.Log("hit");
