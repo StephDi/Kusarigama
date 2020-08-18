@@ -188,6 +188,10 @@ public class UIManager : MonoBehaviour
             CloseUiMenu();
             StartCoroutine(StartGameAfterTime());
         }
+        else
+        {
+            CloseUiMenu();
+        }
 
     }
 

@@ -3,9 +3,9 @@
 # =============== #
 [Tt]emp/
 [Oo]bj/
-[Bb]uild
+[Bb]uild/
 [Ll]ibrary/
-/[Bb]uilds/
+[Bb]uilds/
 /Assets/AssetStoreTools*
 sysinfo.txt
 
