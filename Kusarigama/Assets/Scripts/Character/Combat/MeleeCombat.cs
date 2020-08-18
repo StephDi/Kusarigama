@@ -15,15 +15,11 @@ public class MeleeCombat : MonoBehaviour {
         rangedCombat = GetComponent<RangedCombatGhost>();
     }
 
-    // Update is called once per frame
     void Update() {
 
         //Simple Attack Melee right
         if (Input.GetButtonDown("Fire1") && !Input.GetButton("Fire2"))
         {
-            //set mecanim State
-            anim.SetTrigger("attack");
-
             if (charMovement.movement.sqrMagnitude != 0)
             {
                 anim.SetLayerWeight(1, 1f);
@@ -32,9 +28,12 @@ public class MeleeCombat : MonoBehaviour {
             {
                 anim.SetLayerWeight(1, 0f);
             }
+
+            //set mecanim State
+            anim.SetTrigger("attack");
         }
 
-        if (charMovement.movement.sqrMagnitude == 0 || AnimationIsPlaying(anim,"Idle") || rangedCombat.rangedAttackTriggerGhost < 0)
+        if (charMovement.movement.sqrMagnitude == 0 || AnimationIsPlaying(anim,"LayerChange") || rangedCombat.rangedAttackTriggerGhost < 0)
             {
                 anim.SetLayerWeight(1, 0f);
             }
