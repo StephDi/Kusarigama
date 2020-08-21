@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TriggerDialogueOnCollision : MonoBehaviour
 {
@@ -13,7 +11,7 @@ public class TriggerDialogueOnCollision : MonoBehaviour
         getWeaponUpgrades = FindObjectOfType<GetWeaponUpgrades>();
         dialogueTrigger = GetComponent<DialogueTrigger>();
         gotTriggered = false;
-    }
+    }  
 
     private void OnTriggerEnter(Collider other)
     {

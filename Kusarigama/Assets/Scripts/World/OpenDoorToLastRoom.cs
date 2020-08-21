@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class OpenDoorToLastRoom : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class OpenDoorToLastRoom : MonoBehaviour
         collectKeyFragment = FindObjectOfType<CollectKeyFragment>();
         foxesToKillArrayStartLength = enemiesToKill.Count;   
         gotTriggered = false;
-    }
+    }  
 
     private void OnEnable()
     {
@@ -85,10 +86,6 @@ public class OpenDoorToLastRoom : MonoBehaviour
                     {
                         dialogueTrigger.TriggerDialogue();
                     }
-                }
-                else if (gotTriggered)
-                {
-                    Destroy(this.gameObject);
                 }
             }
         }

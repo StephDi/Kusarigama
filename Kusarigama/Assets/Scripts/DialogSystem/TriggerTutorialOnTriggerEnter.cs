@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TriggerTutorialOnTriggerEnter : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class TriggerTutorialOnTriggerEnter : MonoBehaviour
         dialogueTrigger = GetComponent<DialogueTrigger>();
         gotTriggered = false;
     }
-
+   
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && gotTriggered == false)

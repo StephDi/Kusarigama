@@ -1,17 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TriggerDialogueOnTriggerEnter : MonoBehaviour
 {
     private DialogueTrigger dialogueTrigger;
-
     private bool gotTriggered;
+
     private void Awake()
     {       
         dialogueTrigger = GetComponent<DialogueTrigger>();
         gotTriggered = false;
-    }
+    }  
 
     private void OnTriggerEnter(Collider other)
     {

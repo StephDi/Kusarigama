@@ -8,6 +8,7 @@ public class ChangeLvl : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            Gamemanager.instance.Level1Done = true;
             Scenemanager.instance.changeLvl = true;
         }  
     }

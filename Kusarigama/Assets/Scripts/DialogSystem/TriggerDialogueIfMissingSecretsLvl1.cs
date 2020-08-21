@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TriggerDialogueIfMissingSecretsLvl1 : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class TriggerDialogueIfMissingSecretsLvl1 : MonoBehaviour
         dialogueTrigger = GetComponent<DialogueTrigger>();
         collectKeyFragment = FindObjectOfType<CollectKeyFragment>();
         gotTriggered = false;
-    }
+    }    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -86,10 +87,6 @@ public class TriggerDialogueIfMissingSecretsLvl1 : MonoBehaviour
                 dialogueTrigger.TriggerDialogue();
                 gotTriggered = true;
             }
-        }
-        else if (gotTriggered)
-        {
-            Destroy(this.gameObject);
         }
     } 
 }

@@ -6,6 +6,8 @@ public class Gamemanager : MonoBehaviour {
 
     public static Gamemanager instance = null;
 
+    public bool Level1Done = false;
+
     void Awake()
     {
        
@@ -18,6 +20,5 @@ public class Gamemanager : MonoBehaviour {
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
-
     }
 }

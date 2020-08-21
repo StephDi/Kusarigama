@@ -6,10 +6,14 @@ public class EndOfGame : MonoBehaviour
 {
 
     [SerializeField] private GameObject SecretLaterneFull;
+
+    private bool gottriggered = false; 
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !gottriggered)
         {
+            gottriggered = true;
             SecretLaterneFull.SetActive(true);
             StartCoroutine(WaitForEndOfGame());
         }
@@ -25,6 +29,8 @@ public class EndOfGame : MonoBehaviour
         AudioManager.instance.Play("WaterSplash");
         AudioManager.instance.Play("EndMusic");
         yield return new WaitForSeconds(5);
+        Gamemanager.instance.Level1Done = false;
+        UIManager.instance.gameStarted = false;
         EndOfGameMenu();
 
     } 

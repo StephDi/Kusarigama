@@ -26,7 +26,7 @@ public class TriggerDialogueDefeatedEnemies : MonoBehaviour
     {
         EnemyFox.FoxDies -= TestForDialogueTrigger;
         EnemyBear.BearDies -= TestForDialogueTrigger;
-    }
+    }  
 
     void TestForDialogueTrigger()
     {

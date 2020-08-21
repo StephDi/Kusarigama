@@ -18,8 +18,8 @@ public class UIManager : MonoBehaviour
     public GameObject toolsPanel;
     public Cinemachine.CinemachineVirtualCamera menuCam;
     public bool menuIsActive;
+    public bool gameStarted = false;
 
-    private bool gameStarted = false;
     private TriggerTutorialAtStart triggerTutorialAtStart;
     private GameObject triggerTutorialAtStartObject;
 
@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour
 
             Destroy(gameObject);
 
-        DontDestroyOnLoad(gameObject);      
+        DontDestroyOnLoad(gameObject);
     }
     private void OnEnable()
     {       
@@ -48,45 +48,8 @@ public class UIManager : MonoBehaviour
     }
 
     void Start()
-    {
-        playerUi = GameObject.Find("UIPlayer");
-        panel = GameObject.Find("UIMenu").transform.GetChild(0).gameObject;
-        endOfGamePanel = GameObject.Find("UIMenu").transform.GetChild(1).gameObject ;
-        character = GameObject.Find("Character");
-        menuCam = GameObject.Find("MenuCam").GetComponent<Cinemachine.CinemachineVirtualCamera>();
-        triggerTutorialAtStartObject = GameObject.Find("TutorialTriggerMovement");
-        panel.SetActive(true);
-        endOfGamePanel.SetActive(true);
-        for (int i = 0; i < panel.transform.childCount; i++)
-        {
-            panel.transform.GetChild(i).gameObject.SetActive(true);
-        }       
-        continueButton = GameObject.Find("ContinueButton");
-        startButton = GameObject.Find("StartButton");
-        backToMainMenuButton = GameObject.Find("BackToMainMenuButton");
-        toolsPanel = GameObject.Find("ToolsPanel");
-        toolsPanel.SetActive(false);
-        endOfGamePanel.SetActive(false);
-        panel.SetActive(false);
-
-        if (triggerTutorialAtStartObject != null)
-        {
-            if (triggerTutorialAtStartObject.TryGetComponent(out TriggerTutorialAtStart TutorialAtStart))
-            {
-                triggerTutorialAtStart = TutorialAtStart;
-            }
-        }
-
-        if (SceneManager.GetActiveScene().buildIndex == 0 && gameStarted == false)
-        {
-            continueButton.SetActive(false);
-            startButton.SetActive(true);
-            OpenStartUiMenu();
-        }
-        else
-        {
-            gameStarted = true;
-        }
+    {       
+        StartCoroutine(StartInit());
     }
 
     void Update()
@@ -109,6 +72,11 @@ public class UIManager : MonoBehaviour
                 CloseUiMenu();
             }
         }
+    }
+
+    private void OnLevelWasLoaded(int level)
+    {       
+        StartCoroutine(StartInit());
     }
 
     void UIFindObjectsOnLevelWasLoaded()
@@ -140,7 +108,7 @@ public class UIManager : MonoBehaviour
         character.GetComponent<CharMovement>().enabled = false;
         character.GetComponent<MeleeCombat>().enabled = false;
         EventSystem.current.SetSelectedGameObject(null);
-        startButton.GetComponent<Button>().Select();
+        EventSystem.current.SetSelectedGameObject(startButton);
         menuCam.enabled = true;
         menuIsActive = true;
     }
@@ -230,5 +198,49 @@ public class UIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         triggerTutorialAtStart.StartTutorial();
+    }
+
+    IEnumerator StartInit()
+    {
+        yield return new WaitForEndOfFrame();
+
+        playerUi = GameObject.Find("UIPlayer");
+        panel = GameObject.Find("UIMenu").transform.GetChild(0).gameObject;
+        endOfGamePanel = GameObject.Find("UIMenu").transform.GetChild(1).gameObject;
+        character = GameObject.Find("Character");
+        menuCam = GameObject.Find("MenuCam").GetComponent<Cinemachine.CinemachineVirtualCamera>();
+        triggerTutorialAtStartObject = GameObject.Find("TutorialTriggerMovement");
+        panel.SetActive(true);
+        endOfGamePanel.SetActive(true);
+        for (int i = 0; i < panel.transform.childCount; i++)
+        {
+            panel.transform.GetChild(i).gameObject.SetActive(true);
+        }
+        continueButton = GameObject.Find("ContinueButton");
+        startButton = GameObject.Find("StartButton");
+        backToMainMenuButton = GameObject.Find("BackToMainMenuButton");
+        toolsPanel = GameObject.Find("ToolsPanel");
+        toolsPanel.SetActive(false);
+        endOfGamePanel.SetActive(false);
+        panel.SetActive(false);
+
+        if (triggerTutorialAtStartObject != null)
+        {
+            if (triggerTutorialAtStartObject.TryGetComponent(out TriggerTutorialAtStart TutorialAtStart))
+            {
+                triggerTutorialAtStart = TutorialAtStart;
+            }
+        }
+
+        if (SceneManager.GetActiveScene().buildIndex == 0 && !gameStarted && !Gamemanager.instance.Level1Done)
+        {
+            continueButton.SetActive(false);
+            startButton.SetActive(true);
+            OpenStartUiMenu();
+        }
+        else
+        {
+            gameStarted = true;
+        }
     }
 }

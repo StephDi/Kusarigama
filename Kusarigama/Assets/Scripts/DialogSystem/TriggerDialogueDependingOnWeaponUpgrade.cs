@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TriggerDialogueDependingOnWeaponUpgrade : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class TriggerDialogueDependingOnWeaponUpgrade : MonoBehaviour
         getWeaponUpgrades = FindObjectOfType<GetWeaponUpgrades>();
         puzzleStoneCollisionLvl1 = FindObjectOfType<PuzzleStoneCollisionLvl1>();
         puzzleStoneCollisionLvl1Ghost = FindObjectOfType<PuzzleStoneCollisionLvl1Ghost>();
-    }
+    }  
 
     private void OnTriggerEnter(Collider other)
     {
@@ -41,10 +42,6 @@ public class TriggerDialogueDependingOnWeaponUpgrade : MonoBehaviour
                     gotTriggered = true;
                 }
             }
-        }
-        else if (gotTriggered)
-        {
-            Destroy(this.gameObject);
-        }
+        }       
     }
 }
