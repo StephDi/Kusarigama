@@ -7,6 +7,7 @@ public class Playermanager : MonoBehaviour
     public static Playermanager instance = null;
 
     public float Damage;
+    public float RangedDamage;
 
     void Awake()
     {

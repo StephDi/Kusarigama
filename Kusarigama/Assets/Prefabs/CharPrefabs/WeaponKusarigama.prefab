@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 331322032}
   - component: {fileID: 331322033}
   - component: {fileID: 3537244575592260544}
+  - component: {fileID: 381724549}
   m_Layer: 0
   m_Name: RangedHitbox
   m_TagString: Untagged
@@ -26,11 +27,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 331322031}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0028}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5507151530475772491}
-  m_RootOrder: 0
+  m_Father: {fileID: 5507151532301321220}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &331322033
 BoxCollider:
@@ -57,6 +58,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29c2246e13e0a1c409ca1a724e4ae7d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &381724549
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331322031}
+  serializedVersion: 2
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5507151530476062315
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,7 +110,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0.0028}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 331322032}
   - {fileID: 5507151531874936079}
   m_Father: {fileID: 5507151532301321220}
   m_RootOrder: 0
@@ -294,7 +310,7 @@ Transform:
   m_LocalScale: {x: 0.002, y: 0.002, z: 0.001}
   m_Children: []
   m_Father: {fileID: 5507151532301321220}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!33 &5507151531418181841
 MeshFilter:
@@ -484,6 +500,7 @@ Transform:
   m_LocalScale: {x: 6.2507477, y: 6.0894403, z: 134.43466}
   m_Children:
   - {fileID: 5507151530475772491}
+  - {fileID: 331322032}
   - {fileID: 5507151531418181842}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -556,7 +573,7 @@ PrefabInstance:
     - target: {fileID: 1754765628335912143, guid: 3e983325363bd23418c13a2bb40dbe1c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1754765628335912143, guid: 3e983325363bd23418c13a2bb40dbe1c,
         type: 3}

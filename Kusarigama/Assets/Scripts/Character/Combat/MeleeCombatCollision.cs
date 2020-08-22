@@ -20,17 +20,15 @@ public class MeleeCombatCollision : MonoBehaviour
         {
             //Damage the Enemy -> EnemyFox
             Debug.Log("hit");
-            if(other.TryGetComponent(out EnemyFox enemyFox))
+            if (other.TryGetComponent(out EnemyFox enemyFox))
             {
-                enemyFox.TakeDamage();
+                enemyFox.TakeDamage(Playermanager.instance.Damage);
             }
-            if(other.TryGetComponent(out EnemyBear enemyBear))
+            if (other.TryGetComponent(out EnemyBear enemyBear))
             {
-                enemyBear.TakeDamage();
+                enemyBear.TakeDamage(Playermanager.instance.Damage);
             }
-            
-            //other.GetComponent<EnemyFox>().TakeDamage();
-            //other.GetComponent<EnemyBear>().TakeDamage();
+
             weaponCollider.enabled = false;
         }
     }

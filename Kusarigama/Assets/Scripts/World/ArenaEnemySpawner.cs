@@ -25,11 +25,11 @@ public class ArenaEnemySpawner : MonoBehaviour
 
     void TestForNextWave()
     {
-        if (firstFight.transform.childCount == 1)
+        if (firstFight.transform.childCount == 0)
         {
             secondFight.SetActive(true);
         }
-        if (secondFight.transform.childCount == 1)
+        if (secondFight.transform.childCount == 0)
         {
             thirdFight.SetActive(true);
         }

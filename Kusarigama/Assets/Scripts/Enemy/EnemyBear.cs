@@ -20,8 +20,10 @@ public class EnemyBear : MonoBehaviour
     public float aggroRange;
     public float aggroRangeshort;
     public float attackRange;
+    public float rotationspeed;
     public float stunDuration = .5f;
     public float health;
+    public bool canGetHit;
 
     [SerializeField]private Vector3 attackGoal;
     [SerializeField] private LayerMask playerLayerMask;
@@ -34,6 +36,7 @@ public class EnemyBear : MonoBehaviour
 
     void Start()
     {
+        canGetHit = true;
         character = GameObject.Find("Character").transform;
         foxHealth = GetComponentInChildren<FoxHealth>();
         Attackhitbox = GetComponentsInChildren<BoxCollider>()[1];
@@ -59,11 +62,20 @@ public class EnemyBear : MonoBehaviour
                 EnemyAttack();
             }
         }
-
     }
 
+    void RotateTowards()
+    {
+        Vector3 dirToPlayer = character.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(dirToPlayer.x, 0, dirToPlayer.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationspeed);
+    }
     void AggroPlayer()
     {
+        if (distanceToPlayer <= nmabear.stoppingDistance)
+        {
+            RotateTowards();
+        }
         if (distanceToPlayer <= aggroRange && PlayerIsVisible() && PlayerIsInFront() && !isAttacking && !isDead)
         {
             NmaSetTarget();
@@ -144,11 +156,11 @@ public class EnemyBear : MonoBehaviour
     }
 
     //Take damage if a hit is detected -> MeleeCombat
-    public void TakeDamage()
+    public void TakeDamage(float damageAmount)
     {
         if (!isDead)
         {
-            health -= Playermanager.instance.Damage;
+            health -= damageAmount;
             anim.SetTrigger("damageTaken");
             FindObjectOfType<AudioManager>().Play("FoxHurt");
             FindObjectOfType<AudioManager>().Play("EnemyHit");
@@ -207,6 +219,8 @@ public class EnemyBear : MonoBehaviour
     IEnumerator DamageTakenSlow()
     {
         yield return new WaitForSeconds(stunDuration);
+        canGetHit = true;
+        pullEnemy = FindObjectOfType<PullEnemy>();
         if (!isDead && this.gameObject != pullEnemy.hookedObject)
         {
             nmabear.speed = 4f;

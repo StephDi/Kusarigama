@@ -6,8 +6,10 @@ public class RangedCombatCollision : MonoBehaviour
 {
     private BoxCollider weaponCollider;
 
+    private bool isColliding;
     void Start()
     {
+        isColliding = false;
         weaponCollider = GetComponent<BoxCollider>();
         weaponCollider.enabled = false;
     }
@@ -15,22 +17,32 @@ public class RangedCombatCollision : MonoBehaviour
     //Check for EnemyHit
     void OnTriggerEnter(Collider other)
     {
+        if (isColliding) return;
+        isColliding = true;
         if (other.tag == "Enemy" && weaponCollider.enabled == true)
-        {
-            //Damage the Enemy -> EnemyFox
-            Debug.Log("hit");
+        {                     
             if (other.TryGetComponent(out EnemyFox enemyFox))
             {
-                enemyFox.TakeDamage();
-            }
-            if (other.TryGetComponent(out EnemyBear enemyBear))
-            {
-                enemyBear.TakeDamage();
+                if (enemyFox.canGetHit)
+                {
+                    Debug.Log("hit");
+                    enemyFox.canGetHit = false;
+                    enemyFox.TakeDamage(Playermanager.instance.RangedDamage);
+                }              
             }
 
-            //other.GetComponent<EnemyFox>().TakeDamage();
-            //other.GetComponent<EnemyBear>().TakeDamage();
-            weaponCollider.enabled = false;
+            if (other.TryGetComponent(out EnemyBear enemyBear))
+            {
+                Debug.Log("hit");
+                enemyBear.TakeDamage(Playermanager.instance.RangedDamage);
+            }                     
         }
+        StartCoroutine(Reset());
+    }
+
+    IEnumerator Reset()
+    {
+        yield return new WaitForEndOfFrame();
+        isColliding = false;
     }
 }
