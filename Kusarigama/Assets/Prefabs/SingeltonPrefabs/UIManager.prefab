@@ -27,7 +27,7 @@ RectTransform:
   m_GameObject: {fileID: 198720080969463538}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.85586, y: 0.85586, z: 0.85586}
   m_Children: []
   m_Father: {fileID: 5180792322315114427}
   m_RootOrder: 0
@@ -1803,12 +1803,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9434fa94d803d54fa5a479521f098ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerUi: {fileID: 1214775988477773597, guid: 7813591cc880f84429ee301f64032ca9,
-    type: 3}
+  playerUi: {fileID: 0}
   panel: {fileID: 2250638375830472249}
   endOfGamePanel: {fileID: 3356218974041875645}
-  character: {fileID: 6091324232558668055, guid: ecc9fa337c54f0c4d8237012ce20a3a1,
-    type: 3}
+  character: {fileID: 0}
   continueButton: {fileID: 2250638377110999274}
   startButton: {fileID: 4088239996934631903}
   backToMainMenuButton: {fileID: 8337349634844627746}
@@ -2321,7 +2319,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -125, y: 300}
+  m_AnchoredPosition: {x: -125, y: 247}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &6044623241218516780
@@ -3054,7 +3052,7 @@ RectTransform:
   m_GameObject: {fileID: 7121561985777358658}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.74046916, y: 0.74046916, z: 0.74046916}
   m_Children: []
   m_Father: {fileID: 5511983370522431042}
   m_RootOrder: 0
