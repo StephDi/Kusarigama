@@ -15,6 +15,8 @@ public class EndOfGame : MonoBehaviour
         {
             gottriggered = true;
             SecretLaterneFull.SetActive(true);
+            AudioManager.instance.Play("WaterSplash");
+            AudioManager.instance.Play("EndMusic");
             StartCoroutine(WaitForEndOfGame());
         }
     }
@@ -26,8 +28,6 @@ public class EndOfGame : MonoBehaviour
 
    IEnumerator WaitForEndOfGame()
     {
-        AudioManager.instance.Play("WaterSplash");
-        AudioManager.instance.Play("EndMusic");
         yield return new WaitForSeconds(5);
         Gamemanager.instance.Level1Done = false;
         UIManager.instance.gameStarted = false;

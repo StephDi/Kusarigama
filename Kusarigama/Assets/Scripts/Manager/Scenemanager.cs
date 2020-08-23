@@ -63,5 +63,6 @@ public class Scenemanager : MonoBehaviour
         UILevelChanges();
         Debug.Log("EventfiredUI");
         DialogueLevelChanges();
+        AudioManager.instance.Play("GateOpen");
     }
 }

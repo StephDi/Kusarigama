@@ -80,6 +80,7 @@ public class OpenDoorToLastRoom : MonoBehaviour
                     {
 
                         anim.SetBool("openDoor", true);
+                        AudioManager.instance.Play("GateOpen");
                         gotTriggered = true;
                     }
                     else
