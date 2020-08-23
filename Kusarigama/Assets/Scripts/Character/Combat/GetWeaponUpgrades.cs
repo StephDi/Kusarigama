@@ -30,23 +30,8 @@ public class GetWeaponUpgrades : MonoBehaviour
     private GameObject kusarigamaGhostCollectable;
 
     private void Start()
-    {    
-        meleeCombat = GetComponent<MeleeCombat>();
-        rangedCombat = GetComponent<RangedCombat>();
-        aimWeapon = GetComponent<AimWeapon>();
-        throwWeapon = GetComponent<ThrowWeapon>();
-        rangedCombatGhost = GetComponent<RangedCombatGhost>();
-
-        meleeCombat.enabled = false;
-        rangedCombat.enabled = false;
-        aimWeapon.enabled = false;
-        throwWeapon.enabled = false;
-        rangedCombatGhost.enabled = false;
-
-        kusarigama.SetActive(false);
-        kusarigamaGhost.SetActive(false);
-
-        GetWeaponState();
+    {
+        StartCoroutine(Startinit());
     }
 
     void GetWeaponState()
@@ -112,8 +97,7 @@ public class GetWeaponUpgrades : MonoBehaviour
     {
         if(other.tag == "MeleeUpgrade" )
         {
-            weaponState = WeaponState.MELEE;
-            GetWeaponState();
+            StartCoroutine(GetWeaponAtStart());
         }
 
         if (other.tag == "ChainUpgrade")
@@ -140,5 +124,35 @@ public class GetWeaponUpgrades : MonoBehaviour
             }
             GetWeaponState();
         }
+    }
+
+    IEnumerator Startinit()
+    {
+        yield return new WaitForEndOfFrame();
+
+        meleeCombat = GetComponent<MeleeCombat>();
+        rangedCombat = GetComponent<RangedCombat>();
+        aimWeapon = GetComponent<AimWeapon>();
+        throwWeapon = GetComponent<ThrowWeapon>();
+        rangedCombatGhost = GetComponent<RangedCombatGhost>();
+
+        meleeCombat.enabled = false;
+        rangedCombat.enabled = false;
+        aimWeapon.enabled = false;
+        throwWeapon.enabled = false;
+        rangedCombatGhost.enabled = false;
+
+        kusarigama.SetActive(false);
+        kusarigamaGhost.SetActive(false);
+
+        GetWeaponState();
+    }
+
+    IEnumerator GetWeaponAtStart()
+    {
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        weaponState = WeaponState.MELEE;
+        GetWeaponState();
     }
 }

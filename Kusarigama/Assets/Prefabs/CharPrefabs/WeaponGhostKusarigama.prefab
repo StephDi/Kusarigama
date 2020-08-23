@@ -9520,7 +9520,7 @@ GameObject:
   - component: {fileID: 790985676}
   m_Layer: 0
   m_Name: WeaponGhostKusarigama
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9583,20 +9583,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.28886342, y: 0.18528531, z: 0.0530841}
-  m_Center: {x: -0.0076771937, y: -0.07690519, z: -0.020478034}
---- !u!114 &241753518733711771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4575453467836543622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29c2246e13e0a1c409ca1a724e4ae7d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Size: {x: 0.28886342, y: 0.18528531, z: 0.034908213}
+  m_Center: {x: -0.0076771937, y: -0.07690519, z: -0.01139012}
 --- !u!114 &1434313103278645246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9612,6 +9600,18 @@ MonoBehaviour:
   StoneGhost: 0
   anim: {fileID: 0}
   emissionColor: {r: 0, g: 2.1405241, b: 4.867144, a: 1}
+--- !u!114 &271552694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4575453467836543622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4acdaffb04adce4b992789a38ce0ad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5626620553875722763
 GameObject:
   m_ObjectHideFlags: 0
@@ -9719,9 +9719,9 @@ GameObject:
   - component: {fileID: 634305158533381451}
   - component: {fileID: 9068664010794050332}
   - component: {fileID: 8540119996181703209}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Visualization
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9766,7 +9766,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 257a39f33cd43814ea65c09e7a68470a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9827,7 +9827,7 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 0, z: 3}
+  - {x: 3.45, y: 0, z: 3}
   - {x: 0, y: 0, z: 2}
   m_Parameters:
     serializedVersion: 3
@@ -10089,6 +10089,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: cef9ccdbd47fa3241be373a73f22793a, type: 3}
       propertyPath: m_Name
       value: Kusarigama
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cef9ccdbd47fa3241be373a73f22793a, type: 3}
+      propertyPath: m_TagString
+      value: Weapon
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cef9ccdbd47fa3241be373a73f22793a, type: 3}
       propertyPath: m_LocalPosition.x

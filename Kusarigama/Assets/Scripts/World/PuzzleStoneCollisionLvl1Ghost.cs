@@ -12,10 +12,12 @@ public class PuzzleStoneCollisionLvl1Ghost : MonoBehaviour
 
     [SerializeField][ColorUsage(true,true)] private Color emissionColor;
     private PuzzleStoneCollisionLvl1 puzzleStoneCollisionLvl1;
+    private PuzzleStoneCollisionLvl1Ranged puzzleStoneCollisionLvl1Ranged;
 
     void Start()
     {
         puzzleStoneCollisionLvl1 = FindObjectOfType<PuzzleStoneCollisionLvl1>();
+        puzzleStoneCollisionLvl1Ranged = FindObjectOfType<PuzzleStoneCollisionLvl1Ranged>();
         StoneGhost = false;
     }
     void OpenDoor()
@@ -38,7 +40,7 @@ public class PuzzleStoneCollisionLvl1Ghost : MonoBehaviour
                 }
             }          
 
-            if (puzzleStoneCollisionLvl1.Stone1 && puzzleStoneCollisionLvl1.Stone2 && StoneGhost && !anim.GetBool("openDoor"))
+            if ((puzzleStoneCollisionLvl1.Stone1 || puzzleStoneCollisionLvl1Ranged.Stone1) && puzzleStoneCollisionLvl1.Stone2 && StoneGhost && !anim.GetBool("openDoor"))
             {
                 OpenDoor();
             }

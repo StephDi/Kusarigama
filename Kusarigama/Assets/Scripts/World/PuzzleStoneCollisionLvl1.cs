@@ -11,6 +11,7 @@ public class PuzzleStoneCollisionLvl1 : MonoBehaviour
 
     [SerializeField] private Color emissionColor;
     private PuzzleStoneCollisionLvl1Ghost puzzleStoneCollisionLvl1Ghost;
+    private PuzzleStoneCollisionLvl1Ranged puzzleStoneCollisionLvl1Ranged;
     [SerializeField]private ThrowWeapon throwWeapon;
 
     void Start()
@@ -30,10 +31,10 @@ public class PuzzleStoneCollisionLvl1 : MonoBehaviour
                 if (!Stone2)
                 {
                     Stone2 = true;
-                    AudioManager.instance.Play("PuzzlestoneHit2");
+                    AudioManager.instance.Play("PuzzlestoneHit3");
                     throwWeapon.hit.collider.GetComponent<Renderer>().material.SetColor("_EmissionColor", emissionColor);
                 }
-                if (Stone1 && Stone2 && puzzleStoneCollisionLvl1Ghost.StoneGhost && !anim.GetBool("openDoor"))
+                if ((Stone1 || puzzleStoneCollisionLvl1Ranged.Stone1) && Stone2 && puzzleStoneCollisionLvl1Ghost.StoneGhost && !anim.GetBool("openDoor"))
                 {
                     OpenDoor();
                 }
@@ -54,9 +55,10 @@ public class PuzzleStoneCollisionLvl1 : MonoBehaviour
         {
             if (other.gameObject.name == "RätselsteinLvl1 1")
             {
-                if (!Stone1)
+                if (!Stone1 && !puzzleStoneCollisionLvl1Ranged.Stone1)
                 {
                     Stone1 = true;
+                    puzzleStoneCollisionLvl1Ranged.Stone1 = true;
                     AudioManager.instance.Play("PuzzlestoneHit1");
                     other.GetComponent<Renderer>().material.SetColor("_EmissionColor", emissionColor);
                 }
@@ -67,12 +69,12 @@ public class PuzzleStoneCollisionLvl1 : MonoBehaviour
                 if (!Stone2)
                 {
                     Stone2 = true;
-                    AudioManager.instance.Play("PuzzlestoneHit2");
+                    AudioManager.instance.Play("PuzzlestoneHit3");
                     other.GetComponent<Renderer>().material.SetColor("_EmissionColor", emissionColor);
                 }
             }           
 
-            if (Stone1 && Stone2 && puzzleStoneCollisionLvl1Ghost.StoneGhost && !anim.GetBool("openDoor"))
+            if ((Stone1 || puzzleStoneCollisionLvl1Ranged.Stone1) && Stone2 && puzzleStoneCollisionLvl1Ghost.StoneGhost && !anim.GetBool("openDoor"))
             {
                 OpenDoor();
             }

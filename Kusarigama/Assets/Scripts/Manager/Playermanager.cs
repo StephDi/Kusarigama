@@ -8,6 +8,7 @@ public class Playermanager : MonoBehaviour
 
     public float Damage;
     public float RangedDamage;
+    public float RangedDamageGhost;
 
     void Awake()
     {
